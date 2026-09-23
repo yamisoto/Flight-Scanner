@@ -1,0 +1,69 @@
+// Prisma schema for Phase 1A.
+//
+// Scope is deliberately minimal — see docs/DATABASE.md for the
+// MVP-vs-future split. This schema is NOT generated/migrated in this
+// build environment (network access to Prisma's engine binaries is
+// blocked in the sandbox this was built in — see docs/DEVELOPMENT.md).
+// It is provided as the source of truth for the intended schema; run
+// `npx prisma generate` and `npx prisma migrate dev` in an environment
+// with normal internet access before connecting the app to a real
+// database.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Static reference data — Nigerian commercial airports.
+/// Seeded from src/lib/data/airports.ts; not written to by the app at runtime.
+model Airport {
+  id       String  @id @default(cuid())
+  iata     String  @unique
+  icao     String?
+  name     String
+  city     String
+  state    String
+  verified Boolean @default(false)
+
+  @@map("airports")
+}
+
+/// Static reference data — Nigerian domestic airlines.
+/// Seeded from src/lib/data/airlines.ts; not written to by the app at runtime.
+model Airline {
+  id                 String   @id @default(cuid())
+  name               String
+  iata               String?  @unique
+  icao               String?
+  operationalStatus  String   @default("unknown") // "operating" | "grounded" | "unknown"
+  verified           Boolean  @default(false)
+
+  @@map("airlines")
+}
+
+/// One row per search submitted through /api/search. Used for basic
+/// product analytics/debugging — never treated as a source of truth
+/// for flight availability, and never stores full provider responses
+/// (those are ephemeral — offers expire in ~30 minutes, see
+/// docs/FLIGHT_DATA_STRATEGY.md).
+model FlightSearch {
+  id              String   @id @default(cuid())
+  origin          String
+  destination     String
+  departureDate   DateTime
+  returnDate      DateTime?
+  tripType        String   // "one_way" | "return"
+  passengerCount  Int
+  cabinClass      String
+  provider        String   // which provider adapter served this search, e.g. "mock"
+  resultCount     Int
+  createdAt       DateTime @default(now())
+
+  @@map("flight_searches")
+  @@index([origin, destination])
+  @@index([createdAt])
+}
