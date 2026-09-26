@@ -5,6 +5,7 @@ import { SearchForm } from "@/components/SearchForm";
 import { FiltersPanel } from "@/components/FiltersPanel";
 import { FlightResults, type SearchStatus } from "@/components/FlightResults";
 import { LoadingWordmark } from "@/components/LoadingWordmark";
+import { AnimatedWordmark } from "@/components/AnimatedWordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import type { FlightOffer, FlightSearchFilters, FlightSearchRequest, FlightSortKey } from "@/types/flight";
 
@@ -88,7 +89,9 @@ export default function Home() {
       </div>
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-16 sm:py-24">
-        <p className="text-center text-sm text-logo">Skyfare</p>
+        <p className="text-center text-sm">
+          <AnimatedWordmark />
+        </p>
         <h1 className="mt-3 text-center text-3xl text-ink sm:text-4xl">
           Compare flights across Nigeria
         </h1>

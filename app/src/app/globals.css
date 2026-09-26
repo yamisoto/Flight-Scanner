@@ -14,7 +14,7 @@
   --accent-ink: #ffffff;
   --line: #e7e7e9;
   --line-strong: #d4d4d8;
-  --logo-color: #6b6f76;
+  --logo-color: #1747e0;
 }
 
 :root.dark {
@@ -25,7 +25,7 @@
   --accent-ink: #1a1a1c;
   --line: #3f3f43;
   --line-strong: #55555a;
-  --logo-color: #4a73b8;
+  --logo-color: #1747e0;
 }
 
 @theme inline {
@@ -36,7 +36,6 @@
   --color-accent-ink: var(--accent-ink);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-logo: var(--logo-color);
   --font-sans: ui-sans-serif, "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -47,16 +46,18 @@ body {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Loading wordmark: each letter idles at the logo color and pulses to
-   brand blue in sequence, independent of light/dark mode. */
+/* Wordmark letters: idle at a neutral muted tone, pulse to the brand
+   blue (--logo-color) in a left-to-right wave. Used both by the
+   persistent header wordmark (continuous) and the full-screen loading
+   wordmark (while a search is in flight). */
 @keyframes letterPulse {
   0%,
   40%,
   100% {
-    color: var(--logo-color);
+    color: var(--ink-muted);
   }
   18% {
-    color: #1747e0;
+    color: var(--logo-color);
   }
 }
 
