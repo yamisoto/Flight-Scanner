@@ -22,9 +22,11 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
 
   if (status === "loading") {
     return (
-      <div className="mt-8 space-y-3" aria-live="polite" aria-busy="true">
+      <div className="mt-10 divide-y divide-line" aria-live="polite" aria-busy="true">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="h-28 animate-pulse rounded-lg border border-line bg-surface" />
+          <div key={i} className="h-20 animate-pulse py-5">
+            <div className="h-full w-full rounded bg-line/50" />
+          </div>
         ))}
       </div>
     );
@@ -32,9 +34,9 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
 
   if (status === "error") {
     return (
-      <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-5">
-        <p className="font-display text-sm text-red-900">Something went wrong</p>
-        <p className="mt-1 text-sm text-red-800">
+      <div className="mt-10 border-t border-line pt-6">
+        <p className="text-sm text-ink">Something went wrong</p>
+        <p className="mt-1 text-sm text-ink-muted">
           {errorMessage ?? "We couldn't complete that search. Please try again."}
         </p>
       </div>
@@ -43,25 +45,25 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
 
   if (status === "empty") {
     return (
-      <div className="mt-8 rounded-lg border border-line bg-surface p-8 text-center">
-        <p className="font-display text-base">No flights found for this search</p>
+      <div className="mt-10 border-t border-line pt-10 text-center">
+        <p className="text-sm text-ink">No flights found for this search</p>
         <p className="mt-1 text-sm text-ink-muted">Try a different date or route.</p>
       </div>
     );
   }
 
   return (
-    <div className="mt-8">
-      <div className="mb-3 flex items-center justify-between">
+    <div className="mt-10">
+      <div className="flex items-center justify-between border-b border-line pb-3">
         <p className="text-sm text-ink-muted">
-          {offers.length} flight{offers.length > 1 ? "s" : ""} found
+          {offers.length} flight{offers.length > 1 ? "s" : ""}
         </p>
         <label className="flex items-center gap-2 text-sm text-ink-muted">
-          Sort by
+          Sort
           <select
             value={sortBy}
             onChange={(e) => onSortChange(e.target.value as FlightSortKey)}
-            className="rounded-md border border-line bg-surface px-2 py-1 text-sm text-ink outline-none focus:border-accent"
+            className="bg-transparent text-ink outline-none"
           >
             {SORT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -71,7 +73,7 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
           </select>
         </label>
       </div>
-      <div className="space-y-3">
+      <div className="divide-y divide-line">
         {offers.map((offer) => (
           <FlightCard key={offer.id} offer={offer} />
         ))}

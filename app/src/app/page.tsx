@@ -10,6 +10,7 @@ export default function Home() {
   const [offers, setOffers] = useState<FlightOffer[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<FlightSortKey>("price");
+  const [lastRequest, setLastRequest] = useState<FlightSearchRequest | null>(null);
 
   async function runSearch(request: FlightSearchRequest, sort: FlightSortKey = sortBy) {
     setStatus("loading");
@@ -43,8 +44,6 @@ export default function Home() {
     }
   }
 
-  const [lastRequest, setLastRequest] = useState<FlightSearchRequest | null>(null);
-
   function handleSearch(request: FlightSearchRequest) {
     setLastRequest(request);
     runSearch(request, sortBy);
@@ -57,33 +56,27 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full border-b border-line-strong bg-amber-50 px-4 py-2 text-center text-sm text-amber-900">
-        Demonstration environment — every result on this page is test data, not a live or bookable flight.
+      <div className="border-b border-line px-4 py-2 text-center text-xs text-ink-muted">
+        Demonstration data — every result here is for testing, not a live or bookable flight.
       </div>
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10 sm:py-16">
-      <header className="mb-8">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-ink-muted">Skyfare NG · Domestic flights</p>
-        <h1 className="font-display text-3xl leading-tight sm:text-4xl">
-          Compare Nigerian domestic flights in one search
+
+      <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-16 sm:py-24">
+        <p className="text-center text-sm text-ink-muted">Skyfare</p>
+        <h1 className="mt-3 text-center text-3xl text-ink sm:text-4xl">
+          Compare flights across Nigeria
         </h1>
-        <p className="mt-2 text-ink-muted">
-          Search once, see every option side by side, and go straight to booking with the provider you pick.
-        </p>
-      </header>
 
-      <SearchForm onSearch={handleSearch} isSearching={status === "loading"} />
+        <div className="mt-10">
+          <SearchForm onSearch={handleSearch} isSearching={status === "loading"} />
+        </div>
 
-      <FlightResults
-        status={status}
-        offers={offers}
-        errorMessage={errorMessage}
-        sortBy={sortBy}
-        onSortChange={handleSortChange}
-      />
-
-      <footer className="mt-16 border-t border-line pt-6 text-xs text-ink-muted">
-        Running on mock/test data during development — see the project README for status.
-      </footer>
+        <FlightResults
+          status={status}
+          offers={offers}
+          errorMessage={errorMessage}
+          sortBy={sortBy}
+          onSortChange={handleSortChange}
+        />
       </main>
     </>
   );
