@@ -6,9 +6,22 @@ export const metadata: Metadata = {
   description: "Search and compare prices, times, and airlines across Nigerian domestic routes.",
 };
 
+// Runs before hydration so a returning visitor who chose dark mode
+// never sees a flash of light mode first.
+const NO_FLASH_SCRIPT = `
+try {
+  if (localStorage.getItem('skyfare-theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+} catch (e) {}
+`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

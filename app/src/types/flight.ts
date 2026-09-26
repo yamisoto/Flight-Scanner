@@ -96,7 +96,7 @@ export interface FlightOffer {
   offerExpiresAt?: string; // ISO datetime — offers are time-limited industry-wide
 }
 
-export type FlightSortKey = "price" | "duration" | "departure_time";
+export type FlightSortKey = "airline" | "price" | "duration" | "departure_time";
 export type SortDirection = "asc" | "desc";
 
 export interface FlightSearchFilters {

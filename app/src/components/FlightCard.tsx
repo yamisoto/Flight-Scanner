@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { FlightDetailsModal } from "@/components/FlightDetailsModal";
 import type { FlightOffer, FlightSlice } from "@/types/flight";
 
 function formatTime(iso: string) {
@@ -40,12 +44,19 @@ function SliceRow({ slice }: { slice: FlightSlice }) {
 }
 
 export function FlightCard({ offer }: { offer: FlightOffer }) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const airline = offer.slices[0].segments[0].airlineName;
 
   return (
     <article className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
       <div className="flex-1 space-y-2">
-        <p className="text-sm text-ink-muted">{airline}</p>
+        <button
+          type="button"
+          onClick={() => setDetailsOpen(true)}
+          className="text-sm text-ink-muted underline-offset-2 hover:text-ink hover:underline"
+        >
+          {airline}
+        </button>
         <div className="space-y-2">
           {offer.slices.map((slice, i) => (
             <SliceRow key={i} slice={slice} />
@@ -64,6 +75,8 @@ export function FlightCard({ offer }: { offer: FlightOffer }) {
           Select
         </button>
       </div>
+
+      {detailsOpen && <FlightDetailsModal offer={offer} onClose={() => setDetailsOpen(false)} />}
     </article>
   );
 }

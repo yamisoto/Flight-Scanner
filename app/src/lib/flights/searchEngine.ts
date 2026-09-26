@@ -87,7 +87,11 @@ export function sortOffers(
 ): FlightOffer[] {
   const sorted = [...offers].sort((a, b) => {
     let diff = 0;
-    if (sortBy === "price") {
+    if (sortBy === "airline") {
+      const nameA = a.slices[0].segments[0].airlineName;
+      const nameB = b.slices[0].segments[0].airlineName;
+      diff = nameA.localeCompare(nameB);
+    } else if (sortBy === "price") {
       diff = a.price.amount - b.price.amount;
     } else if (sortBy === "duration") {
       const totalA = a.slices.reduce((sum, s) => sum + s.durationMinutes, 0);

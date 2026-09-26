@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { SearchForm } from "@/components/SearchForm";
 import { FlightResults, type SearchStatus } from "@/components/FlightResults";
+import { LoadingWordmark } from "@/components/LoadingWordmark";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { FlightOffer, FlightSearchRequest, FlightSortKey } from "@/types/flight";
 
 export default function Home() {
   const [status, setStatus] = useState<SearchStatus>("idle");
   const [offers, setOffers] = useState<FlightOffer[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<FlightSortKey>("price");
+  const [sortBy, setSortBy] = useState<FlightSortKey>("airline");
   const [lastRequest, setLastRequest] = useState<FlightSearchRequest | null>(null);
 
   async function runSearch(request: FlightSearchRequest, sort: FlightSortKey = sortBy) {
@@ -56,12 +58,15 @@ export default function Home() {
 
   return (
     <>
+      <ThemeToggle />
+      {status === "loading" && <LoadingWordmark />}
+
       <div className="border-b border-line px-4 py-2 text-center text-xs text-ink-muted">
         Demonstration data — every result here is for testing, not a live or bookable flight.
       </div>
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-16 sm:py-24">
-        <p className="text-center text-sm text-ink-muted">Skyfare</p>
+        <p className="text-center text-sm text-logo">Skyfare</p>
         <h1 className="mt-3 text-center text-3xl text-ink sm:text-4xl">
           Compare flights across Nigeria
         </h1>

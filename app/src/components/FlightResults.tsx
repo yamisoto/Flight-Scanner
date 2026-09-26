@@ -12,25 +12,13 @@ interface FlightResultsProps {
 }
 
 const SORT_OPTIONS: { value: FlightSortKey; label: string }[] = [
+  { value: "airline", label: "Airline" },
   { value: "price", label: "Price" },
-  { value: "duration", label: "Duration" },
   { value: "departure_time", label: "Departure time" },
 ];
 
 export function FlightResults({ status, offers, errorMessage, sortBy, onSortChange }: FlightResultsProps) {
-  if (status === "idle") return null;
-
-  if (status === "loading") {
-    return (
-      <div className="mt-10 divide-y divide-line" aria-live="polite" aria-busy="true">
-        {[0, 1, 2].map((i) => (
-          <div key={i} className="h-20 animate-pulse py-5">
-            <div className="h-full w-full rounded bg-line/50" />
-          </div>
-        ))}
-      </div>
-    );
-  }
+  if (status === "idle" || status === "loading") return null;
 
   if (status === "error") {
     return (

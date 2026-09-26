@@ -107,6 +107,15 @@ describe("FlightSearchEngine", () => {
     expect(filtered).toHaveLength(1);
   });
 
+  it("sorts by airline name alphabetically", () => {
+    const offers = [
+      makeOffer({ price: 100000, airline: "ValueJet", hour: 8 }),
+      makeOffer({ price: 100000, airline: "Air Peace", hour: 9 }),
+    ];
+    const sorted = sortOffers(offers, "airline", "asc");
+    expect(sorted[0].slices[0].segments[0].airlineName).toBe("Air Peace");
+  });
+
   it("sorts by departure time", () => {
     const offers = [
       makeOffer({ price: 100000, airline: "P4", hour: 19 }),
