@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { FlightOffer, FlightSlice } from "@/types/flight";
 
 function formatTime(iso: string) {
@@ -27,9 +27,27 @@ interface FlightDetailsModalProps {
 }
 
 export function FlightDetailsModal({ offer, onClose }: FlightDetailsModalProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Move focus into the modal as soon as it opens — the close button is
+  // currently the only focusable element inside it.
+  useEffect(() => {
+    closeButtonRef.current?.focus();
+  }, []);
+
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      // Minimal focus trap: the close button is the only focusable element
+      // in the modal right now, so Tab/Shift+Tab just keeps focus on it
+      // rather than escaping to the page underneath.
+      if (e.key === "Tab") {
+        e.preventDefault();
+        closeButtonRef.current?.focus();
+      }
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
@@ -53,6 +71,7 @@ export function FlightDetailsModal({ offer, onClose }: FlightDetailsModalProps) 
           </div>
           <button
             type="button"
+            ref={closeButtonRef}
             onClick={onClose}
             aria-label="Close"
             className="rounded-full p-1 text-ink-muted transition hover:text-ink"

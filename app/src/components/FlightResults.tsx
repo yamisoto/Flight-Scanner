@@ -17,6 +17,13 @@ const SORT_OPTIONS: { value: FlightSortKey; label: string }[] = [
   { value: "departure_time", label: "Departure time" },
 ];
 
+function median(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+}
+
 export function FlightResults({ status, offers, errorMessage, sortBy, onSortChange }: FlightResultsProps) {
   if (status === "idle" || status === "loading") return null;
 
@@ -39,6 +46,8 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
       </div>
     );
   }
+
+  const medianPrice = median(offers.map((o) => o.price.amount));
 
   return (
     <div className="mt-10">
@@ -63,7 +72,7 @@ export function FlightResults({ status, offers, errorMessage, sortBy, onSortChan
       </div>
       <div className="divide-y divide-line">
         {offers.map((offer) => (
-          <FlightCard key={offer.id} offer={offer} />
+          <FlightCard key={offer.id} offer={offer} medianPrice={medianPrice} />
         ))}
       </div>
     </div>

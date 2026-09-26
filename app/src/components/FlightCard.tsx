@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FlightDetailsModal } from "@/components/FlightDetailsModal";
 import type { FlightOffer, FlightSlice } from "@/types/flight";
 
@@ -16,6 +16,21 @@ function formatDuration(minutes: number) {
 
 function formatPrice(amount: number) {
   return new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(amount);
+}
+
+/**
+ * Compares this offer's price to the median of the current search's own
+ * results. This is NOT a claim about the route's real historical prices —
+ * there's no real historical data behind mock offers, and inventing one
+ * would misrepresent what the platform actually knows. It's an honest,
+ * clearly-scoped comparison against what came back just now.
+ */
+function priceComparisonLabel(amount: number, median: number): string | null {
+  if (median <= 0) return null;
+  const diff = (amount - median) / median;
+  if (diff <= -0.05) return "Below average for this search";
+  if (diff >= 0.05) return "Above average for this search";
+  return "Typical for this search";
 }
 
 function SliceRow({ slice }: { slice: FlightSlice }) {
@@ -43,19 +58,30 @@ function SliceRow({ slice }: { slice: FlightSlice }) {
   );
 }
 
-export function FlightCard({ offer }: { offer: FlightOffer }) {
+export function FlightCard({ offer, medianPrice }: { offer: FlightOffer; medianPrice: number }) {
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const airline = offer.slices[0].segments[0].airlineName;
+  const priceLabel = priceComparisonLabel(offer.price.amount, medianPrice);
+
+  function closeDetails() {
+    setDetailsOpen(false);
+    // Return focus to whatever opened the modal, rather than dropping it
+    // back to the top of the page.
+    triggerRef.current?.focus();
+  }
 
   return (
     <article className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
       <div className="flex-1 space-y-2">
         <button
           type="button"
+          ref={triggerRef}
           onClick={() => setDetailsOpen(true)}
-          className="text-sm text-ink-muted underline-offset-2 hover:text-ink hover:underline"
+          className="inline-flex items-center gap-1 text-sm text-ink-muted underline-offset-2 hover:text-ink hover:underline"
         >
           {airline}
+          <InfoIcon />
         </button>
         <div className="space-y-2">
           {offer.slices.map((slice, i) => (
@@ -65,7 +91,10 @@ export function FlightCard({ offer }: { offer: FlightOffer }) {
       </div>
 
       <div className="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
-        <p className="text-lg text-ink">{formatPrice(offer.price.amount)}</p>
+        <div className="text-right">
+          <p className="text-lg text-ink">{formatPrice(offer.price.amount)}</p>
+          {priceLabel && <p className="text-xs text-ink-muted">{priceLabel}</p>}
+        </div>
         <button
           type="button"
           disabled={!offer.bookingUrl}
@@ -76,7 +105,17 @@ export function FlightCard({ offer }: { offer: FlightOffer }) {
         </button>
       </div>
 
-      {detailsOpen && <FlightDetailsModal offer={offer} onClose={() => setDetailsOpen(false)} />}
+      {detailsOpen && <FlightDetailsModal offer={offer} onClose={closeDetails} />}
     </article>
+  );
+}
+
+function InfoIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="9" />
+      <path strokeLinecap="round" d="M12 11v5" />
+      <circle cx="12" cy="8" r="0.5" fill="currentColor" />
+    </svg>
   );
 }

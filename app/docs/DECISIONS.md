@@ -10,3 +10,4 @@
 | This build | Vitest pinned to v2 to avoid `@types/node` peer conflicts in this environment | Resolved. |
 | This build | Dropped next/font/google (Geist) in favor of a system font stack | Resolved — avoids a build-time network dependency and is a more deliberate design choice per `docs/DEVELOPMENT.md`. |
 | This build | `prisma generate`/`migrate` not run — blocked by network access to `binaries.prisma.sh` in this sandbox | Open — needs to be run in a normal dev/CI environment before the app connects to a real database. Schema itself is complete in `prisma/schema.prisma`. |
+| This build | Dark-mode logo color changed from the originally specified `#294A7F` to `#4A73B8` | Resolved — the original value had low contrast against the charcoal background (~11 percentage points of luminance difference), flagged in a site audit. Lightened for legibility; flag if you'd rather keep the exact original value and accept the contrast tradeoff. |

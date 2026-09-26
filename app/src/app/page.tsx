@@ -2,58 +2,80 @@
 
 import { useState } from "react";
 import { SearchForm } from "@/components/SearchForm";
+import { FiltersPanel } from "@/components/FiltersPanel";
 import { FlightResults, type SearchStatus } from "@/components/FlightResults";
 import { LoadingWordmark } from "@/components/LoadingWordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import type { FlightOffer, FlightSearchRequest, FlightSortKey } from "@/types/flight";
+import type { FlightOffer, FlightSearchFilters, FlightSearchRequest, FlightSortKey } from "@/types/flight";
+
+const SEARCH_TIMEOUT_MS = 15_000;
 
 export default function Home() {
   const [status, setStatus] = useState<SearchStatus>("idle");
   const [offers, setOffers] = useState<FlightOffer[]>([]);
+  const [baseOffers, setBaseOffers] = useState<FlightOffer[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<FlightSortKey>("airline");
+  const [filters, setFilters] = useState<FlightSearchFilters>({});
   const [lastRequest, setLastRequest] = useState<FlightSearchRequest | null>(null);
 
-  async function runSearch(request: FlightSearchRequest, sort: FlightSortKey = sortBy) {
+  async function runSearch(
+    request: FlightSearchRequest,
+    sort: FlightSortKey,
+    activeFilters: FlightSearchFilters,
+    isNewSearch: boolean,
+  ) {
     setStatus("loading");
     setErrorMessage(null);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
 
     try {
       const res = await fetch("/api/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...request, sortBy: sort, sortDirection: "asc" }),
+        body: JSON.stringify({ ...request, sortBy: sort, sortDirection: "asc", filters: activeFilters }),
+        signal: controller.signal,
       });
 
       const data = await res.json();
 
       if (res.status === 200 && Array.isArray(data.offers)) {
-        if (data.offers.length === 0) {
-          setStatus("empty");
-          setOffers([]);
-        } else {
-          setOffers(data.offers);
-          setStatus("success");
-        }
+        setOffers(data.offers);
+        if (isNewSearch) setBaseOffers(data.offers);
+        setStatus(data.offers.length === 0 ? "empty" : "success");
         return;
       }
 
       setErrorMessage(data.error ?? "We couldn't complete that search.");
       setStatus("error");
-    } catch {
-      setErrorMessage("We couldn't reach the search service. Check your connection and try again.");
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setErrorMessage("That's taking longer than expected. Please try again.");
+      } else {
+        setErrorMessage("We couldn't reach the search service. Check your connection and try again.");
+      }
       setStatus("error");
+    } finally {
+      clearTimeout(timeoutId);
     }
   }
 
   function handleSearch(request: FlightSearchRequest) {
     setLastRequest(request);
-    runSearch(request, sortBy);
+    setFilters({});
+    runSearch(request, sortBy, {}, true);
   }
 
   function handleSortChange(sort: FlightSortKey) {
     setSortBy(sort);
-    if (lastRequest) runSearch(lastRequest, sort);
+    if (lastRequest) runSearch(lastRequest, sort, filters, false);
+  }
+
+  function handleFiltersApply(newFilters: FlightSearchFilters) {
+    setFilters(newFilters);
+    if (lastRequest) runSearch(lastRequest, sortBy, newFilters, false);
   }
 
   return (
@@ -74,6 +96,10 @@ export default function Home() {
         <div className="mt-10">
           <SearchForm onSearch={handleSearch} isSearching={status === "loading"} />
         </div>
+
+        {status === "success" && (
+          <FiltersPanel baseOffers={baseOffers} filters={filters} onApply={handleFiltersApply} />
+        )}
 
         <FlightResults
           status={status}
