@@ -47,9 +47,7 @@ body {
 }
 
 /* Wordmark letters: idle at a neutral muted tone, pulse to the brand
-   blue (--logo-color) in a left-to-right wave. Used both by the
-   persistent header wordmark (continuous) and the full-screen loading
-   wordmark (while a search is in flight). */
+   blue (--logo-color) in a left-to-right wave. */
 @keyframes letterPulse {
   0%,
   40%,
@@ -61,7 +59,20 @@ body {
   }
 }
 
+/* Full-screen loading wordmark: always animates, in both themes. */
 .loading-letter {
   display: inline-block;
   animation: letterPulse 1.6s ease-in-out infinite;
+}
+
+/* Persistent header logo: animates in light mode; in dark mode it's a
+   plain, static, solid blue — no letter-by-letter color change. */
+.wordmark-letter {
+  display: inline-block;
+  animation: letterPulse 1.6s ease-in-out infinite;
+}
+
+:root.dark .wordmark-letter {
+  animation: none;
+  color: var(--logo-color);
 }

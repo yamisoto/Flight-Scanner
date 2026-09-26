@@ -90,7 +90,7 @@ export default function Home() {
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-16 sm:py-24">
         <p className="text-center text-sm">
-          <AnimatedWordmark />
+          <AnimatedWordmark variant="header" />
         </p>
         <h1 className="mt-3 text-center text-3xl text-ink sm:text-4xl">
           Compare flights across Nigeria

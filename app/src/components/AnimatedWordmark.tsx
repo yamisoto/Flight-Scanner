@@ -1,16 +1,23 @@
 const WORDMARK = "Skyfare";
 
-/**
- * Renders "Skyfare" as individually-animated letters (see .loading-letter
- * in globals.css). Used both for the persistent header wordmark (small,
- * animates continuously) and the full-screen loading state (large, shown
- * only while a search is in flight) — same animation, different size.
- */
-export function AnimatedWordmark({ className = "" }: { className?: string }) {
+interface AnimatedWordmarkProps {
+  className?: string;
+  /**
+   * "loading" always animates, in both themes — used by the full-screen
+   * loading state. "header" animates in light mode but is forced to a
+   * static, solid blue in dark mode (see .wordmark-letter in
+   * globals.css) — used by the persistent header logo.
+   */
+  variant?: "loading" | "header";
+}
+
+export function AnimatedWordmark({ className = "", variant = "loading" }: AnimatedWordmarkProps) {
+  const letterClass = variant === "header" ? "wordmark-letter" : "loading-letter";
+
   return (
     <span className={className}>
       {WORDMARK.split("").map((letter, i) => (
-        <span key={i} className="loading-letter" style={{ animationDelay: `${i * 0.1}s` }}>
+        <span key={i} className={letterClass} style={{ animationDelay: `${i * 0.1}s` }}>
           {letter}
         </span>
       ))}
