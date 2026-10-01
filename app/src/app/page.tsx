@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { SearchForm } from "@/components/SearchForm";
 import { FiltersPanel } from "@/components/FiltersPanel";
@@ -83,6 +84,14 @@ export default function Home() {
     <>
       <ThemeToggle />
       {status === "loading" && <LoadingWordmark />}
+
+      <Link
+        href="/v2"
+        className="block bg-[#1747e0] px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-[#1239b8]"
+      >
+        <span className="mr-2 rounded-full bg-white px-2 py-0.5 text-[11px] font-bold text-[#1747e0]">NEW</span>
+        Try the redesigned Skyfare V2 →
+      </Link>
 
       <div className="border-b border-line px-4 py-2 text-center text-xs text-ink-muted">
         Demonstration data — every result here is for testing, not a live or bookable flight.
