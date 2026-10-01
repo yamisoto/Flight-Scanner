@@ -101,17 +101,20 @@ Data dependency: route-level cancellation history needs flight status collection
 
 ## 6. Recommended flight logic
 
+Revised after the first V2 review, where a cheap but "Fair" (5.2) flight kept winning:
+
 ```
-best = 0.45*price_score + 0.35*reliability_score + 0.20*time_score
+tier  = Good (6.5+) | Acceptable (4.0-6.4) | Never (<4.0)
+best  = 0.40*price_score + 0.40*reliability_score + 0.20*time_score   (within the best available tier)
 ```
 
-- `price_score`: cheapest on the route = 1, scaled against the route's price range.
-- `reliability_score`: Skyfare score / 10.
-- `time_score`: shorter total journey and sensible departure time (not before 05:00 or after 21:00) score higher.
-- Hard rule: a flight with reliability below 4.0 can never be the recommendation.
-- Ties go to the cheaper flight.
+- **Tier first:** if any flight rates Good, the Pick is always a Good flight. Skyfare does not recommend a flight that is more likely than not to be late when a reliable one exists.
+- `price_score`: cheapest price / this price (a ratio, so ₦120k against a ₦100k cheapest scores 0.83, not 0).
+- `reliability_score`: (score - 1) / 9.
+- `time_score`: 70% shortest journey / this journey, 30% sociable departure hour (05:00-21:00).
+- Ties go to the cheaper flight. The Best tab uses the same ordering, so it always agrees with the Pick.
 
-UI: one "Skyfare Pick" card pinned above results with a one-line reason ("Best balance: ₦18k more than cheapest, 2.4 points more reliable"). Sorting tabs: **Best** (default), **Cheapest**, **Fastest**, **Most reliable**, plus departure-time sort.
+UI: one "Skyfare Pick" card pinned above results with a one-line reason (e.g. "₦81,000 more than the cheapest, which rates only 5.2/10 for reliability"). Sorting tabs: **Best** (default), **Cheapest**, **Fastest**, **Most reliable**, plus departure-time sort.
 
 ## 7. Design direction
 
@@ -166,7 +169,7 @@ API stays separate from UI (`/api/*` is what the mobile app will call). Types an
 1. Which price partner to push first: Travelstart affiliate (fastest to start, lower control) or Wakanow (bigger domestic inventory, but a direct competitor)?
 2. Flight status data budget: AeroDataBox (low cost, good enough to start) vs Cirium (enterprise pricing, better accuracy). Recommendation: AeroDataBox now, revisit at Africa expansion.
 3. Are you happy for flights without a live price to appear in results (marked "check on airline site")? Recommendation: yes, it is the only honest way to meet "show all options".
-4. Confirm the Recommended-flight weights (45% price / 35% reliability / 20% time) as a starting point.
+4. Confirm the revised Skyfare Pick rule (Good-tier first, then 40% price / 40% reliability / 20% time).
 5. Upload the missing Phase 0.5 docs or approve removing the references.
 
 ## Sources

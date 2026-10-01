@@ -68,7 +68,7 @@ export function SearchPanel({ initial, isSearching, onSearch }: SearchPanelProps
             aria-checked={tripType === t}
             onClick={() => setTripType(t)}
             className={`rounded-full px-4 py-1.5 font-medium transition ${
-              tripType === t ? "bg-white text-[#0a0c11]" : "text-hero-muted hover:text-hero-ink"
+              tripType === t ? "bg-surface text-ink shadow-sm" : "text-hero-muted hover:text-hero-ink"
             }`}
           >
             {t === "one_way" ? "One way" : "Return"}

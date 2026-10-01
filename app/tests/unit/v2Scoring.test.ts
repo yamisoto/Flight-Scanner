@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   PICK_MIN_RELIABILITY,
+  pickReason,
   pickRecommended,
   previewReliability,
   scoreOffers,
@@ -84,5 +85,40 @@ describe("pickRecommended", () => {
   it("returns null when nothing clears the floor", () => {
     const pick = pickRecommended(scoreOffers([offer("x", 1, 60, 10)], fixed({ x: 2 })));
     expect(pick).toBeNull();
+  });
+
+  // The Lagos -> Abuja case that prompted the fix: a cheap "Fair" flight used to win.
+  it("prefers a well-priced Good flight over a cheaper Fair one", () => {
+    const offers = [
+      offer("fair-cheap", 107_500, 76, 6),
+      offer("good-1130", 188_500, 76, 11),
+      offer("good-1930", 187_500, 76, 19),
+      offer("good-dear", 280_500, 76, 11),
+      offer("low", 232_500, 76, 17),
+    ];
+    const scored = scoreOffers(
+      offers,
+      fixed({ "fair-cheap": 5.2, "good-1130": 8.1, "good-1930": 7.4, "good-dear": 8.1, low: 4.0 }),
+    );
+    expect(pickRecommended(scored)?.offer.id).toBe("good-1130");
+    expect(pickReason(pickRecommended(scored)!, scored)).toContain("rates only 5.2/10");
+  });
+
+  it("falls back to the acceptable tier when no flight rates Good", () => {
+    const offers = [offer("a", 100_000, 70, 10), offer("b", 140_000, 70, 10)];
+    const pick = pickRecommended(scoreOffers(offers, fixed({ a: 5, b: 6 })));
+    expect(pick?.offer.id).toBe("a");
+  });
+
+  it("keeps the Best tab and the Pick in agreement", () => {
+    const offers = [offer("a", 90_000, 70, 10), offer("b", 150_000, 70, 10), offer("c", 120_000, 70, 10)];
+    const scored = scoreOffers(offers, fixed({ a: 5, b: 9, c: 7 }));
+    expect(sortScored(scored, "best")[0].offer.id).toBe(pickRecommended(scored)?.offer.id);
+  });
+
+  it("among Good flights, does not overpay for a small reliability gain", () => {
+    const offers = [offer("good", 100_000, 70, 10), offer("great-but-double", 200_000, 70, 10)];
+    const pick = pickRecommended(scoreOffers(offers, fixed({ good: 7, "great-but-double": 8.5 })));
+    expect(pick?.offer.id).toBe("good");
   });
 });
