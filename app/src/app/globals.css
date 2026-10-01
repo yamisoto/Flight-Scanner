@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark: utilities follow the .dark class the theme toggle sets, not the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
   Light (default) palette: flat white canvas, near-black ink, one blue
   accent used only for the primary action and price. Dark mode swaps
@@ -75,4 +78,113 @@ body {
 :root.dark .wordmark-letter {
   animation: none;
   color: var(--logo-color);
+}
+
+/* ------------------------------------------------------------------
+   V2 design tokens. Scoped to .v2 so the V1 page (/) is untouched and
+   the two versions can be compared side by side. Blue = action and
+   the Skyfare Pick, silver = neutral system, black = ink / dark canvas.
+   The base tokens (--bg, --ink, ...) are redefined here so existing
+   Tailwind utilities (bg-bg, text-ink, border-line) follow V2 too.
+   ------------------------------------------------------------------ */
+.v2 {
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --surface-2: #eceef2;
+  --ink: #0a0c11;
+  --ink-muted: #5a6170;
+  --line: #e1e4ea;
+  --line-strong: #c9ced8;
+  --silver: #aab1bd;
+  --primary: #1747e0;
+  --primary-hover: #1239b8;
+  --primary-ink: #ffffff;
+  --primary-soft: #e8eefd;
+  --good: #0f8a4b;
+  --warn: #b26a00;
+  --bad: #c0352b;
+  --hero-from: #05070c;
+  --hero-to: #0d1a3a;
+  --hero-ink: #f2f4f8;
+  --hero-muted: #9aa3b5;
+  --shadow: 0 1px 2px rgb(10 12 17 / 0.04), 0 8px 24px rgb(10 12 17 / 0.06);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+:root.dark .v2 {
+  --bg: #07080b;
+  --surface: #111318;
+  --surface-2: #181b22;
+  --ink: #f1f3f6;
+  --ink-muted: #9aa1ad;
+  --line: #22262e;
+  --line-strong: #323844;
+  --silver: #b8bec8;
+  --primary: #4c7dff;
+  --primary-hover: #6b93ff;
+  --primary-ink: #ffffff;
+  --primary-soft: #14203f;
+  --good: #3ccf86;
+  --warn: #f0a934;
+  --bad: #ff6b5e;
+  --hero-from: #030407;
+  --hero-to: #0a1430;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-silver: var(--silver);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-muted: var(--hero-muted);
+}
+
+.v2-hero {
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgb(76 125 255 / 0.28), transparent 60%),
+    linear-gradient(180deg, var(--hero-from), var(--hero-to));
+}
+
+/* Silver metallic wordmark used on the dark hero. */
+.v2-wordmark {
+  background: linear-gradient(180deg, #ffffff 0%, #d5dae3 45%, #8f97a6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.v2-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.v2-num {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes v2-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.v2-skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--line) 50%, var(--surface-2) 100%);
+  background-size: 800px 100%;
+  animation: v2-shimmer 1.4s linear infinite;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-skeleton { animation: none; }
 }
