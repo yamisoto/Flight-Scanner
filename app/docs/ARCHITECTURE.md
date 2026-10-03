@@ -43,6 +43,20 @@ src/lib/v2/format.ts       time, duration, price and date formatting
 
 V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability currently comes from `previewReliability()`, a labelled placeholder; the reliability engine (plan sub-phase 1.3) will replace it server-side. See `docs/V2_DESIGN.md`.
 
+## Reliability and flight-status collection
+
+```
+src/lib/reliability/ncaaData.ts   NCAA airline-level monthly operations data (the current baseline)
+src/lib/reliability/score.ts      reliability score, label, confidence and plain-English reason
+src/lib/ingest/types.ts           FlightStatusRecord, FlightStatusSource, FlightStatusStore
+src/lib/ingest/collectStatus.ts   runStatusCollection(): per-airport fetch with retry/backoff,
+                                  de-duplication, structured logs, summary; never stops on one failure
+src/lib/ingest/fixtureSource.ts   synthetic source for tests and local runs only
+src/app/api/cron/collect-status   daily trigger for Vercel Cron (Bearer CRON_SECRET, fails closed)
+```
+
+The cron route returns `skipped` until two things exist: an AeroDataBox source adapter (written against real responses once there's an API key, never against assumed shapes) and a database store (provider decision pending). Then: implement `FlightStatusSource` for AeroDataBox, implement `FlightStatusStore` on the database, add the schedule to `vercel.json`, and set `CRON_SECRET`. Sizing note: collecting all 26 airports in two 12-hour windows a day is about 52 provider calls a day (roughly 1,600 a month).
+
 ## Error handling
 
 The API route distinguishes three outcomes, not two: success with results, success with zero results (`{ offers: [], message: ... }`, HTTP 200 — this is a valid search outcome, not a failure), and an actual failure (HTTP 400 for bad input, 502 for a provider failure, 500 for anything unexpected). This is deliberate — collapsing "no flights on this route today" and "the provider is down" into the same empty-list response is exactly what `docs/PRD.md` flags as unacceptable.
