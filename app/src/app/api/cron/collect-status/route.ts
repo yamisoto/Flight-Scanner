@@ -17,8 +17,8 @@ function isAuthorized(header: string | null, secret: string | undefined): boolea
  * (fail closed).
  *
  * Not wired up yet, deliberately: it needs a real source (AeroDataBox
- * adapter, built once its live responses can be checked) and a database
- * store (provider decision pending; see docs/DATABASE.md). Until both
+ * adapter, built once its live responses can be checked) and the
+ * database (Neon; store in src/lib/ingest/prismaStore.ts). Until both
  * exist it returns `skipped`. The pipeline itself lives in
  * src/lib/ingest/collectStatus.ts and is tested with fixture data.
  * Add the cron schedule to vercel.json only when it's ready to run.

@@ -32,9 +32,9 @@ The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock`
 - `src/instrumentation.ts` logs every uncaught server error as one JSON line (no headers, so no cookies or personal data), searchable in Vercel's runtime logs. Replace or extend it with Sentry once an account exists.
 - Vercel Analytics and Speed Insights are in the root layout. They record nothing until enabled in the Vercel dashboard (Project → Analytics / Speed Insights). No cookies.
 
-## Known environment limitation: Prisma
+## Database
 
-`prisma/schema.prisma` defines the intended MVP schema (see `docs/DATABASE.md`), but `npx prisma generate` / `npx prisma migrate dev` have **not** been run in this build — the sandbox this was built in blocks network access to `binaries.prisma.sh`, which Prisma needs to download its query/schema engine. This isn't a code issue, just an environment one. Run those commands yourself in a normal environment with full internet access before wiring the app up to a real database. Nothing in the current codebase imports `@prisma/client` at runtime, so this doesn't block anything else in Phase 1A.
+Neon Postgres in production (see `docs/DATABASE.md` for setup, `docs/DATABASE_PROVIDERS.md` for why and the portability rules). `npm install` runs `prisma generate`. Vercel builds use `npm run vercel-build` (`scripts/vercel-build.sh`), which applies pending migrations when `DATABASE_URL_UNPOOLED` is set and skips them otherwise. Schema changes: edit `prisma/schema.prisma`, run `npx prisma migrate dev --name <change>` against a local Postgres, commit the generated migration. Seed with `npm run db:seed`. Integration tests in `tests/integration/` run when `TEST_DATABASE_URL` points at a migrated local or CI database.
 
 ## Staging deployment (Vercel)
 

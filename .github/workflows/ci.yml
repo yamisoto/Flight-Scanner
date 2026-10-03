@@ -17,6 +17,20 @@ jobs:
     name: Test, typecheck, lint, build
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    services:
+      # Throwaway Postgres for the database integration tests (same major version as Neon's default).
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: skyfare
+          POSTGRES_PASSWORD: skyfare
+          POSTGRES_DB: skyfare_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U skyfare"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     defaults:
       run:
         working-directory: app
@@ -25,6 +39,9 @@ jobs:
       FLIGHT_PROVIDER: mock
       ALLOW_MOCK_PROVIDER: "true"
       NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: postgresql://skyfare:skyfare@localhost:5432/skyfare_test
+      DATABASE_URL_UNPOOLED: postgresql://skyfare:skyfare@localhost:5432/skyfare_test
+      TEST_DATABASE_URL: postgresql://skyfare:skyfare@localhost:5432/skyfare_test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,6 +50,8 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
       - run: npm ci
+      - name: Apply migrations to the test database
+        run: npx prisma migrate deploy
       - run: npm test
       - run: npm run typecheck
       - run: npm run lint

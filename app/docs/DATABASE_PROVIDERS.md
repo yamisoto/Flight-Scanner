@@ -1,6 +1,6 @@
 # Database Provider Comparison
 
-Prepared 3 October 2026 for the decision on Phase 1 task 1 (database live). **Status: awaiting owner decision.**
+Prepared 3 October 2026 for the decision on Phase 1 task 1 (database live). **Status: decided 3 Oct 2026: Neon**, London region, created through the Vercel Marketplace. The portability rules below keep a later move (e.g. to Supabase for user accounts) a half-day job.
 
 ## What Skyfare needs from a database
 
@@ -61,6 +61,21 @@ Prepared 3 October 2026 for the decision on Phase 1 task 1 (database live). **St
 It's free for all of Phase 1, it's plain Postgres (no lock-in), and per-preview database branches fit how we're already working with PR previews. Set a spending limit when moving to a paid plan.
 
 **Choose Supabase instead** if you want user accounts and price alerts early (Phase 1.5) and are happy to pay $25/month from launch: its built-in auth would save a week or two of work then. **Avoid** RDS for now (too much maintenance) and Prisma Postgres (pricing harder to predict at scale).
+
+## Portability rules (in force)
+
+These keep Skyfare plain Postgres so the database can move host with a data copy and a connection-string change.
+
+| Rule | How it's enforced |
+|---|---|
+| Use Prisma's standard Postgres connection only, never a provider-specific driver | `src/lib/db/client.ts` is the only place a client is created |
+| Plain Postgres only; no provider-only features or uncommon extensions | Code review; the schema header says so |
+| Every schema change is a Prisma migration in the repo, never a dashboard edit | `prisma/migrations/`; Vercel builds run `prisma migrate deploy` |
+| Two connection settings: `DATABASE_URL` (pooled, app) and `DATABASE_URL_UNPOOLED` (direct, migrations and backups) | `prisma/schema.prisma` datasource |
+| Backups and restores use Postgres's own tools, and the round trip is tested | `scripts/db-backup.sh`, `scripts/db-restore.sh` |
+| CI runs the database tests against stock Postgres 16, not Neon | `.github/workflows/ci.yml` |
+
+**Moving to Supabase later:** create the Supabase project, run `scripts/db-backup.sh` against Neon, run `prisma migrate deploy` then `scripts/db-restore.sh` against Supabase (or restore the dump directly into an empty database), set `DATABASE_URL` to Supabase's pooled URL with `?pgbouncer=true` and `DATABASE_URL_UNPOOLED` to its direct URL, redeploy. Pause the daily collection job during the switch.
 
 ## Data protection note
 

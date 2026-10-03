@@ -55,7 +55,7 @@ src/lib/ingest/fixtureSource.ts   synthetic source for tests and local runs only
 src/app/api/cron/collect-status   daily trigger for Vercel Cron (Bearer CRON_SECRET, fails closed)
 ```
 
-The cron route returns `skipped` until two things exist: an AeroDataBox source adapter (written against real responses once there's an API key, never against assumed shapes) and a database store (provider decision pending). Then: implement `FlightStatusSource` for AeroDataBox, implement `FlightStatusStore` on the database, add the schedule to `vercel.json`, and set `CRON_SECRET`. Sizing note: collecting all 26 airports in two 12-hour windows a day is about 52 provider calls a day (roughly 1,600 a month).
+The cron route returns `skipped` until two things exist: an AeroDataBox source adapter (written against real responses once there's an API key, never against assumed shapes) and the production database (Neon, being created). Then: implement `FlightStatusSource` for AeroDataBox, implement `FlightStatusStore` on the database, add the schedule to `vercel.json`, and set `CRON_SECRET`. Sizing note: collecting all 23 airports in two 12-hour windows a day is about 46 provider calls a day (roughly 1,400 a month). The database store is `src/lib/ingest/prismaStore.ts`.
 
 ## Error handling
 
