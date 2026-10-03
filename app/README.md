@@ -44,6 +44,7 @@ Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLO
 | `docs/ARCHITECTURE.md` | System design as built |
 | `docs/FLIGHT_PROVIDER_INTERFACE.md` | The provider abstraction contract; read before touching `src/lib/flights/` |
 | `docs/DATABASE.md` | Schema (defined, not yet connected) |
+| `docs/DATABASE_PROVIDERS.md` | Database provider comparison and recommendation (decision pending) |
 | `docs/DEVELOPMENT.md` | Setup, scripts, deployment, conventions |
 
 ## Known issues

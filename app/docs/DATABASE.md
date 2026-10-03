@@ -1,6 +1,9 @@
 # Database
 
 ## Status
+
+Provider not yet chosen: see `DATABASE_PROVIDERS.md` for the comparison and recommendation.
+
 Schema defined in `prisma/schema.prisma`. Not generated or migrated in this build — see the Prisma note in `docs/DEVELOPMENT.md`. Nothing in the running app currently reads or writes a database; `MockFlightProvider` is entirely in-memory.
 
 ## Models (MVP scope only)
