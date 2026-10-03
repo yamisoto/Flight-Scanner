@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { DateStrip } from "@/components/v2/DateStrip";
 import { Header } from "@/components/v2/Header";
 import { PopularRoutes, ValueProps } from "@/components/v2/LandingSections";
 import { ResultsView, type V2Status } from "@/components/v2/ResultsView";
 import { SearchPanel } from "@/components/v2/SearchPanel";
+import { ShareButton } from "@/components/v2/ShareButton";
 import { findAirport } from "@/lib/data/airports";
 import { cabinLabel, formatShortDate } from "@/lib/v2/format";
+import { shiftDate } from "@/lib/flights/priceCalendar";
 import { scoreOffers } from "@/lib/v2/scoring";
-import type { FlightOffer, FlightSearchRequest } from "@/types/flight";
+import { queryToSearch, searchToQuery } from "@/lib/v2/searchUrl";
+import type { FlightOffer, FlightSearchRequest, ScheduleCoverage } from "@/types/flight";
 
 const SEARCH_TIMEOUT_MS = 15_000;
 
@@ -23,6 +27,7 @@ function inDays(days: number) {
 export default function SkyfareV2() {
   const [status, setStatus] = useState<V2Status | "idle">("idle");
   const [offers, setOffers] = useState<FlightOffer[]>([]);
+  const [schedule, setSchedule] = useState<ScheduleCoverage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [request, setRequest] = useState<FlightSearchRequest | null>(null);
   const [panelKey, setPanelKey] = useState(0);
@@ -34,6 +39,9 @@ export default function SkyfareV2() {
     setRequest(req);
     setStatus("loading");
     setError(null);
+    setSchedule(null);
+    // Keep the address bar shareable: /v2?from=LOS&to=ABV&depart=...
+    window.history.replaceState(null, "", `/v2?${searchToQuery(req)}`);
     requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
     const controller = new AbortController();
@@ -49,6 +57,7 @@ export default function SkyfareV2() {
       const data = await res.json();
       if (res.ok && Array.isArray(data.offers)) {
         setOffers(data.offers);
+        setSchedule(data.schedule ?? null);
         setStatus(data.offers.length ? "success" : "empty");
       } else {
         setError(data.error ?? "We couldn't complete that search.");
@@ -64,6 +73,31 @@ export default function SkyfareV2() {
     } finally {
       clearTimeout(timer);
     }
+  }
+
+  /** Search and remount the panel so it shows the new route and dates. */
+  function openSearch(req: FlightSearchRequest) {
+    setPanelKey((k) => k + 1);
+    search(req);
+  }
+
+  // Open a shared link (/v2?from=LOS&to=ABV&depart=...) straight into its results.
+  // Read once on mount; an invalid or expired link just shows the empty form.
+  const loadedFromUrl = useRef(false);
+  useEffect(() => {
+    if (loadedFromUrl.current) return;
+    loadedFromUrl.current = true;
+    const req = queryToSearch(new URLSearchParams(window.location.search), inDays(0));
+    // Syncing from an external source (the URL) once on mount; the server can't see it, so this can't be initial state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (req) openSearch(req);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount
+  }, []);
+
+  function searchDate(date: string) {
+    if (!request) return;
+    const shift = Math.round((Date.parse(date) - Date.parse(request.departureDate)) / 86_400_000);
+    openSearch({ ...request, departureDate: date, returnDate: request.returnDate ? shiftDate(request.returnDate, shift) : undefined });
   }
 
   function quickSearch(origin: string, destination: string) {
@@ -112,13 +146,17 @@ export default function SkyfareV2() {
               <h2 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
                 {findAirport(request.origin)?.city} → {findAirport(request.destination)?.city}
               </h2>
-              <p className="text-sm text-ink-muted">
-                {formatShortDate(request.departureDate)}
-                {request.returnDate ? ` – ${formatShortDate(request.returnDate)}` : ", one way"} · {request.passengers.adults} adult
-                {request.passengers.adults > 1 ? "s" : ""} · {cabinLabel(request.cabinClass)}
-              </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                <p className="text-sm text-ink-muted">
+                  {formatShortDate(request.departureDate)}
+                  {request.returnDate ? ` – ${formatShortDate(request.returnDate)}` : ", one way"} · {request.passengers.adults} adult
+                  {request.passengers.adults > 1 ? "s" : ""} · {cabinLabel(request.cabinClass)}
+                </p>
+                <ShareButton request={request} />
+              </div>
             </div>
-            <ResultsView status={status as V2Status} scored={scored} errorMessage={error} onRetry={() => search(request)} />
+            <DateStrip request={request} onPick={searchDate} />
+            <ResultsView status={status as V2Status} scored={scored} errorMessage={error} onRetry={() => search(request)} schedule={schedule} />
           </>
         ) : (
           <div className="space-y-12">

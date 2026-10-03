@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getActiveProvider } from "@/lib/flights/registry";
 import { FlightSearchEngine } from "@/lib/flights/searchEngine";
-import { clientKey, createRateLimiter } from "@/lib/rateLimit";
+import { buildCoverage } from "@/lib/flights/schedule";
+import { getScheduleSource } from "@/lib/flights/scheduleSource";
+import { clientKey } from "@/lib/rateLimit";
+import { checkSearchRateLimit } from "@/lib/searchRateLimit";
 import { validateSearchRequest } from "@/lib/validation/searchValidation";
-import { ProviderError, type FlightSearchOptions, type FlightSearchRequest } from "@/types/flight";
+import { ProviderError, type FlightOffer, type FlightSearchOptions, type FlightSearchRequest, type ScheduleCoverage } from "@/types/flight";
 
 /**
  * POST /api/search
@@ -15,13 +18,8 @@ import { ProviderError, type FlightSearchOptions, type FlightSearchRequest } fro
  * an empty array that looks the same whether nothing was found or
  * something broke.
  */
-// Per-client search limit. One person searching normally stays far below this;
-// it exists to stop scripted floods from running up provider API costs.
-const SEARCHES_PER_MINUTE = Number(process.env.SEARCH_RATE_LIMIT_PER_MINUTE) || 30;
-const checkRateLimit = createRateLimiter({ limit: SEARCHES_PER_MINUTE, windowMs: 60_000 });
-
 export async function POST(req: NextRequest) {
-  const rate = checkRateLimit(clientKey(req.headers));
+  const rate = checkSearchRateLimit(clientKey(req.headers));
   if (!rate.allowed) {
     return NextResponse.json(
       { error: "Too many searches. Please wait a moment and try again.", code: "RATE_LIMITED" },
@@ -52,7 +50,8 @@ export async function POST(req: NextRequest) {
     const provider = getActiveProvider();
     const engine = new FlightSearchEngine(provider);
     const offers = await engine.search(searchRequest, options);
-    return NextResponse.json({ offers, provider: provider.name });
+    const schedule = await scheduleCoverage(provider, searchRequest, offers);
+    return NextResponse.json({ offers, provider: provider.name, schedule });
   } catch (err) {
     if (err instanceof ProviderError) {
       const status = err.code === "NO_RESULTS" ? 200 : err.code === "INVALID_REQUEST" ? 400 : 502;
@@ -65,5 +64,26 @@ export async function POST(req: NextRequest) {
 
     console.error("Unexpected error in /api/search:", err);
     return NextResponse.json({ error: "An unexpected error occurred while searching for flights." }, { status: 500 });
+  }
+}
+
+/**
+ * Every flight operating on the route that day, priced or not. Best effort:
+ * a schedule problem is logged and the search still returns its offers,
+ * just without the coverage line.
+ */
+async function scheduleCoverage(
+  provider: ReturnType<typeof getActiveProvider>,
+  request: FlightSearchRequest,
+  offers: FlightOffer[],
+): Promise<ScheduleCoverage | null> {
+  const source = getScheduleSource(provider);
+  if (!source) return null;
+  try {
+    const flights = await source.getScheduledFlights(request);
+    return flights ? buildCoverage(flights, offers, source.name) : null;
+  } catch (err) {
+    console.error(JSON.stringify({ level: "warn", event: "schedule_lookup_failed", source: source.name, error: err instanceof Error ? err.message : String(err) }));
+    return null;
   }
 }

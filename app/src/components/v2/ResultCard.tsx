@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { FlightDetailsModal } from "@/components/FlightDetailsModal";
-import { ReliabilityBadge } from "@/components/v2/ReliabilityBadge";
+import { ReliabilityBadge, ReliabilityExplainer } from "@/components/v2/ReliabilityBadge";
 import { SparkIcon } from "@/components/v2/icons";
 import { formatDuration, formatPrice, formatTime } from "@/lib/v2/format";
 import type { ScoredOffer } from "@/lib/v2/scoring";
@@ -70,6 +70,8 @@ interface ResultCardProps {
 
 export function ResultCard({ item, isPick = false, pickReason }: ResultCardProps) {
   const [open, setOpen] = useState(false);
+  const [whyOpen, setWhyOpen] = useState(false);
+  const whyId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { offer, reliability } = item;
   const seg = offer.slices[0].segments[0];
@@ -99,8 +101,10 @@ export function ResultCard({ item, isPick = false, pickReason }: ResultCardProps
                 {offer.baggage ? ` · ${offer.baggage.checkedBagsIncluded ? `${offer.baggage.checkedBagsIncluded} checked bag` : "Hand luggage only"}` : ""}
               </p>
             </div>
-            <ReliabilityBadge reliability={reliability} />
+            <ReliabilityBadge reliability={reliability} panelId={whyId} expanded={whyOpen} onToggle={() => setWhyOpen((v) => !v)} />
           </div>
+
+          {whyOpen && <ReliabilityExplainer id={whyId} reliability={reliability} />}
 
           <div className="space-y-3">
             {offer.slices.map((slice, i) => (

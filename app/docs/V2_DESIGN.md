@@ -12,7 +12,10 @@ Screenshots of both versions are in `docs/screenshots/`.
 | Search bar | Native selects | One card: type-to-search airport fields (city, airport name, state or IATA code), swap button, dates, travellers/cabin popover, primary Search button. Stacks on mobile |
 | Sorting | Dropdown: airline, price, departure | Skyscanner-style tabs: **Best / Cheapest / Fastest / Most reliable**, each previewing its top price. The dropdown adds departure time |
 | Recommendation | None | **Skyfare Pick** card pinned on the Best tab, with a one-line reason |
-| Reliability | None | 1–10 score per flight, with a colour band, a 10-step meter and a label (High/Good/Fair/Low) |
+| Reliability | None | 1–10 score per flight, with a colour band, a 10-step meter and a label (High/Good/Fair/Low). Tap the score to see why: the plain-English reason, the data source and the confidence level |
+| Every flight | Priced flights only | A coverage line ("8 flights operate this route that day: 6 priced here, 2 to check with the airline") and an **Also flying this route** list for scheduled flights with no price, each with a "Check price on airline site" link where the airline's site is confirmed |
+| Nearby dates | None | ±3-day price strip above the results: cheapest fare per day, lowest day highlighted, tap a day to search it (return trips keep the same trip length) |
+| Sharing | None | Every search is in the URL (`/v2?from=LOS&to=ABV&depart=2026-10-10`), so links open straight into results. **Share** uses the phone share sheet (WhatsApp etc.) or copies the link on desktop |
 | Filters | Collapsible panel, Apply button | Live filters: sticky sidebar on desktop, bottom sheet on mobile. Adds min reliability, departure-time tiles, a max-price slider and airline "from" prices |
 | Loading | Full-screen wordmark takeover | Skeleton cards in place, so the layout doesn't jump |
 | Theme | Toggle top-left | Toggle in header, no hydration flash or mismatch |

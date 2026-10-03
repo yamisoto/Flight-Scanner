@@ -8,6 +8,7 @@ import {
   type FlightSegment,
   type FlightSlice,
   type ProviderHealth,
+  type ScheduledFlight,
 } from "@/types/flight";
 
 /**
@@ -184,6 +185,28 @@ export class MockFlightProvider implements FlightProvider {
     }
 
     return offers;
+  }
+
+  /**
+   * Demo schedule: every mock offer's outbound flight, plus two extra
+   * flights with no price, so the "every flight on this route" view can be
+   * seen in demo mode. Like everything here, clearly test data.
+   */
+  async getScheduledFlights(request: FlightSearchRequest): Promise<ScheduledFlight[]> {
+    const offers = await this.searchFlights(request);
+    const priced = offers.map((o) => {
+      const seg = o.slices[0].segments[0];
+      return { airlineCode: seg.airlineCode, airlineName: seg.airlineName, flightNumber: seg.flightNumber, origin: seg.origin, destination: seg.destination, departureAt: seg.departureAt };
+    });
+    const rng = makeRng(`schedule-${request.origin}-${request.destination}-${request.departureDate}`);
+    const extraHours = [7, 15];
+    const extras = extraHours.map((hour) => {
+      const airline = MOCK_AIRLINES[Math.floor(rng() * MOCK_AIRLINES.length)];
+      const departureAt = new Date(`${request.departureDate}T${String(hour).padStart(2, "0")}:15:00.000Z`);
+      const seg = buildSegment(airline, request.origin, request.destination, departureAt, rng);
+      return { airlineCode: seg.airlineCode, airlineName: seg.airlineName, flightNumber: seg.flightNumber, origin: seg.origin, destination: seg.destination, departureAt: seg.departureAt };
+    });
+    return [...priced, ...extras];
   }
 
   async getFlightDetails(offerId: string): Promise<FlightOffer | null> {

@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { AlsoFlying, CoverageLine } from "@/components/v2/AlsoFlying";
 import { Filters, EMPTY_FILTERS, activeFilterCount, applyV2Filters, type V2Filters } from "@/components/v2/Filters";
 import { ResultCard, ResultCardSkeleton } from "@/components/v2/ResultCard";
 import { SortTabs } from "@/components/v2/SortTabs";
 import { CloseIcon, FilterIcon } from "@/components/v2/icons";
 import { pickReason, pickRecommended, sortScored, type ScoredOffer, type V2SortKey } from "@/lib/v2/scoring";
+import type { ScheduleCoverage } from "@/types/flight";
 
 export type V2Status = "loading" | "success" | "empty" | "error";
 
@@ -14,9 +16,11 @@ interface ResultsViewProps {
   scored: ScoredOffer[];
   errorMessage: string | null;
   onRetry: () => void;
+  /** Flights known to operate on the route, including ones with no price. */
+  schedule?: ScheduleCoverage | null;
 }
 
-export function ResultsView({ status, scored, errorMessage, onRetry }: ResultsViewProps) {
+export function ResultsView({ status, scored, errorMessage, onRetry, schedule = null }: ResultsViewProps) {
   const [sortKey, setSortKey] = useState<V2SortKey>("best");
   const [filters, setFilters] = useState<V2Filters>(EMPTY_FILTERS);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -65,7 +69,14 @@ export function ResultsView({ status, scored, errorMessage, onRetry }: ResultsVi
     return (
       <div className="v2-card mx-auto max-w-lg p-8 text-center">
         <p className="text-base font-semibold text-ink">No flights on this route that day</p>
-        <p className="mt-1.5 text-sm text-ink-muted">Try another date, or a nearby airport.</p>
+        <p className="mt-1.5 text-sm text-ink-muted">
+          {schedule?.unpriced.length ? "None of the flights below have a price yet." : "Try another date, or a nearby airport."}
+        </p>
+        {schedule?.unpriced.length ? (
+          <div className="mt-4 text-left">
+            <AlsoFlying coverage={schedule} />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -98,6 +109,8 @@ export function ResultsView({ status, scored, errorMessage, onRetry }: ResultsVi
         ) : (
           <SortTabs scored={filtered} value={sortKey} onChange={setSortKey} />
         )}
+
+        {!loading && <CoverageLine coverage={schedule} />}
 
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm text-ink-muted" aria-live="polite">
@@ -150,6 +163,8 @@ export function ResultsView({ status, scored, errorMessage, onRetry }: ResultsVi
             ))}
           </div>
         )}
+
+        {!loading && <AlsoFlying coverage={schedule} />}
 
         {!loading && (
           <p className="pt-2 text-xs leading-relaxed text-ink-muted">

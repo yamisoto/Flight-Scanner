@@ -21,12 +21,15 @@ export interface Airline {
   operationalStatus: OperationalStatus;
   verified: boolean;
   providerAvailability: string[]; // e.g. ["wakanow"] once confirmed — currently none
+  /** Official booking site, only where confirmed (3 Oct 2026). Used for "Check price on airline site". */
+  website?: string;
   notes?: string;
 }
 
 export const AIRLINES: Airline[] = [
   {
     name: "Air Peace",
+    website: "https://flyairpeace.com",
     iata: "P4",
     icao: "APK",
     operationalStatus: "operating",
@@ -36,6 +39,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "Arik Air",
+    website: "https://www.arikair.com",
     iata: "W3",
     icao: "ARA",
     operationalStatus: "operating",
@@ -45,6 +49,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "Ibom Air",
+    website: "https://www.ibomair.com",
     iata: "QI",
     icao: "IAN",
     operationalStatus: "operating",
@@ -78,6 +83,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "ValueJet",
+    website: "https://www.flyvaluejet.com",
     iata: "VK",
     icao: "FVJ",
     operationalStatus: "operating",
@@ -87,6 +93,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "United Nigeria Airlines",
+    website: "https://flyunitednigeria.com",
     iata: "UN",
     icao: "NUA",
     operationalStatus: "operating",

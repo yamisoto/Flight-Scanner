@@ -23,11 +23,14 @@ const rec = (flightNumber: string, actual: string | null, status: FlightStatusRe
 });
 
 describe.runIf(url)("PrismaFlightStatusStore (Postgres)", () => {
-  const prisma = new PrismaClient({ datasources: { db: { url } } });
-  const store = new PrismaFlightStatusStore(prisma);
+  // Created in beforeAll, not at collection time, so this file loads cleanly when no database is configured.
+  let prisma: PrismaClient;
+  let store: PrismaFlightStatusStore;
 
   beforeAll(async () => {
     if (!/localhost|127\.0\.0\.1|postgres:/.test(url!)) throw new Error("TEST_DATABASE_URL must point at a local or CI database.");
+    prisma = new PrismaClient({ datasources: { db: { url } } });
+    store = new PrismaFlightStatusStore(prisma);
   });
   beforeEach(() => prisma.flightStatusObservation.deleteMany());
   afterAll(() => prisma.$disconnect());

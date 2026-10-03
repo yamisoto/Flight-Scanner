@@ -34,14 +34,23 @@ Browser (React components)
 
 ```
 src/app/v2/layout.tsx      scopes the V2 design tokens (.v2 in globals.css) to this route
-src/app/v2/page.tsx        landing + results page; calls POST /api/search once per search
-src/components/v2/         Header, SearchPanel, AirportCombobox, TravellersPicker, SortTabs,
-                           ResultsView, ResultCard, ReliabilityBadge, Filters, LandingSections, icons
-src/lib/v2/scoring.ts      reliability (preview), Skyfare Pick, Best/Cheapest/Fastest/Most reliable ordering
+src/app/v2/page.tsx        landing + results page; POST /api/search and /api/search/calendar per search;
+                           reads a shared search from the URL on load and writes each search back to it
+src/components/v2/         Header, SearchPanel, AirportCombobox, TravellersPicker, SortTabs, DateStrip,
+                           ResultsView, ResultCard, AlsoFlying, ReliabilityBadge (+ explainer), ShareButton,
+                           Filters, LandingSections, icons
+src/lib/v2/scoring.ts      reliability, Skyfare Pick, Best/Cheapest/Fastest/Most reliable ordering
+src/lib/v2/searchUrl.ts    search <-> URL query string, with validation of incoming links
 src/lib/v2/format.ts       time, duration, price and date formatting
 ```
 
-V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability currently comes from `previewReliability()`, a labelled placeholder; the reliability engine (plan sub-phase 1.3) will replace it server-side. See `docs/V2_DESIGN.md`.
+V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability comes from the NCAA airline baseline (`src/lib/reliability/score.ts`), with the labelled `previewReliability()` placeholder only for airlines without NCAA figures. See `docs/V2_DESIGN.md`.
+
+### Every flight, nearby dates
+
+`/api/search` returns `{ offers, provider, schedule }`. `schedule` is a `ScheduleCoverage` built by `src/lib/flights/schedule.ts`: the flights known to operate that day, matched against the priced offers (same flight number, or same airline within 15 minutes), with the unmatched ones returned as `unpriced`. The schedule comes from `getScheduleSource()` (`src/lib/flights/scheduleSource.ts`): the price provider's own `getScheduledFlights()` if it has one (the mock does), otherwise the collected flight-status observations in the database projected onto the same weekday (`projectSchedule`, last 21 days), otherwise none. The lookup is best effort: a failure logs `schedule_lookup_failed` and the search still returns its offers.
+
+`POST /api/search/calendar` takes the same body and returns the cheapest price for the chosen date and three days either side (`src/lib/flights/priceCalendar.ts`), skipping past dates and shifting the return date with the departure. Results are cached in memory for 10 minutes per search. Both search endpoints share one per-client rate limit (`src/lib/searchRateLimit.ts`, 30 a minute by default, `SEARCH_RATE_LIMIT_PER_MINUTE`). The strip costs up to 7 provider searches per uncached request; revisit when a paid price API is connected.
 
 ## Reliability and flight-status collection
 
