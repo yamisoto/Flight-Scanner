@@ -67,7 +67,7 @@ src/lib/ingest/fixtureSource.ts   synthetic source for tests and local runs only
 src/app/api/cron/collect-status   daily trigger for Vercel Cron (Bearer CRON_SECRET, fails closed)
 ```
 
-The cron route collects the previous Lagos day's departures from `STATUS_AIRPORTS` through AeroDataBox into `flight_status_observations`, and returns `skipped` until both `AERODATABOX_API_KEY` and `DATABASE_URL` are set. AeroDataBox returns scheduled times only for Nigerian domestic flights (see `docs/DATA_SOURCES.md`), so today these rows feed the "every flight" schedule, not reliability scores. Cost: each airport is two 12-hour calls (4 API units) a day; the default two hubs use about 240 of the free plan's 400 units a month. To switch it on once the database exists: set `CRON_SECRET` and add the schedule to `vercel.json`.
+The cron route collects the previous Lagos day's departures from `STATUS_AIRPORTS` through AeroDataBox into `flight_status_observations`, and returns `skipped` until both `AERODATABOX_API_KEY` and `DATABASE_URL` are set. AeroDataBox returns scheduled times only for Nigerian domestic flights (see `docs/DATA_SOURCES.md`), so today these rows feed the "every flight" schedule, not reliability scores. Cost: each airport is two 12-hour calls (4 API units) a day; the default two hubs use about 240 of the free plan's 400 units a month. Scheduled in `vercel.json` daily at 00:30 UTC (01:30 Lagos). Vercel runs crons on production deployments only, so it starts once this branch is merged to `main`, and only collects when `CRON_SECRET` is set (it fails closed without it).
 
 ## Error handling
 

@@ -2,13 +2,16 @@
 
 ## Status
 
-**Provider: Neon** (decided 3 Oct 2026; comparison and portability rules in `DATABASE_PROVIDERS.md`). The schema and first migration (`prisma/migrations/`) are ready and tested against Postgres 16. The production database itself is created from Vercel (Storage → Neon, London region), which sets `DATABASE_URL` and `DATABASE_URL_UNPOOLED`; every Vercel build then applies pending migrations (`scripts/vercel-build.sh`).
+**Provider: Neon** (decided 3 Oct 2026; comparison and portability rules in `DATABASE_PROVIDERS.md`). **Live since 3 Oct 2026:** Neon database `neondb` connected through the Vercel Marketplace, London region, with `DATABASE_URL` and `DATABASE_URL_UNPOOLED` set for Preview and Production. The first migration was applied by the build that day.
 
-## Setting it up
+Every Vercel build (`scripts/vercel-build.sh`) applies pending migrations and then re-seeds the airport and airline tables from `src/lib/data` (upserts by IATA code, so re-running is harmless).
 
-1. Vercel → Project → Storage → Create → Neon, region London (`eu-west-2`), enable preview branches.
-2. Redeploy: the build applies migrations automatically.
-3. Seed reference data once: `npm run db:seed` with the production connection strings (re-runnable; upserts by IATA code).
+**One database for previews and production.** Per-preview database branches were left off to stay within the free plan. That means a preview build migrates the same database production uses, so every migration must keep working with the currently deployed app (add columns and tables; don't rename or drop in the same release). Turn on preview branching if that becomes limiting.
+
+## Setting it up (already done; for a new environment)
+
+1. Vercel → Project → Storage → Create → Neon, region London (`eu-west-2`), no environment-variable prefix.
+2. Redeploy: the build applies migrations and seeds reference data.
 
 Locally: point `DATABASE_URL` and `DATABASE_URL_UNPOOLED` at any Postgres 16+, run `npx prisma migrate dev`, then `npm run db:seed`. `TEST_DATABASE_URL` enables the integration tests in `tests/integration/` (they wipe `flight_status_observations`, so never point it at production).
 
@@ -16,7 +19,7 @@ Backups: `scripts/db-backup.sh` (portable pg_dump) and `scripts/db-restore.sh`.
 
 ## Models (MVP scope only)
 
-**`Airport`** — static reference data mirroring `src/lib/data/airports.ts` (iata, icao, name, city, state, verified). Not written to by the app at runtime; seeded once.
+**`Airport`** — static reference data mirroring `src/lib/data/airports.ts` (iata, icao, name, city, state, verified). Not written to by the app at runtime; re-seeded on every build.
 
 **`Airline`** — static reference data mirroring `src/lib/data/airlines.ts` (name, iata, icao, operationalStatus, verified). Same seeding pattern.
 

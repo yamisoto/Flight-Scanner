@@ -34,7 +34,7 @@ The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock`
 
 ## Database
 
-Neon Postgres in production (see `docs/DATABASE.md` for setup, `docs/DATABASE_PROVIDERS.md` for why and the portability rules). `npm install` runs `prisma generate`. Vercel builds use `npm run vercel-build` (`scripts/vercel-build.sh`), which applies pending migrations when `DATABASE_URL_UNPOOLED` is set and skips them otherwise. Schema changes: edit `prisma/schema.prisma`, run `npx prisma migrate dev --name <change>` against a local Postgres, commit the generated migration. Seed with `npm run db:seed`. Integration tests in `tests/integration/` run when `TEST_DATABASE_URL` points at a migrated local or CI database.
+Neon Postgres in production (see `docs/DATABASE.md` for setup, `docs/DATABASE_PROVIDERS.md` for why and the portability rules). `npm install` runs `prisma generate`. Vercel builds use `npm run vercel-build` (`scripts/vercel-build.sh`), which applies pending migrations and re-seeds reference data when `DATABASE_URL_UNPOOLED` is set, and skips both otherwise. Schema changes: edit `prisma/schema.prisma`, run `npx prisma migrate dev --name <change>` against a local Postgres, commit the generated migration. Seed with `npm run db:seed`. Integration tests in `tests/integration/` run when `TEST_DATABASE_URL` points at a migrated local or CI database.
 
 ## Staging deployment (Vercel)
 
