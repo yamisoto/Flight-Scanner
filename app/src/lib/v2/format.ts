@@ -1,5 +1,5 @@
-// Mock offers carry local Nigerian time encoded as UTC, matching the V1
-// components, so every formatter here reads in UTC.
+// Flight times are local Nigerian time encoded as UTC (the FlightSegment
+// convention), so every formatter here reads in UTC.
 
 export function formatTime(iso: string) {
   return new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "UTC" });

@@ -52,7 +52,7 @@ const PROPS = [
   {
     icon: ShieldIcon,
     title: "Reliability, scored 1–10",
-    body: "Our on-time score uses each airline's delays and cancellations on your exact route over the last 60 days.",
+    body: "Our on-time score uses each airline's published delay and cancellation rates. Tap any score to see why.",
   },
   {
     icon: SparkIcon,

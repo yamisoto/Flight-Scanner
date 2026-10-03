@@ -17,7 +17,7 @@ export function ShareButton({ request }: { request: FlightSearchRequest }) {
   }, [copied]);
 
   async function share() {
-    const url = `${window.location.origin}/v2?${searchToQuery(request)}`;
+    const url = `${window.location.origin}/?${searchToQuery(request)}`;
     const title = `Flights ${findAirport(request.origin)?.city ?? request.origin} to ${findAirport(request.destination)?.city ?? request.destination}, ${formatShortDate(request.departureDate)}`;
     // Only phones get the share sheet; on desktop it's an awkward extra step versus a copied link.
     if (navigator.share && window.matchMedia("(pointer: coarse)").matches) {

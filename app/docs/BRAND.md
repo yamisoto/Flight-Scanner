@@ -2,7 +2,7 @@
 
 **Status: undecided.** Three directions are drafted below, each with a website mockup. No direction is chosen yet. The shortlist is **01 Instrument** and **02 Harmattan**; 03 Signal is kept for reference. Revisit before sub-phase 1.6 (brand guide and assets) in `PHASE_1_PLAN.md`.
 
-The live V2 site (`/v2`) currently uses the **Instrument** palette (blue, silver, black). Applying any other direction is a token swap in `src/app/globals.css` (`.v2` block) plus fonts and logo, not a rebuild.
+The live site currently uses the **Instrument** palette (blue, silver, black). Applying any other direction is a token swap in `src/app/globals.css` (`:root` and `:root.dark`) plus fonts and logo, not a rebuild.
 
 ## Where the files are
 

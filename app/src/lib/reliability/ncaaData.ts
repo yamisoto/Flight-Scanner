@@ -1,7 +1,8 @@
 /**
  * Airline-level domestic operations data published by the Nigerian Civil
- * Aviation Authority (NCAA). This is the reliability baseline until our own
- * flight-status history (AeroDataBox) has 60 days of data.
+ * Aviation Authority (NCAA). This is the reliability baseline until a
+ * route-level on-time source is found (AeroDataBox has schedules only for
+ * Nigerian domestic flights; see docs/DATA_SOURCES.md).
  *
  * Provenance: the NCAA's own site was not reachable from the build
  * environment, so these figures were taken from press reports of the NCAA's

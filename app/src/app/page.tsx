@@ -1,126 +1,176 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { SearchForm } from "@/components/SearchForm";
-import { FiltersPanel } from "@/components/FiltersPanel";
-import { FlightResults, type SearchStatus } from "@/components/FlightResults";
-import { LoadingWordmark } from "@/components/LoadingWordmark";
-import { AnimatedWordmark } from "@/components/AnimatedWordmark";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import type { FlightOffer, FlightSearchFilters, FlightSearchRequest, FlightSortKey } from "@/types/flight";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { DateStrip } from "@/components/v2/DateStrip";
+import { Header } from "@/components/v2/Header";
+import { PopularRoutes, ValueProps } from "@/components/v2/LandingSections";
+import { ResultsView, type V2Status } from "@/components/v2/ResultsView";
+import { SearchPanel } from "@/components/v2/SearchPanel";
+import { ShareButton } from "@/components/v2/ShareButton";
+import { findAirport } from "@/lib/data/airports";
+import { cabinLabel, formatShortDate } from "@/lib/v2/format";
+import { shiftDate } from "@/lib/flights/priceCalendar";
+import { scoreOffers } from "@/lib/v2/scoring";
+import { queryToSearch, searchToQuery } from "@/lib/v2/searchUrl";
+import type { FlightOffer, FlightSearchRequest, ScheduleCoverage } from "@/types/flight";
 
 const SEARCH_TIMEOUT_MS = 15_000;
 
-export default function Home() {
-  const [status, setStatus] = useState<SearchStatus>("idle");
-  const [offers, setOffers] = useState<FlightOffer[]>([]);
-  const [baseOffers, setBaseOffers] = useState<FlightOffer[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<FlightSortKey>("airline");
-  const [filters, setFilters] = useState<FlightSearchFilters>({});
-  const [lastRequest, setLastRequest] = useState<FlightSearchRequest | null>(null);
+function inDays(days: number) {
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
 
-  async function runSearch(
-    request: FlightSearchRequest,
-    sort: FlightSortKey,
-    activeFilters: FlightSearchFilters,
-    isNewSearch: boolean,
-  ) {
+export default function Home() {
+  const [status, setStatus] = useState<V2Status | "idle">("idle");
+  const [offers, setOffers] = useState<FlightOffer[]>([]);
+  const [schedule, setSchedule] = useState<ScheduleCoverage | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [request, setRequest] = useState<FlightSearchRequest | null>(null);
+  const [panelKey, setPanelKey] = useState(0);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  const scored = useMemo(() => scoreOffers(offers), [offers]);
+
+  async function search(req: FlightSearchRequest) {
+    setRequest(req);
     setStatus("loading");
-    setErrorMessage(null);
+    setError(null);
+    setSchedule(null);
+    // Keep the address bar shareable: /?from=LOS&to=ABV&depart=...
+    window.history.replaceState(null, "", `/?${searchToQuery(req)}`);
+    requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
-
+    const timer = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
     try {
+      // Sorting, filtering and scoring happen client-side in V2 so tab switches are instant.
       const res = await fetch("/api/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...request, sortBy: sort, sortDirection: "asc", filters: activeFilters }),
+        body: JSON.stringify(req),
         signal: controller.signal,
       });
-
       const data = await res.json();
-
-      if (res.status === 200 && Array.isArray(data.offers)) {
+      if (res.ok && Array.isArray(data.offers)) {
         setOffers(data.offers);
-        if (isNewSearch) setBaseOffers(data.offers);
-        setStatus(data.offers.length === 0 ? "empty" : "success");
-        return;
-      }
-
-      setErrorMessage(data.error ?? "We couldn't complete that search.");
-      setStatus("error");
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") {
-        setErrorMessage("That's taking longer than expected. Please try again.");
+        setSchedule(data.schedule ?? null);
+        setStatus(data.offers.length ? "success" : "empty");
       } else {
-        setErrorMessage("We couldn't reach the search service. Check your connection and try again.");
+        setError(data.error ?? "We couldn't complete that search.");
+        setStatus("error");
       }
+    } catch (err) {
+      setError(
+        err instanceof DOMException && err.name === "AbortError"
+          ? "That took longer than expected."
+          : "We couldn't reach the search service. Check your connection.",
+      );
       setStatus("error");
     } finally {
-      clearTimeout(timeoutId);
+      clearTimeout(timer);
     }
   }
 
-  function handleSearch(request: FlightSearchRequest) {
-    setLastRequest(request);
-    setFilters({});
-    runSearch(request, sortBy, {}, true);
+  /** Search and remount the panel so it shows the new route and dates. */
+  function openSearch(req: FlightSearchRequest) {
+    setPanelKey((k) => k + 1);
+    search(req);
   }
 
-  function handleSortChange(sort: FlightSortKey) {
-    setSortBy(sort);
-    if (lastRequest) runSearch(lastRequest, sort, filters, false);
+  // Open a shared link (/?from=LOS&to=ABV&depart=...) straight into its results.
+  // Read once on mount; an invalid or expired link just shows the empty form.
+  const loadedFromUrl = useRef(false);
+  useEffect(() => {
+    if (loadedFromUrl.current) return;
+    loadedFromUrl.current = true;
+    const req = queryToSearch(new URLSearchParams(window.location.search), inDays(0));
+    // Syncing from an external source (the URL) once on mount; the server can't see it, so this can't be initial state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (req) openSearch(req);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount
+  }, []);
+
+  function searchDate(date: string) {
+    if (!request) return;
+    const shift = Math.round((Date.parse(date) - Date.parse(request.departureDate)) / 86_400_000);
+    openSearch({ ...request, departureDate: date, returnDate: request.returnDate ? shiftDate(request.returnDate, shift) : undefined });
   }
 
-  function handleFiltersApply(newFilters: FlightSearchFilters) {
-    setFilters(newFilters);
-    if (lastRequest) runSearch(lastRequest, sortBy, newFilters, false);
+  function quickSearch(origin: string, destination: string) {
+    const req: FlightSearchRequest = {
+      origin,
+      destination,
+      tripType: "one_way",
+      departureDate: inDays(7),
+      passengers: { adults: 1, children: 0, infants: 0 },
+      cabinClass: "economy",
+    };
+    setPanelKey((k) => k + 1); // remount the panel so it shows the chosen route
+    search(req);
   }
+
+  const hasSearched = status !== "idle";
 
   return (
     <>
-      <ThemeToggle />
-      {status === "loading" && <LoadingWordmark />}
-
-      <Link
-        href="/v2"
-        className="block bg-[#1747e0] px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-[#1239b8]"
-      >
-        <span className="mr-2 rounded-full bg-white px-2 py-0.5 text-[11px] font-bold text-[#1747e0]">NEW</span>
-        Try the redesigned Skyfare V2 →
-      </Link>
-
-      <div className="border-b border-line px-4 py-2 text-center text-xs text-ink-muted">
-        Demonstration data — every result here is for testing, not a live or bookable flight.
+      <div className="v2-hero">
+        <Header />
+        <div
+          className={`mx-auto flex w-full max-w-6xl flex-col items-center px-4 transition-all sm:px-6 ${
+            hasSearched ? "pb-8 pt-4" : "pb-20 pt-14 sm:pb-28 sm:pt-24"
+          }`}
+        >
+          {!hasSearched && (
+            <div className="mb-10 text-center">
+              <h1 className="v2-wordmark text-5xl font-semibold tracking-tight sm:text-7xl">Skyfare</h1>
+              <p className="mx-auto mt-4 max-w-md text-base text-hero-muted sm:text-lg">
+                Every flight across Nigeria. Compared on price, time and how often it actually leaves on time.
+              </p>
+            </div>
+          )}
+          <div className="w-full">
+            <SearchPanel key={panelKey} initial={request} isSearching={status === "loading"} onSearch={search} />
+          </div>
+        </div>
       </div>
 
-      <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-16 sm:py-24">
-        <p className="text-center text-sm">
-          <AnimatedWordmark variant="header" />
-        </p>
-        <h1 className="mt-3 text-center text-3xl text-ink sm:text-4xl">
-          Compare flights across Nigeria
-        </h1>
-
-        <div className="mt-10">
-          <SearchForm onSearch={handleSearch} isSearching={status === "loading"} />
-        </div>
-
-        {status === "success" && (
-          <FiltersPanel baseOffers={baseOffers} filters={filters} onApply={handleFiltersApply} />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+        <div ref={resultsRef} className="scroll-mt-4" />
+        {hasSearched && request ? (
+          <>
+            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                {findAirport(request.origin)?.city} → {findAirport(request.destination)?.city}
+              </h2>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                <p className="text-sm text-ink-muted">
+                  {formatShortDate(request.departureDate)}
+                  {request.returnDate ? ` – ${formatShortDate(request.returnDate)}` : ", one way"} · {request.passengers.adults} adult
+                  {request.passengers.adults > 1 ? "s" : ""} · {cabinLabel(request.cabinClass)}
+                </p>
+                <ShareButton request={request} />
+              </div>
+            </div>
+            <DateStrip request={request} onPick={searchDate} />
+            <ResultsView status={status as V2Status} scored={scored} errorMessage={error} onRetry={() => search(request)} schedule={schedule} />
+          </>
+        ) : (
+          <div className="space-y-12">
+            <ValueProps />
+            <PopularRoutes onPick={quickSearch} />
+          </div>
         )}
-
-        <FlightResults
-          status={status}
-          offers={offers}
-          errorMessage={errorMessage}
-          sortBy={sortBy}
-          onSortChange={handleSortChange}
-        />
       </main>
+
+      <footer className="border-t border-line">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p>© Skyfare. Demonstration data only: no live fares or bookings yet.</p>
+          <p>Nigeria domestic · Africa coming soon</p>
+        </div>
+      </footer>
     </>
   );
 }

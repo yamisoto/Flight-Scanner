@@ -6,7 +6,7 @@ Skyfare compares every domestic flight in Nigeria on **price**, **journey time**
 
 ## Status
 
-**V2 (`/v2`) is the current design.** It's live on the Vercel preview for the `claude/skyfare-flight-comparison-mvp-o0dqsh` branch (PR #1). V1 is still at `/` with a "Try V2" banner for comparison until V2 becomes the home page.
+**V2 is the home page (`/`).** V1 was retired on 3 Oct 2026; old `/v2` links, including shared searches, redirect to `/`. It's live on the Vercel preview for the `claude/skyfare-flight-comparison-mvp-o0dqsh` branch (PR #1).
 
 | Area | State |
 |---|---|
@@ -25,7 +25,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000/v2 and search a route (e.g. Lagos → Abuja). V1 is at http://localhost:3000.
+Open http://localhost:3000 and search a route (e.g. Lagos → Abuja).
 
 Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLOW_MOCK_PROVIDER=true`; see `docs/DEVELOPMENT.md`.
 
@@ -37,7 +37,7 @@ Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLO
 | Doc | What's in it |
 |---|---|
 | `docs/PHASE_1_PLAN.md` | Phase 1 plan: research, data strategy, reliability formula, Skyfare Pick logic, sub-phases, open decisions |
-| `docs/V2_DESIGN.md` | The V2 layout: what changed from V1, inspiration, design tokens, caveats |
+| `docs/V2_DESIGN.md` | The current (V2) layout: what changed from V1, inspiration, design tokens, caveats |
 | `docs/BRAND.md` | Three brand identity directions with website mockups (undecided) |
 | `docs/DATA_SOURCES.md` | Flight data and API selection, the no-scraping decision, recommended plan |
 | `docs/DECISIONS.md` | Decision log, open and resolved |
@@ -55,6 +55,6 @@ Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLO
 1. Read `docs/FLIGHT_PROVIDER_INTERFACE.md` first if you're touching flight-data code at all.
 2. `MockFlightProvider` is the only provider implemented. It is hard-blocked from production unless `ALLOW_MOCK_PROVIDER=true` is explicitly set; don't weaken that check.
 3. No provider-specific logic outside a provider's own adapter file. The search engine stays provider-agnostic.
-4. New UI work goes in V2 (`src/app/v2`, `src/components/v2`, `src/lib/v2`). Ranking and reliability logic lives in `src/lib/v2/scoring.ts` and is unit tested.
+4. UI lives in `src/app/page.tsx`, `src/components/v2` and `src/lib/v2` (the `v2` folder names are historical). Ranking and reliability logic lives in `src/lib/v2/scoring.ts` and is unit tested.
 5. Before considering any change done: `npm test && npm run typecheck && npm run lint && npm run build`, all four.
 6. Don't build against a data provider's assumed response shape; see `docs/DATA_SOURCES.md` for what's confirmed.

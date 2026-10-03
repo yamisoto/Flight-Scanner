@@ -37,7 +37,7 @@ export function Header() {
   return (
     <header className="relative z-20">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/v2" className="flex items-center gap-2 text-hero-ink">
+        <Link href="/" className="flex items-center gap-2 text-hero-ink">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-ink">
             <PlaneIcon size={16} />
           </span>

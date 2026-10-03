@@ -7,7 +7,7 @@ npm install
 npm run dev
 ```
 
-There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000/v2 for the current design.
+There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000.
 
 The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock` in `.env.example`) — no external credentials or database connection are required to run it locally.
 
@@ -89,9 +89,7 @@ Note on the empty-results state: `FlightResults`' empty state is implemented and
 
 ## Design notes
 
-**V2 (`/v2`) is the current design.** Its tokens live in the `.v2` block of `src/app/globals.css` (blue primary, silver neutrals, near-black ink and dark canvas, with matching dark-mode values) and are scoped to the V2 route so V1 is unaffected. Tailwind's `dark:` variant follows the `.dark` class set by the theme toggle. Fonts are a system stack to avoid a build-time network dependency. The final brand (fonts, palette, logo) is still undecided; see `docs/BRAND.md`. Applying the chosen direction is a token, font and logo swap. Details in `docs/V2_DESIGN.md`.
-
-V1 (`/`) keeps its original white/near-black/blue palette for comparison until V2 becomes the home page.
+**V2 is the design, served at `/`.** Its tokens are on `:root` in `src/app/globals.css` (blue primary, silver neutrals, near-black ink and dark canvas), with dark-mode values under `:root.dark`. Tailwind's `dark:` variant follows the `.dark` class set by the theme toggle. Fonts are a system stack to avoid a build-time network dependency. The final brand (fonts, palette, logo) is still undecided; see `docs/BRAND.md`. Applying the chosen direction is a token, font and logo swap. Details in `docs/V2_DESIGN.md`.
 
 ## Working in this codebase
 

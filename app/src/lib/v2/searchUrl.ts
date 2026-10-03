@@ -4,7 +4,7 @@ import type { CabinClass, FlightSearchRequest } from "@/types/flight";
 /**
  * Search <-> URL query string, so a search can be shared (e.g. on WhatsApp)
  * and reopened. Short, readable keys:
- *   /v2?from=LOS&to=ABV&depart=2026-10-10&return=2026-10-14&adults=2&cabin=economy
+ *   /?from=LOS&to=ABV&depart=2026-10-10&return=2026-10-14&adults=2&cabin=economy
  * Anything invalid in an incoming URL returns null and the page simply
  * shows the empty search form.
  */

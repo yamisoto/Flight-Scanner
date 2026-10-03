@@ -28,13 +28,13 @@ Browser (React components)
 - **`src/lib/flights/searchEngine.ts`** — provider-independent orchestration: calls the provider, normalises failures into `ProviderError`, applies sort/filter. Contains zero provider-specific logic by design.
 - **`src/lib/validation/searchValidation.ts`** — validates untrusted input before it reaches the search engine; reports every issue found, not just the first.
 - **`src/lib/data/airports.ts`, `airlines.ts`** — static reference datasets, each entry flagged `verified: true/false` depending on whether a primary source confirmed it during research (see `docs/PHASE_0_5_VALIDATION.md`).
-- **`src/components/`** — V1 UI (`SearchForm`, `FlightResults`, `FlightCard`, `FiltersPanel`, `FlightDetailsModal`): presentation only. `FlightDetailsModal` is shared with V2.
+- **`src/components/`**: UI. `v2/` holds the current design; `FlightDetailsModal` (flight details popup) sits at the top level. The V1 components were removed on 3 Oct 2026.
 
-## V2 (current design, `/v2`)
+## UI (V2 design, served at `/`)
 
 ```
-src/app/v2/layout.tsx      scopes the V2 design tokens (.v2 in globals.css) to this route
-src/app/v2/page.tsx        landing + results page; POST /api/search and /api/search/calendar per search;
+src/app/layout.tsx         root layout: design tokens (globals.css), no-flash dark mode, analytics
+src/app/page.tsx           landing + results page; POST /api/search and /api/search/calendar per search;
                            reads a shared search from the URL on load and writes each search back to it
 src/components/v2/         Header, SearchPanel, AirportCombobox, TravellersPicker, SortTabs, DateStrip,
                            ResultsView, ResultCard, AlsoFlying, ReliabilityBadge (+ explainer), ShareButton,
