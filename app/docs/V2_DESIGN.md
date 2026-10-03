@@ -27,6 +27,8 @@ Screenshots of both versions are in `docs/screenshots/`.
 
 Scoped under `.v2` in `src/app/globals.css`: blue primary (`#1747E0` light, `#4C7DFF` dark), a silver neutral scale, near-black ink and a near-black dark canvas. The hero is dark in both themes as the brand surface. Tailwind's `dark:` variant now follows the `.dark` class set by the toggle.
 
+These tokens match brand direction **01 Instrument**. The final brand is undecided: `docs/BRAND.md` has all three directions with full website mockups. Switching to another direction means swapping these tokens, the fonts and the header logo.
+
 ## App-readiness (Phase 2)
 
 Everything is a single-column card list below 1024px, interactions don't rely on hover, tap targets are at least 40px, and filters use a bottom sheet. Scoring lives in `src/lib/v2/scoring.ts` (pure functions, unit tested), so React Native can reuse it unchanged.

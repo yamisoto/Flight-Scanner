@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare mobile results, Instrument identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4C7DFF}a:hover{color:#7FA2FF}
+</style>
+</helmet>
+<div style="width: 390px; height: 1500px; box-sizing: border-box; background: #07080B; color: #F1F3F6; font-family: 'IBM Plex Sans', sans-serif; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="#" aria-label="Back to search" style="width: 44px; height: 44px; border-radius: 12px; background: #111318; display: grid; place-items: center; color: #F1F3F6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+<div style="text-align: center"><div style="font: 700 18px Sora, sans-serif; letter-spacing: -0.02em">Lagos → Abuja</div><div style="font-size: 13px; color: #A9B0BC">Thu 8 Oct · 1 adult</div></div>
+<button type="button" aria-label="Filters" style="width: 44px; height: 44px; border-radius: 12px; border: none; background: #111318; color: #F1F3F6; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" style="{{t.style}}"><span style="{{t.labelStyle}}">{{t.label}}</span><span style="display: block; font: 700 17px Sora, sans-serif; color: #F1F3F6">{{t.price}}</span></button>
+</sc-for>
+</div>
+
+<article style="background: #111318; border: 2px solid #4C7DFF; border-radius: 18px; overflow: hidden">
+<div style="background: #1747E0; padding: 8px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Skyfare Pick</div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="position: relative; width: 60px; height: 60px; flex: none">
+<svg width="60" height="60" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#2A2F38" stroke-width="5" stroke-linecap="round"/><path d="{{pickDial}}" stroke="#4C7DFF" stroke-width="5" stroke-linecap="round"/></svg>
+<div style="position: absolute; inset: 0; display: grid; place-items: center; font: 700 15px Sora, sans-serif">8.1</div>
+</div>
+<div style="flex: 1"><div style="font: 700 24px Sora, sans-serif; letter-spacing: -0.03em">11:30 → 12:46</div><div style="font-size: 13px; color: #A9B0BC">Dana Air · direct · 1h 16m</div></div>
+</div>
+<div style="font-size: 13px; color: #A9B0BC; line-height: 1.5">₦81,000 more than the cheapest, which rates only 5.2/10 for reliability.</div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="font: 700 24px Sora, sans-serif">₦188,500</div>
+<a href="#" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 24px; border-radius: 12px; background: #1747E0; color: #FFFFFF; text-decoration: none; font: 600 15px Sora, sans-serif">Select</a>
+</div>
+</div>
+</article>
+
+<sc-for list="{{flights}}" as="f" hint-placeholder-count="5">
+<article style="background: #111318; border: 1px solid #22262E; border-radius: 18px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+<div style="position: relative; width: 52px; height: 52px; flex: none">
+<svg width="52" height="52" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#2A2F38" stroke-width="5" stroke-linecap="round"/><path d="{{f.dial}}" stroke="{{f.color}}" stroke-width="5" stroke-linecap="round"/></svg>
+<div style="position: absolute; inset: 0; display: grid; place-items: center; font: 700 13px Sora, sans-serif">{{f.score}}</div>
+</div>
+<div style="flex: 1; min-width: 0"><div style="font: 700 19px Sora, sans-serif; letter-spacing: -0.02em">{{f.dep}} → {{f.arr}}</div><div style="font-size: 13px; color: #A9B0BC">{{f.airline}} · {{f.dur}}</div></div>
+<div style="font: 700 17px Sora, sans-serif">{{f.price}}</div>
+</article>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1500}}'>
+class Component extends DCLogic {
+renderVals() {
+const dial = (score) => {
+const sweep = 270 * score / 10;
+const a = (135 + sweep) * Math.PI / 180;
+return 'M16.44 47.56 A22 22 0 ' + (sweep > 180 ? 1 : 0) + ' 1 ' + (32 + 22 * Math.cos(a)).toFixed(2) + ' ' + (32 + 22 * Math.sin(a)).toFixed(2);
+};
+const color = (s) => s >= 8 ? '#3CCF86' : s >= 6.5 ? '#4C7DFF' : s >= 5 ? '#F0A934' : '#FF6B5E';
+const rows = [
+['Dana Air', '19:30', '20:46', '1h 16m', '₦187,500', 7.4],
+['Dana Air', '19:00', '20:16', '1h 16m', '₦230,000', 7.4],
+['Dana Air', '11:30', '12:46', '1h 16m', '₦280,500', 8.1],
+['Green Africa', '06:00', '07:16', '1h 16m', '₦107,500', 5.2],
+['Ibom Air', '17:30', '18:46', '1h 16m', '₦232,500', 4.0]
+];
+const base = 'text-align: left; padding: 10px 14px; border-radius: 14px; background: #111318; font-family: IBM Plex Sans, sans-serif;';
+return {
+pickDial: dial(8.1),
+tabs: [['Best', '₦188,500', true], ['Cheapest', '₦107,500', false], ['Fastest', '₦107,500', false], ['Most reliable', '₦188,500', false]].map(([label, price, on]) => ({
+label, price,
+style: base + (on ? ' border: 2px solid #4C7DFF;' : ' border: 1px solid #22262E;'),
+labelStyle: 'display: block; font-size: 12px; font-weight: 600; color: ' + (on ? '#7FA2FF' : '#A9B0BC')
+})),
+flights: rows.map(([airline, dep, arr, dur, price, s]) => ({ airline, dep, arr, dur, price, score: s.toFixed(1), dial: dial(s), color: color(s) }))
+};
+}
+}
+</script>
+</body>
+</html>

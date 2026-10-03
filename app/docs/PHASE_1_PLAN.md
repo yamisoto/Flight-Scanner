@@ -54,16 +54,16 @@ Runner-up: Kayak (price forecast "buy/wait" advice, flexible-date grid).
 1. **Schedule completeness**: every flight that operates on the route that day (airline, flight number, times).
 2. **Price completeness**: a live bookable price for each of those flights.
 
-No single source gives both for Nigerian domestic carriers. Previous research already found Duffel/Amadeus coverage of Nigerian domestic carriers is weak. Proposed layered approach:
+No single source gives both for Nigerian domestic carriers. Full provider comparison, the scraping decision and current status are in **`DATA_SOURCES.md`** (updated 3 Oct 2026). Summary:
 
-| Layer | Source | Gives us | Notes |
+| Layer | Source | Gives us | Status |
 |---|---|---|---|
-| 1. Schedules | AeroDataBox (cheap) or Cirium/OAG (enterprise) airport departure boards for LOS, ABV, PHC, KAN, etc. | The full list of operating flights per route | Becomes the "source of truth" list. Also feeds reliability (actual vs scheduled times). |
-| 2. Aggregated prices | Travelstart affiliate (iframe/XML/API via Impact) and Wakanow affiliate/API, whichever signs first | Prices for most carriers, plus commission | Primary revenue path. Outreach is already in progress per `DECISIONS.md`. |
-| 3. Direct airline prices | Air Peace runs Hitit Crane PSS (NDC-capable); other carriers use Crane or Videcom IBEs | Prices for carriers aggregators miss | Requires per-airline agreements. Start with the top 4 by volume. |
-| 4. Fallback | Deep link to the airline's own booking page | Flight still shown, marked "Check price on airline site" | Guarantees no flight is hidden just because we lack a price. |
+| 1. Schedules + reliability history | AeroDataBox airport departure boards and flight status (Cirium/OAG later) | Every operating flight per route; actual vs scheduled times | Next to build; needs an API key |
+| 2. Aggregated prices | Tiqwa first; Wakanow API or Travelstart affiliate as backup | Prices for most carriers, plus commission | Apply for Tiqwa sandbox; outreach in parallel |
+| 3. Direct airline prices | Top 3 or 4 carriers (Air Peace runs Hitit Crane, NDC-capable) | Prices for carriers aggregators miss | After launch |
+| 4. Fallback | Deep link to the airline's own booking page | Flight still shown, marked "Check price on airline site" | In the results design |
 
-Scraping airline/OTA sites is technically possible but is a ToS and stability risk; only consider it with legal sign-off and never as the primary source.
+Ruled out: **scraping** airline/OTA sites (legal, technical and partner-relationship risk; see `DATA_SOURCES.md`) and **Amadeus Self-Service** (shut down 17 July 2026).
 
 Key product rule: results show a **coverage line** ("12 flights operate on this route. 9 priced, 3 check on airline site"). Being honest about coverage is itself a trust feature.
 
@@ -166,11 +166,12 @@ API stays separate from UI (`/api/*` is what the mobile app will call). Types an
 
 ## 9. Open decisions for you
 
-1. Which price partner to push first: Travelstart affiliate (fastest to start, lower control) or Wakanow (bigger domestic inventory, but a direct competitor)?
-2. Flight status data budget: AeroDataBox (low cost, good enough to start) vs Cirium (enterprise pricing, better accuracy). Recommendation: AeroDataBox now, revisit at Africa expansion.
+1. Price partner. Recommended: **Tiqwa first** (sandbox available), Wakanow or Travelstart as backup. Needs your confirmation, then a Tiqwa sandbox application.
+2. Flight status data. Recommended: **AeroDataBox** for Phase 1 (Cirium at Africa expansion). Needs your confirmation, then an account and API key.
 3. Are you happy for flights without a live price to appear in results (marked "check on airline site")? Recommendation: yes, it is the only honest way to meet "show all options".
 4. Confirm the revised Skyfare Pick rule (Good-tier first, then 40% price / 40% reliability / 20% time).
 5. Upload the missing Phase 0.5 docs or approve removing the references.
+6. Choose a brand identity: Instrument or Harmattan are shortlisted (see `BRAND.md`).
 
 ## Sources
 

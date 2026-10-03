@@ -3,10 +3,11 @@
 ## Setup
 
 ```bash
-npm install
-cp .env.example .env.local
+npm install --legacy-peer-deps
 npm run dev
 ```
+
+`--legacy-peer-deps` is needed until the `@vitejs/plugin-react` / `vite` version conflict is fixed. There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000/v2 for the current design.
 
 The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock` in `.env.example`) — no external credentials or database connection are required to run it locally.
 
@@ -69,7 +70,9 @@ Note on the empty-results state: `FlightResults`' empty state is implemented and
 
 ## Design notes
 
-The UI deliberately does not use the default Next.js starter look (Geist font, generic SaaS-card styling). Fonts are a system stack rather than a Google Fonts fetch — partly a design choice, partly to avoid a build-time network dependency in restricted environments. The palette (`src/app/globals.css`) is a pale sky-blue surface with deep indigo ink and an amber accent — chosen to read as "aviation/comparison," not as a generic dashboard.
+**V2 (`/v2`) is the current design.** Its tokens live in the `.v2` block of `src/app/globals.css` (blue primary, silver neutrals, near-black ink and dark canvas, with matching dark-mode values) and are scoped to the V2 route so V1 is unaffected. Tailwind's `dark:` variant follows the `.dark` class set by the theme toggle. Fonts are a system stack to avoid a build-time network dependency. The final brand (fonts, palette, logo) is still undecided; see `docs/BRAND.md`. Applying the chosen direction is a token, font and logo swap. Details in `docs/V2_DESIGN.md`.
+
+V1 (`/`) keeps its original white/near-black/blue palette for comparison until V2 becomes the home page.
 
 ## Working in this codebase
 

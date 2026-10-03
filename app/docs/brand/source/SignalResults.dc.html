@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare results, Signal identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&amp;family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFC72C}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="background: #111111; color: #F4F4EF; font-family: 'Public Sans', sans-serif; min-height: 1560px">
+
+<div style="border-bottom: 4px solid #FFC72C">
+<header style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; gap: 28px">
+<a href="#" style="display: flex; align-items: stretch; text-decoration: none">
+<svg width="40" height="40" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" fill="#FFC72C"/><path d="M19 45 L44 20 M25 20 H44 V39" stroke="#111111" stroke-width="7" stroke-linecap="square"/></svg>
+<span style="background: #F4F4EF; color: #111111; display: flex; align-items: center; padding: 0 12px; font-family: Archivo, sans-serif; font-stretch: 72%; font-size: 26px; font-weight: 900; text-transform: uppercase">Skyfare</span>
+</a>
+<div style="flex: 1; display: flex; align-items: center; gap: 20px; background: #1C1C1C; min-height: 52px; padding: 0 8px 0 20px; font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 800; font-size: 20px; text-transform: uppercase">
+<span>LOS → ABV</span><span style="color: #8A8A85">THU 08 OCT · ONE WAY · 1 ADULT · ECONOMY</span>
+<button type="button" style="margin-left: auto; min-height: 40px; padding: 0 18px; border: none; background: #FFC72C; color: #111111; font: 900 17px Archivo, sans-serif; font-stretch: 80%">EDIT</button>
+</div>
+</header>
+</div>
+
+<main style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 80px; display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start">
+
+<aside style="background: #1C1C1C; padding: 24px; display: flex; flex-direction: column; gap: 26px">
+<div style="font-family: Archivo, sans-serif; font-stretch: 75%; font-weight: 900; font-size: 26px; text-transform: uppercase">Filters</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #8A8A85">STATUS</div>
+<button type="button" style="min-height: 42px; border: none; background: #0B8F8F; color: #FFFFFF; text-align: left; padding: 0 14px; font: 900 17px Archivo, sans-serif; font-stretch: 80%">RELIABLE ONLY</button>
+<button type="button" style="min-height: 42px; border: 2px solid #3A3A36; background: transparent; color: #F4F4EF; text-align: left; padding: 0 14px; font: 900 17px Archivo, sans-serif; font-stretch: 80%">HIDE OFTEN LATE</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #8A8A85">DEPARTS</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{times}}" as="t" hint-placeholder-count="4">
+<button type="button" style="min-height: 52px; border: 2px solid #3A3A36; background: transparent; color: #F4F4EF; text-align: left; padding: 6px 8px; font: 900 14px Archivo, sans-serif; font-stretch: 75%">{{t.label}}<span style="display: block; font: 400 12px 'Public Sans', sans-serif; color: #8A8A85">{{t.range}}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #8A8A85">AIRLINES</div>
+<sc-for list="{{airlines}}" as="a" hint-placeholder-count="3">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #FFC72C"><span style="flex: 1">{{a.name}}</span><span style="font-size: 13px; color: #8A8A85">{{a.from}}</span></label>
+</sc-for>
+</div>
+</aside>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-stretch: 70%; font-size: 64px; font-weight: 900; text-transform: uppercase; line-height: 1">Departures · Abuja</h1>
+<span style="font-size: 14px; color: #8A8A85">6 FLIGHTS · 3 AIRLINES</span>
+</div>
+
+<div style="display: flex; gap: 6px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" style="{{t.style}}">{{t.label}}<span style="display: block; font: 700 15px 'Public Sans', sans-serif; opacity: 0.8">{{t.price}}</span></button>
+</sc-for>
+</div>
+
+<div style="background: #050505; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: grid; grid-template-columns: 180px 160px minmax(0, 1fr) 150px 120px; gap: 14px; padding: 0 12px 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: #8A8A85">
+<span>TIME</span><span>FLIGHT</span><span>STATUS</span><span style="text-align: right">FARE</span><span></span>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<div style="{{r.rowStyle}}">
+<div style="display: flex; gap: 3px">
+<sc-for list="{{r.time}}" as="c" hint-placeholder-count="5">
+<div style="width: 30px; height: 44px; border-radius: 3px; background: linear-gradient(#262626 49%, #000000 49%, #000000 52%, #1E1E1E 52%); color: #F4F4EF; font-family: Archivo, sans-serif; font-stretch: 85%; font-weight: 800; font-size: 26px; display: flex; align-items: center; justify-content: center">{{c.ch}}</div>
+</sc-for>
+</div>
+<div style="font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 800; font-size: 20px; text-transform: uppercase">{{r.airline}}<span style="display: block; font: 500 13px 'Public Sans', sans-serif; color: #8A8A85">{{r.flight}} · {{r.dur}}</span></div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px"><span style="{{r.tagStyle}}">{{r.status}}</span><span style="font-size: 13px; color: #C9C9C2">{{r.note}}</span></div>
+<div style="font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 900; font-size: 28px; text-align: right">{{r.fare}}</div>
+<a href="#" style="{{r.btnStyle}}">SELECT ↗</a>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8A8A85">Yellow row = SKYFARE PICK. Demonstration data. Reliability scores are previews until on-time data is connected.</p>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+renderVals() {
+const split = (s) => s.split('').map((ch) => ({ ch }));
+const status = (s) => s >= 6.5 ? ['RELIABLE ' + s.toFixed(1), 'background: #0B8F8F; color: #FFFFFF;'] : s >= 5 ? ['MIXED ' + s.toFixed(1), 'background: #FF8A2B; color: #111111;'] : ['OFTEN LATE ' + s.toFixed(1), 'background: #F4F4EF; color: #111111;'];
+const data = [
+['11:30', 'Dana Air', 'DA 2008', '₦188,500', 8.1, true, '₦81,000 more than the cheapest, which rates 5.2'],
+['19:30', 'Dana Air', 'DA 2085', '₦187,500', 7.4, false, 'Evening departure'],
+['19:00', 'Dana Air', 'DA 4930', '₦230,000', 7.4, false, 'Evening departure'],
+['11:30', 'Dana Air', 'DA 7495', '₦280,500', 8.1, false, 'Flex fare, 2 bags'],
+['06:00', 'Green Africa', 'Q9 5465', '₦107,500', 5.2, false, 'Cheapest, hand luggage only'],
+['17:30', 'Ibom Air', 'QI 3760', '₦232,500', 4.0, false, 'Frequently delayed on this route']
+];
+const tabBase = 'min-height: 58px; padding: 6px 18px; text-align: left; font: 900 18px Archivo, sans-serif; font-stretch: 80%; text-transform: uppercase;';
+return {
+times: [['MORNING', '06:00–11:59'], ['AFTERNOON', '12:00–17:59'], ['EVENING', '18:00–23:59'], ['NIGHT', '00:00–05:59']].map(([label, range]) => ({ label, range })),
+airlines: [{ name: 'Green Africa', from: '₦107,500' }, { name: 'Dana Air', from: '₦187,500' }, { name: 'Ibom Air', from: '₦232,500' }],
+tabs: [['Best', '₦188,500', true], ['Cheapest', '₦107,500', false], ['Fastest', '₦107,500', false], ['Most reliable', '₦188,500', false]].map(([label, price, on]) => ({
+label, price, style: tabBase + (on ? ' border: none; background: #FFC72C; color: #111111;' : ' border: 2px solid #3A3A36; background: transparent; color: #F4F4EF;')
+})),
+rows: data.map(([time, airline, flight, fare, s, pick, note]) => {
+const [label, tone] = status(s);
+return {
+time: split(time), airline, flight, fare, note, dur: '1H 16M', status: label,
+tagStyle: 'padding: 5px 10px; font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 900; font-size: 17px; ' + tone,
+rowStyle: 'display: grid; grid-template-columns: 180px 160px minmax(0, 1fr) 150px 120px; gap: 14px; align-items: center; padding: 12px;' + (pick ? ' background: #2A2410; outline: 3px solid #FFC72C;' : ' background: #141414;'),
+btnStyle: 'display: inline-flex; align-items: center; justify-content: center; min-height: 44px; text-decoration: none; font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 900; font-size: 17px; ' + (pick ? 'background: #FFC72C; color: #111111;' : 'border: 2px solid #3A3A36; color: #F4F4EF;')
+};
+})
+};
+}
+}
+</script>
+</body>
+</html>

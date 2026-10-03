@@ -28,7 +28,20 @@ Browser (React components)
 - **`src/lib/flights/searchEngine.ts`** — provider-independent orchestration: calls the provider, normalises failures into `ProviderError`, applies sort/filter. Contains zero provider-specific logic by design.
 - **`src/lib/validation/searchValidation.ts`** — validates untrusted input before it reaches the search engine; reports every issue found, not just the first.
 - **`src/lib/data/airports.ts`, `airlines.ts`** — static reference datasets, each entry flagged `verified: true/false` depending on whether a primary source confirmed it during research (see `docs/PHASE_0_5_VALIDATION.md`).
-- **`src/components/`** — `SearchForm`, `FlightResults`, `FlightCard`: presentation only, no business logic. They call `/api/search` and render whatever comes back, including distinct loading/empty/error states.
+- **`src/components/`** — V1 UI (`SearchForm`, `FlightResults`, `FlightCard`, `FiltersPanel`, `FlightDetailsModal`): presentation only. `FlightDetailsModal` is shared with V2.
+
+## V2 (current design, `/v2`)
+
+```
+src/app/v2/layout.tsx      scopes the V2 design tokens (.v2 in globals.css) to this route
+src/app/v2/page.tsx        landing + results page; calls POST /api/search once per search
+src/components/v2/         Header, SearchPanel, AirportCombobox, TravellersPicker, SortTabs,
+                           ResultsView, ResultCard, ReliabilityBadge, Filters, LandingSections, icons
+src/lib/v2/scoring.ts      reliability (preview), Skyfare Pick, Best/Cheapest/Fastest/Most reliable ordering
+src/lib/v2/format.ts       time, duration, price and date formatting
+```
+
+V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability currently comes from `previewReliability()`, a labelled placeholder; the reliability engine (plan sub-phase 1.3) will replace it server-side. See `docs/V2_DESIGN.md`.
 
 ## Error handling
 
