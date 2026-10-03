@@ -3,11 +3,11 @@
 ## Setup
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run dev
 ```
 
-`--legacy-peer-deps` is needed until the `@vitejs/plugin-react` / `vite` version conflict is fixed. There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000/v2 for the current design.
+There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000/v2 for the current design.
 
 The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock` in `.env.example`) — no external credentials or database connection are required to run it locally.
 
@@ -18,9 +18,19 @@ The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock`
 | `npm run dev` | Local dev server |
 | `npm run build` | Production build (also runs TypeScript checks) |
 | `npm run lint` | ESLint |
-| `npm run typecheck` | `tsc --noEmit` on its own, faster than a full build |
+| `npm run typecheck` | Generates Next.js route types (`next typegen`), then `tsc --noEmit`; faster than a full build |
 | `npm test` | Runs the Vitest suite once |
 | `npm run test:watch` | Vitest in watch mode |
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every pull request and every push to `main`: `npm ci`, tests, typecheck, lint, build, and `npm audit` (fails on high or critical vulnerabilities in production dependencies).
+
+## Rate limiting, errors and analytics
+
+- `/api/search` allows 30 searches per minute per client IP (`SEARCH_RATE_LIMIT_PER_MINUTE` overrides it) and returns 429 with `Retry-After` beyond that. The counter is in memory, so each server instance counts separately; swap in a shared store (e.g. Redis) through `RateLimitStore` in `src/lib/rateLimit.ts` when one exists.
+- `src/instrumentation.ts` logs every uncaught server error as one JSON line (no headers, so no cookies or personal data), searchable in Vercel's runtime logs. Replace or extend it with Sentry once an account exists.
+- Vercel Analytics and Speed Insights are in the root layout. They record nothing until enabled in the Vercel dashboard (Project → Analytics / Speed Insights). No cookies.
 
 ## Known environment limitation: Prisma
 

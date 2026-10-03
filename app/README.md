@@ -21,7 +21,7 @@ Skyfare compares every domestic flight in Nigeria on **price**, **journey time**
 ## Quick start
 
 ```bash
-npm install --legacy-peer-deps   # see "Known issues" below
+npm install
 npm run dev
 ```
 
@@ -48,7 +48,6 @@ Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLO
 
 ## Known issues
 
-- `npm ci` fails with ERESOLVE: `@vitejs/plugin-react@6` needs `vite@8`, but the repo pins `vite@5`. Install with `--legacy-peer-deps` until the versions are aligned.
 - Several docs and code comments reference earlier research docs (`PHASE_0_5_VALIDATION.md`, `PRD.md`, `TESTING.md`, `PARTNER_OUTREACH_PLAN.md`, `PROVIDER_SCORECARD.md`) that aren't in this repo.
 
 ## Working in this repo (for a future dev or AI agent session)

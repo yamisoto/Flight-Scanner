@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getActiveProvider } from "@/lib/flights/registry";
 import { FlightSearchEngine } from "@/lib/flights/searchEngine";
+import { clientKey, createRateLimiter } from "@/lib/rateLimit";
 import { validateSearchRequest } from "@/lib/validation/searchValidation";
 import { ProviderError, type FlightSearchOptions, type FlightSearchRequest } from "@/types/flight";
 
@@ -14,7 +15,20 @@ import { ProviderError, type FlightSearchOptions, type FlightSearchRequest } fro
  * an empty array that looks the same whether nothing was found or
  * something broke.
  */
+// Per-client search limit. One person searching normally stays far below this;
+// it exists to stop scripted floods from running up provider API costs.
+const SEARCHES_PER_MINUTE = Number(process.env.SEARCH_RATE_LIMIT_PER_MINUTE) || 30;
+const checkRateLimit = createRateLimiter({ limit: SEARCHES_PER_MINUTE, windowMs: 60_000 });
+
 export async function POST(req: NextRequest) {
+  const rate = checkRateLimit(clientKey(req.headers));
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "Too many searches. Please wait a moment and try again.", code: "RATE_LIMITED" },
+      { status: 429, headers: { "Retry-After": String(rate.retryAfterSeconds) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await req.json();
