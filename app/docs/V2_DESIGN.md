@@ -35,6 +35,6 @@ Everything is a single-column card list below 1024px, interactions don't rely on
 
 ## Honest caveats
 
-- **Reliability scores are placeholders** (`previewReliability`): stable per airline, with the time-of-day effect from the plan. They are labelled as a preview in the UI and need replacing with the 1.3 reliability engine.
+- **Reliability scores use the NCAA airline baseline** (`src/lib/reliability/`): each airline's published August 2026 delay and cancellation rates plus the time-of-day effect, labelled Low confidence. Airlines with no NCAA figures fall back to a labelled preview placeholder. Route-level history (sub-phase 1.3) replaces both.
 - **Select is disabled** because no booking partner is connected yet.
 - **Skyfare Pick logic (revised):** the Pick comes from the most reliable tier available. If any flight scores Good (6.5+), only Good flights are considered. Within that tier it's 40% price, 40% reliability, 20% journey time. Price and time are scored as a ratio to the best on the page, so a cheap outlier can't push every other flight to zero. Below 4.0 a flight is never picked. The Best tab uses the same ordering, so it always agrees with the Pick. Constants are in `src/lib/v2/scoring.ts`.

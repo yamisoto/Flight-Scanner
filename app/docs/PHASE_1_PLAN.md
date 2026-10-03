@@ -97,6 +97,17 @@ Each score ships with a confidence label (High / Medium / Low, based on sample s
 
 Weights and thresholds live in config, not code, so they can be tuned without a deploy. Before launch, backtest: compute scores for weeks 1 to 8 and check they predict delays in week 9.
 
+**Interim baseline (live since 3 Oct 2026).** Until route-level history exists, scores use the NCAA's published airline-level data (`src/lib/reliability/`), labelled Low confidence:
+
+```
+raw   = 0.70*D + 0.20*A + 0.10*T        score = 1 + 9*raw
+D = 1 - airline delay rate               (NCAA: departures more than 15 min late)
+A = 1 - airline cancellation rate / 2%   (floored at 0)
+T = 1 before 09:00, 0.6 midday, 0.3 from 17:00
+```
+
+Delay carries most of the weight because it's the problem Nigerian flyers actually face: 60% of domestic flights were delayed in August 2026, while fewer than 1 in 200 were cancelled. On August 2026 data the midday scores run from 4.2 (United Nigeria, 77% delayed) to 7.2 (XEJet, 31% delayed). New months are added as rows in `ncaaData.ts`.
+
 Data dependency: route-level cancellation history needs flight status collection to **start early** (sub-phase 1.2), because we need 60 days of history before scores are meaningful. Until then, scores fall back to NCAA airline-level data with a Low confidence label.
 
 ## 6. Recommended flight logic

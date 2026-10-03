@@ -13,7 +13,7 @@ export function ReliabilityBadge({ reliability, compact = false }: { reliability
   return (
     <span
       className="inline-flex items-center gap-2"
-      title={`${reliability.reason}${reliability.preview ? " Preview score: real on-time data is not connected yet." : ""}`}
+      title={`${reliability.reason}${reliability.source === "preview" ? " Preview score: placeholder until on-time data is connected." : ` Confidence: ${reliability.confidence.toLowerCase()}.`}`}
     >
       <span className={`v2-num text-sm font-semibold ${TONE[reliability.label]}`}>{reliability.score.toFixed(1)}</span>
       {!compact && (

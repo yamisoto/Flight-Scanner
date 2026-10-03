@@ -42,7 +42,8 @@ const fixed = (scores: Record<string, number>) => (o: FlightOffer): Reliability 
   score: scores[o.id],
   label: "Good",
   reason: "",
-  preview: true,
+  source: "preview",
+  confidence: "Low",
 });
 
 describe("previewReliability", () => {
@@ -52,7 +53,7 @@ describe("previewReliability", () => {
     expect(a).toEqual(b);
     expect(a.score).toBeGreaterThanOrEqual(1);
     expect(a.score).toBeLessThanOrEqual(10);
-    expect(a.preview).toBe(true);
+    expect(a.source).toBe("preview");
   });
 
   it("scores early departures above evening ones for the same airline", () => {

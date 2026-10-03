@@ -1,24 +1,25 @@
+import {
+  ncaaBaselineReliability,
+  reliabilityLabel,
+  type Reliability,
+} from "@/lib/reliability/score";
 import type { FlightOffer } from "@/types/flight";
+
+export type { Reliability } from "@/lib/reliability/score";
 
 /**
  * V2 comparison scoring: a reliability score per offer and the blended
  * "Skyfare Pick" ranking described in docs/PHASE_1_PLAN.md (sections 5-6).
  *
- * IMPORTANT: there is no real on-time data behind reliability yet. Until
- * the reliability engine (sub-phase 1.3) exists, scores come from
- * previewReliability(), a deterministic placeholder derived from the
- * airline code and departure hour. It is labelled as a preview in the UI
- * and must be swapped for real data, not tuned to look plausible.
+ * Reliability comes from the NCAA airline-level baseline
+ * (src/lib/reliability/score.ts) wherever the airline has NCAA data, labelled
+ * Low confidence. Airlines without NCAA data fall back to previewReliability(),
+ * a deterministic placeholder that is labelled as a preview in the UI and must
+ * never be tuned to look plausible. Route-level history (sub-phase 1.3)
+ * replaces both.
  */
 
 export type V2SortKey = "best" | "cheapest" | "fastest" | "reliable" | "departure";
-
-export interface Reliability {
-  score: number; // 1.0 - 10.0, one decimal
-  label: "High" | "Good" | "Fair" | "Low";
-  reason: string;
-  preview: true;
-}
 
 export interface ScoredOffer {
   offer: FlightOffer;
@@ -60,13 +61,6 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-function reliabilityLabel(score: number): Reliability["label"] {
-  if (score >= 8) return "High";
-  if (score >= 6.5) return "Good";
-  if (score >= 5) return "Fair";
-  return "Low";
-}
-
 /**
  * Placeholder reliability: a stable per-airline base (4.6 - 8.8) plus the
  * time-of-day effect from the plan (early departures run more on time
@@ -84,8 +78,9 @@ export function previewReliability(offer: FlightOffer): Reliability {
   return {
     score,
     label: reliabilityLabel(score),
-    reason: `${first.airlineName} on-time history (preview). ${timeNote}`,
-    preview: true,
+    reason: `No published on-time data for ${first.airlineName} yet. ${timeNote}`,
+    source: "preview",
+    confidence: "Low",
   };
 }
 
@@ -106,9 +101,16 @@ function sociableHourScore(hour: number) {
   return hour < 5 || hour >= 21 ? 0.4 : 1;
 }
 
+/** NCAA airline baseline where the airline has published data, otherwise the labelled preview placeholder. */
+export function reliabilityFor(offer: FlightOffer): Reliability {
+  const first = offer.slices[0].segments[0];
+  const hour = new Date(first.departureAt).getUTCHours();
+  return ncaaBaselineReliability(first.airlineCode, hour) ?? previewReliability(offer);
+}
+
 export function scoreOffers(
   offers: FlightOffer[],
-  reliabilityFn: (offer: FlightOffer) => Reliability = previewReliability,
+  reliabilityFn: (offer: FlightOffer) => Reliability = reliabilityFor,
 ): ScoredOffer[] {
   if (offers.length === 0) return [];
 

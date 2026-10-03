@@ -153,8 +153,9 @@ export function ResultsView({ status, scored, errorMessage, onRetry }: ResultsVi
 
         {!loading && (
           <p className="pt-2 text-xs leading-relaxed text-ink-muted">
-            Reliability scores are a preview. They become live once on-time data from airlines and the NCAA is connected. Prices are demonstration
-            data, not live fares.
+            Reliability scores use the NCAA&apos;s published August 2026 delay and cancellation rates for each airline (low confidence: airline-wide, one
+            month). Route-level on-time history is coming. Airlines without NCAA data show a labelled preview score. Prices are demonstration data,
+            not live fares.
           </p>
         )}
       </section>
