@@ -28,7 +28,46 @@ Browser (React components)
 - **`src/lib/flights/searchEngine.ts`** — provider-independent orchestration: calls the provider, normalises failures into `ProviderError`, applies sort/filter. Contains zero provider-specific logic by design.
 - **`src/lib/validation/searchValidation.ts`** — validates untrusted input before it reaches the search engine; reports every issue found, not just the first.
 - **`src/lib/data/airports.ts`, `airlines.ts`** — static reference datasets, each entry flagged `verified: true/false` depending on whether a primary source confirmed it during research (see `docs/PHASE_0_5_VALIDATION.md`).
-- **`src/components/`** — `SearchForm`, `FlightResults`, `FlightCard`: presentation only, no business logic. They call `/api/search` and render whatever comes back, including distinct loading/empty/error states.
+- **`src/components/`**: UI. `v2/` holds the current design; `FlightDetailsModal` (flight details popup) sits at the top level. The V1 components were removed on 3 Oct 2026.
+
+## UI (V2 design, served at `/`)
+
+```
+src/app/layout.tsx         root layout: design tokens (globals.css), no-flash dark mode, analytics
+src/app/page.tsx           landing + results page; POST /api/search and /api/search/calendar per search;
+                           reads a shared search from the URL on load and writes each search back to it
+src/components/v2/         Header, SearchPanel, AirportCombobox, TravellersPicker, SortTabs, DateStrip,
+                           ResultsView, ResultCard, AlsoFlying, ReliabilityBadge (+ explainer), ShareButton,
+                           Filters, LandingSections, icons
+src/lib/v2/scoring.ts      reliability, Skyfare Pick, Best/Cheapest/Fastest/Most reliable ordering
+src/lib/v2/searchUrl.ts    search <-> URL query string, with validation of incoming links
+src/lib/v2/format.ts       time, duration, price and date formatting
+```
+
+V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability comes from the NCAA airline baseline (`src/lib/reliability/score.ts`), with the labelled `previewReliability()` placeholder only for airlines without NCAA figures. See `docs/V2_DESIGN.md`.
+
+### Every flight, nearby dates
+
+`/api/search` returns `{ offers, provider, schedule }`. `schedule` is a `ScheduleCoverage` built by `src/lib/flights/schedule.ts`: the flights known to operate that day, matched against the priced offers (same flight number, or same airline within 15 minutes), with the unmatched ones returned as `unpriced`. The schedule comes from `getScheduleSource()` (`src/lib/flights/scheduleSource.ts`): the price provider's own `getScheduledFlights()` if it has one (the mock does), otherwise the collected flight-status observations in the database projected onto the same weekday (`projectSchedule`, last 21 days), otherwise none. The lookup is best effort: a failure logs `schedule_lookup_failed` and the search still returns its offers.
+
+`POST /api/search/calendar` takes the same body and returns the cheapest price for the chosen date and three days either side (`src/lib/flights/priceCalendar.ts`), skipping past dates and shifting the return date with the departure. Results are cached in memory for 10 minutes per search. Both search endpoints share one per-client rate limit (`src/lib/searchRateLimit.ts`, 30 a minute by default, `SEARCH_RATE_LIMIT_PER_MINUTE`). The strip costs up to 7 provider searches per uncached request; revisit when a paid price API is connected.
+
+## Reliability and flight-status collection
+
+```
+src/lib/reliability/ncaaData.ts   NCAA airline-level monthly operations data (the current baseline)
+src/lib/reliability/score.ts      reliability score, label, confidence and plain-English reason
+src/lib/ingest/types.ts           FlightStatusRecord, FlightStatusSource, FlightStatusStore
+src/lib/ingest/collectStatus.ts   runStatusCollection(): per-airport fetch with retry/backoff,
+                                  de-duplication, structured logs, summary; never stops on one failure
+src/lib/ingest/aeroDataBoxSource.ts  FlightStatusSource for AeroDataBox, tested against recorded live responses
+src/lib/ingest/collectionSettings.ts airports (STATUS_AIRPORTS, default LOS,ABV) and the daily window
+src/lib/ingest/prismaStore.ts     FlightStatusStore on Postgres
+src/lib/ingest/fixtureSource.ts   synthetic source for tests and local runs only
+src/app/api/cron/collect-status   daily trigger for Vercel Cron (Bearer CRON_SECRET, fails closed)
+```
+
+The cron route collects the previous Lagos day's departures from `STATUS_AIRPORTS` through AeroDataBox into `flight_status_observations`, and returns `skipped` until both `AERODATABOX_API_KEY` and `DATABASE_URL` are set. AeroDataBox returns scheduled times only for Nigerian domestic flights (see `docs/DATA_SOURCES.md`), so today these rows feed the "every flight" schedule, not reliability scores. Cost: each airport is two 12-hour calls (4 API units) a day; the default two hubs use about 240 of the free plan's 400 units a month. Scheduled in `vercel.json` daily at 00:30 UTC (01:30 Lagos). Vercel runs crons on production deployments only, so it starts once this branch is merged to `main`, and only collects when `CRON_SECRET` is set (it fails closed without it).
 
 ## Error handling
 

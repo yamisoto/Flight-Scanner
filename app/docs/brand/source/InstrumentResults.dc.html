@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare results, Instrument identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4C7DFF}a:hover{color:#7FA2FF}
+</style>
+</helmet>
+<div style="background: #07080B; color: #F1F3F6; font-family: 'IBM Plex Sans', sans-serif; min-height: 1560px">
+
+<div style="border-bottom: 1px solid #22262E">
+<header style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; gap: 28px">
+<a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1F3F6">
+<svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#111318" stroke="#2A2F38"/><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#30353F" stroke-width="5" stroke-linecap="round"/><path d="M16.44 47.56 A22 22 0 1 1 53.73 28.56" stroke="#4C7DFF" stroke-width="5" stroke-linecap="round"/><path d="M32 32 L47 29.6" stroke="#E6E9EE" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="#E6E9EE"/></svg>
+<span style="font-family: Sora, sans-serif; font-size: 21px; font-weight: 700; letter-spacing: -0.03em">Skyfare</span>
+</a>
+<div style="flex: 1; display: flex; align-items: center; background: #111318; border: 1px solid #22262E; border-radius: 14px; min-height: 52px; padding: 0 8px 0 20px; gap: 18px; font-size: 16px">
+<span style="font-weight: 600">Lagos (LOS) → Abuja (ABV)</span>
+<span style="width: 1px; height: 22px; background: #2A2F38"></span>
+<span style="color: #A9B0BC">Thu, 8 Oct · One way</span>
+<span style="width: 1px; height: 22px; background: #2A2F38"></span>
+<span style="color: #A9B0BC">1 adult, Economy</span>
+<button type="button" style="margin-left: auto; min-height: 40px; padding: 0 20px; border-radius: 10px; border: none; background: #1747E0; color: #FFFFFF; font: 600 15px Sora, sans-serif">Edit search</button>
+</div>
+</header>
+</div>
+
+<main style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 80px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 28px; align-items: start">
+
+<aside style="background: #111318; border: 1px solid #22262E; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 26px">
+<div style="font-family: Sora, sans-serif; font-weight: 600; font-size: 17px">Filters</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C93A0; font-weight: 600">Reliability</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px solid #4C7DFF; background: #14203F; color: #7FA2FF; font: 600 14px 'IBM Plex Sans', sans-serif">Any</button>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px solid #2A2F38; background: transparent; color: #A9B0BC; font: 500 14px 'IBM Plex Sans', sans-serif">6+</button>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px solid #2A2F38; background: transparent; color: #A9B0BC; font: 500 14px 'IBM Plex Sans', sans-serif">7+</button>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px solid #2A2F38; background: transparent; color: #A9B0BC; font: 500 14px 'IBM Plex Sans', sans-serif">8+</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C93A0; font-weight: 600">Departure time</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{times}}" as="t" hint-placeholder-count="4">
+<button type="button" style="min-height: 52px; border-radius: 10px; border: 1px solid #2A2F38; background: transparent; color: #F1F3F6; text-align: left; padding: 6px 12px; font: 600 14px 'IBM Plex Sans', sans-serif">{{t.label}}<span style="display: block; font-weight: 400; font-size: 12px; color: #8C93A0">{{t.range}}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8C93A0; font-weight: 600">Airlines</div>
+<sc-for list="{{airlines}}" as="a" hint-placeholder-count="3">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #4C7DFF"><span style="flex: 1">{{a.name}}</span><span style="font-size: 13px; color: #8C93A0">{{a.from}}</span></label>
+</sc-for>
+</div>
+</aside>
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h1 style="margin: 0; font-family: Sora, sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.03em">Lagos → Abuja</h1>
+<span style="font-size: 15px; color: #A9B0BC">6 flights · 6 airlines checked</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" style="{{t.style}}"><span style="{{t.labelStyle}}">{{t.label}}</span><span style="display: block; margin-top: 4px; font: 700 20px Sora, sans-serif; color: #F1F3F6">{{t.price}}</span><span style="display: block; font-size: 13px; color: #8C93A0">{{t.meta}}</span></button>
+</sc-for>
+</div>
+
+<article style="background: #111318; border: 2px solid #4C7DFF; border-radius: 20px; overflow: hidden">
+<div style="background: #1747E0; padding: 10px 24px; display: flex; gap: 12px; align-items: center; font-size: 14px"><span style="font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">Skyfare Pick</span><span style="opacity: 0.9">₦81,000 more than the cheapest, which rates only 5.2/10 for reliability</span></div>
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr) 200px; align-items: center; gap: 24px; padding: 24px">
+<div style="position: relative; width: 88px; height: 88px">
+<svg width="88" height="88" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#2A2F38" stroke-width="5" stroke-linecap="round"/><path d="{{pick.dial}}" stroke="#4C7DFF" stroke-width="5" stroke-linecap="round"/></svg>
+<div style="position: absolute; inset: 0; display: grid; place-items: center; font: 700 20px Sora, sans-serif">{{pick.score}}</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 15px; color: #A9B0BC">{{pick.airline}} · {{pick.flight}} · Direct · {{pick.dur}}</div>
+<div style="font: 700 34px Sora, sans-serif; letter-spacing: -0.03em">{{pick.dep}} → {{pick.arr}}</div>
+<div style="font-size: 15px; color: #3CCF86; font-weight: 500">High reliability · usually leaves on time</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px">
+<div style="font: 700 32px Sora, sans-serif; letter-spacing: -0.03em">{{pick.price}}</div>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border-radius: 12px; background: #1747E0; color: #FFFFFF; text-decoration: none; font: 600 16px Sora, sans-serif">Select</a>
+</div>
+</div>
+</article>
+
+<sc-for list="{{flights}}" as="f" hint-placeholder-count="5">
+<article style="background: #111318; border: 1px solid #22262E; border-radius: 20px; display: grid; grid-template-columns: 96px minmax(0, 1fr) 200px; align-items: center; gap: 24px; padding: 20px 24px">
+<div style="position: relative; width: 72px; height: 72px">
+<svg width="72" height="72" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#2A2F38" stroke-width="5" stroke-linecap="round"/><path d="{{f.dial}}" stroke="{{f.color}}" stroke-width="5" stroke-linecap="round"/></svg>
+<div style="position: absolute; inset: 0; display: grid; place-items: center; font: 700 17px Sora, sans-serif">{{f.score}}</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; color: #A9B0BC">{{f.airline}} · {{f.flight}} · Direct · {{f.dur}}</div>
+<div style="font: 700 26px Sora, sans-serif; letter-spacing: -0.03em">{{f.dep}} → {{f.arr}}</div>
+<div style="font-size: 14px; font-weight: 500; color: {{f.color}}">{{f.label}}</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
+<div style="font: 700 26px Sora, sans-serif; letter-spacing: -0.03em">{{f.price}}</div>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 44px; border-radius: 12px; border: 1px solid #2A2F38; color: #F1F3F6; text-decoration: none; font: 600 15px Sora, sans-serif">Select</a>
+</div>
+</article>
+</sc-for>
+<p style="margin: 4px 0 0; font-size: 13px; color: #8C93A0">Demonstration data. Reliability scores are previews until on-time data is connected.</p>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+renderVals() {
+const dial = (score) => {
+const sweep = 270 * score / 10;
+const a = (135 + sweep) * Math.PI / 180;
+return 'M16.44 47.56 A22 22 0 ' + (sweep > 180 ? 1 : 0) + ' 1 ' + (32 + 22 * Math.cos(a)).toFixed(2) + ' ' + (32 + 22 * Math.sin(a)).toFixed(2);
+};
+const tone = (s) => s >= 8 ? ['#3CCF86', 'High reliability'] : s >= 6.5 ? ['#4C7DFF', 'Good reliability'] : s >= 5 ? ['#F0A934', 'Fair: delays are common'] : ['#FF6B5E', 'Low: often late'];
+const rows = [
+['Dana Air', 'DA 2085', '19:30', '20:46', '1h 16m', '₦187,500', 7.4],
+['Dana Air', 'DA 4930', '19:00', '20:16', '1h 16m', '₦230,000', 7.4],
+['Dana Air', 'DA 7495', '11:30', '12:46', '1h 16m', '₦280,500', 8.1],
+['Green Africa', 'Q9 5465', '06:00', '07:16', '1h 16m', '₦107,500', 5.2],
+['Ibom Air', 'QI 3760', '17:30', '18:46', '1h 16m', '₦232,500', 4.0]
+];
+const tabBase = 'text-align: left; padding: 14px 16px; border-radius: 14px; background: #111318; font-family: IBM Plex Sans, sans-serif;';
+return {
+times: [['Morning', '06:00–11:59'], ['Afternoon', '12:00–17:59'], ['Evening', '18:00–23:59'], ['Night', '00:00–05:59']].map(([label, range]) => ({ label, range })),
+airlines: [{ name: 'Green Africa', from: '₦107,500' }, { name: 'Dana Air', from: '₦187,500' }, { name: 'Ibom Air', from: '₦232,500' }],
+tabs: [['Best', '₦188,500', '8.1 · 1h 16m', true], ['Cheapest', '₦107,500', '5.2 · 1h 16m', false], ['Fastest', '₦107,500', '1h 16m', false], ['Most reliable', '₦188,500', '8.1 · 1h 16m', false]].map(([label, price, meta, on]) => ({
+label, price, meta,
+style: tabBase + (on ? ' border: 2px solid #4C7DFF;' : ' border: 1px solid #22262E;'),
+labelStyle: 'display: block; font-size: 13px; font-weight: 600; color: ' + (on ? '#7FA2FF' : '#A9B0BC')
+})),
+pick: { airline: 'Dana Air', flight: 'DA 2008', dep: '11:30', arr: '12:46', dur: '1h 16m', price: '₦188,500', score: '8.1', dial: dial(8.1) },
+flights: rows.map(([airline, flight, dep, arr, dur, price, s]) => {
+const [color, label] = tone(s);
+return { airline, flight, dep, arr, dur, price, score: s.toFixed(1), dial: dial(s), color, label };
+})
+};
+}
+}
+</script>
+</body>
+</html>

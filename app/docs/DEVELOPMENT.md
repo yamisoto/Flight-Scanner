@@ -4,9 +4,10 @@
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
+
+There is no `.env.example` in the repo; the defaults run on mock data. Open http://localhost:3000.
 
 The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock` in `.env.example`) — no external credentials or database connection are required to run it locally.
 
@@ -17,13 +18,23 @@ The app runs entirely on `MockFlightProvider` by default (`FLIGHT_PROVIDER=mock`
 | `npm run dev` | Local dev server |
 | `npm run build` | Production build (also runs TypeScript checks) |
 | `npm run lint` | ESLint |
-| `npm run typecheck` | `tsc --noEmit` on its own, faster than a full build |
+| `npm run typecheck` | Generates Next.js route types (`next typegen`), then `tsc --noEmit`; faster than a full build |
 | `npm test` | Runs the Vitest suite once |
 | `npm run test:watch` | Vitest in watch mode |
 
-## Known environment limitation: Prisma
+## Continuous integration
 
-`prisma/schema.prisma` defines the intended MVP schema (see `docs/DATABASE.md`), but `npx prisma generate` / `npx prisma migrate dev` have **not** been run in this build — the sandbox this was built in blocks network access to `binaries.prisma.sh`, which Prisma needs to download its query/schema engine. This isn't a code issue, just an environment one. Run those commands yourself in a normal environment with full internet access before wiring the app up to a real database. Nothing in the current codebase imports `@prisma/client` at runtime, so this doesn't block anything else in Phase 1A.
+`.github/workflows/ci.yml` runs on every pull request and every push to `main`: `npm ci`, tests, typecheck, lint, build, and `npm audit` (fails on high or critical vulnerabilities in production dependencies).
+
+## Rate limiting, errors and analytics
+
+- `/api/search` allows 30 searches per minute per client IP (`SEARCH_RATE_LIMIT_PER_MINUTE` overrides it) and returns 429 with `Retry-After` beyond that. The counter is in memory, so each server instance counts separately; swap in a shared store (e.g. Redis) through `RateLimitStore` in `src/lib/rateLimit.ts` when one exists.
+- `src/instrumentation.ts` logs every uncaught server error as one JSON line (no headers, so no cookies or personal data), searchable in Vercel's runtime logs. Replace or extend it with Sentry once an account exists.
+- Vercel Analytics and Speed Insights are in the root layout. They record nothing until enabled in the Vercel dashboard (Project → Analytics / Speed Insights). No cookies.
+
+## Database
+
+Neon Postgres in production (see `docs/DATABASE.md` for setup, `docs/DATABASE_PROVIDERS.md` for why and the portability rules). `npm install` runs `prisma generate`. Vercel builds use `npm run vercel-build` (`scripts/vercel-build.sh`), which applies pending migrations and re-seeds reference data when `DATABASE_URL_UNPOOLED` is set, and skips both otherwise. Schema changes: edit `prisma/schema.prisma`, run `npx prisma migrate dev --name <change>` against a local Postgres, commit the generated migration. Seed with `npm run db:seed`. Integration tests in `tests/integration/` run when `TEST_DATABASE_URL` points at a migrated local or CI database.
 
 ## Staging deployment (Vercel)
 
@@ -40,7 +51,16 @@ Vercel sets `NODE_ENV=production` for **every** deployment, including preview/st
 | `FLIGHT_PROVIDER` | `mock` | Public-safe (no secret value) |
 | `ALLOW_MOCK_PROVIDER` | `true` | Public-safe (no secret value) — required, see above |
 
-No other variable in `.env.example` is required for the app to run — database, caching, analytics, and provider-credential variables are all unused by the current codebase (Phase 1B+ concerns). Leave them unset on Vercel; do not fill in placeholder or fake values for them.
+Optional, for flight-status collection (`/api/cron/collect-status`); the job returns `skipped` until the key and database are both set:
+
+| Variable | Value | Scope |
+|---|---|---|
+| `AERODATABOX_API_KEY` | RapidAPI key | **Secret** (set as sensitive in Vercel; never commit) |
+| `DATABASE_URL`, `DATABASE_URL_UNPOOLED` | Set by the Neon integration | Secret |
+| `CRON_SECRET` | Random string | Secret; Vercel Cron sends it as a Bearer token |
+| `STATUS_AIRPORTS` | `LOS,ABV` (default) | Each airport uses about 120 AeroDataBox units a month; the free plan has 400 |
+
+Leave anything else in `.env.example` unset; do not fill in placeholder or fake values.
 
 ### Manual deployment steps
 
@@ -69,7 +89,7 @@ Note on the empty-results state: `FlightResults`' empty state is implemented and
 
 ## Design notes
 
-The UI deliberately does not use the default Next.js starter look (Geist font, generic SaaS-card styling). Fonts are a system stack rather than a Google Fonts fetch — partly a design choice, partly to avoid a build-time network dependency in restricted environments. The palette (`src/app/globals.css`) is a pale sky-blue surface with deep indigo ink and an amber accent — chosen to read as "aviation/comparison," not as a generic dashboard.
+**V2 is the design, served at `/`.** Its tokens are on `:root` in `src/app/globals.css` (blue primary, silver neutrals, near-black ink and dark canvas), with dark-mode values under `:root.dark`. Tailwind's `dark:` variant follows the `.dark` class set by the theme toggle. Fonts are a system stack to avoid a build-time network dependency. The final brand (fonts, palette, logo) is still undecided; see `docs/BRAND.md`. Applying the chosen direction is a token, font and logo swap. Details in `docs/V2_DESIGN.md`.
 
 ## Working in this codebase
 

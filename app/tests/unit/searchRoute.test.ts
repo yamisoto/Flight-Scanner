@@ -2,11 +2,11 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { POST } from "@/app/api/search/route";
 import { NextRequest } from "next/server";
 
-function makeRequest(body: unknown): NextRequest {
+function makeRequest(body: unknown, ip = "203.0.113.1"): NextRequest {
   return new NextRequest("http://localhost/api/search", {
     method: "POST",
     body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-forwarded-for": ip },
   });
 }
 
@@ -64,5 +64,15 @@ describe("POST /api/search", () => {
     const prices = json.offers.map((o: { price: { amount: number } }) => o.price.amount);
     const sorted = [...prices].sort((a, b) => a - b);
     expect(prices).toEqual(sorted);
+  });
+
+  it("returns 429 with Retry-After once a client exceeds the per-minute limit", async () => {
+    const ip = "198.51.100.99";
+    let last: Response | undefined;
+    for (let i = 0; i < 31; i++) last = await POST(makeRequest({}, ip));
+    expect(last!.status).toBe(429);
+    expect(Number(last!.headers.get("Retry-After"))).toBeGreaterThan(0);
+    // Another client is unaffected.
+    expect((await POST(makeRequest({}, "198.51.100.100"))).status).toBe(400);
   });
 });

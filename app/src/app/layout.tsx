@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Skyfare NG — Compare Nigerian domestic flights",
-  description: "Search and compare prices, times, and airlines across Nigerian domestic routes.",
+  title: "Skyfare: compare every flight across Nigeria",
+  description: "Compare price, journey time and on-time reliability for every Nigerian domestic flight.",
 };
 
 // Runs before hydration so a returning visitor who chose dark mode
@@ -22,7 +24,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        {/* Page views and Core Web Vitals. No cookies; only records once enabled in the Vercel dashboard. */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

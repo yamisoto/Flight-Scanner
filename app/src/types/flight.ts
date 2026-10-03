@@ -96,6 +96,32 @@ export interface FlightOffer {
   offerExpiresAt?: string; // ISO datetime — offers are time-limited industry-wide
 }
 
+/**
+ * A flight known to operate on a route and date, with or without a price.
+ * Comes from a schedule source (flight-status history, or the mock
+ * provider in demo mode). Lets results show every operating flight, not
+ * only the ones a price provider returned.
+ */
+export interface ScheduledFlight {
+  airlineCode: string;
+  airlineName: string;
+  flightNumber: string; // e.g. "P47120"
+  origin: string;
+  destination: string;
+  departureAt: string; // ISO datetime (local Nigerian time encoded as UTC, like FlightSegment)
+}
+
+/** Schedule coverage for one search, returned alongside the offers. */
+export interface ScheduleCoverage {
+  source: string;
+  /** Flights that operate on the route that day. */
+  totalFlights: number;
+  /** How many of those have a price in `offers`. */
+  pricedFlights: number;
+  /** Operating flights with no price from any provider. */
+  unpriced: ScheduledFlight[];
+}
+
 export type FlightSortKey = "airline" | "price" | "duration" | "departure_time";
 export type SortDirection = "asc" | "desc";
 
