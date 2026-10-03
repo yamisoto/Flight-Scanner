@@ -46,8 +46,8 @@ Not as a starting point. That means around 10 separate contracts, and several Ni
 
 | Layer | Source | Phase 1 status |
 |---|---|---|
-| Schedules (every operating flight) | AeroDataBox airport departure boards for all Nigerian airports | Next to build once confirmed. **Needs an API key.** |
-| Reliability history | AeroDataBox daily flight status, stored in our database; NCAA monthly reports as the airline baseline | Next to build. Start immediately: real scores need 60 days of history |
+| Schedules (every operating flight) | AeroDataBox airport departure boards | **Adapter built** against live responses (3 Oct 2026). Free plan covers the Lagos and Abuja hubs daily |
+| Reliability history | NCAA monthly reports as the airline baseline. **Not AeroDataBox** (see findings below) | On-time source for route-level history still to find |
 | Prices (primary) | Tiqwa | Apply for sandbox access |
 | Prices (backup) | Wakanow API or Travelstart affiliate | Outreach in parallel |
 | Prices (later) | Direct connections with the top 3 or 4 carriers | After launch |
@@ -58,11 +58,23 @@ Each source plugs in as a `FlightProvider` adapter (see `FLIGHT_PROVIDER_INTERFA
 ## Actions needed from the owner
 
 1. Confirm the recommended plan above.
-2. Create an AeroDataBox account, choose a plan and add the API key as an environment variable on Vercel and in the development environment. Check Lagos and Abuja on their data-coverage page.
+2. ~~Create an AeroDataBox account and add the API key.~~ Done 3 Oct 2026 (free plan, key in Vercel as `AERODATABOX_API_KEY`).
 3. Apply for Tiqwa sandbox access.
 4. Continue Wakanow and Travelstart outreach as backups.
 
-Note: AeroDataBox's documentation site is blocked from the environment used to build this, so the adapter will be checked against live responses once the key is available, not built against assumed response shapes.
+## AeroDataBox: what the live data showed (3 Oct 2026)
+
+Two test calls on the free plan (RapidAPI): Lagos departures for 06:00–18:00 on 2 Oct, and a live window on 3 Oct. Responses are saved in `tests/fixtures/aerodatabox/`.
+
+| Finding | Detail | What it means |
+|---|---|---|
+| Schedules: good | 58 domestic departures from Lagos in 12 hours, across 12 destinations and 9 airline codes | Usable for "every flight on this route" |
+| On-time data: none | Every domestic flight had status "Unknown", data quality "Basic", and no revised or runway time, including flights that had already left. Only a few international flights showed any status | **AeroDataBox can't power route-level reliability for Nigeria.** Reliability stays on the NCAA airline baseline |
+| Airline names: unreliable | VK came back as "Anisec", UN as "Business Aviation Asia", R4 as "Real Tonga", and W1 and N2 had no airline code | The adapter takes the airline code from the flight number and uses our own airline names |
+| Unknown codes | W1 (7 Lagos departures, e.g. W1 3558 to Port Harcourt) and EW (2 Lagos–Abuja flights, named "Eurowings") don't match any airline in our table | Identify these carriers before showing them by name |
+| Quota | Free plan: 400 API units a month; one departures call (up to 12 hours) costs 2 units | Daily collection of Lagos and Abuja (4 calls a day) uses about 240 units a month. All 23 airports would need a paid plan |
+
+Next step for reliability: test a source built on aircraft tracking (ADS-B), such as FlightAware AeroAPI or the Flightradar24 API, which may record actual take-off times even where airlines don't publish status. Check one day of Lagos departures before committing to either.
 
 ## Regulatory note
 

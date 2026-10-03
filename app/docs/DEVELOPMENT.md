@@ -51,7 +51,16 @@ Vercel sets `NODE_ENV=production` for **every** deployment, including preview/st
 | `FLIGHT_PROVIDER` | `mock` | Public-safe (no secret value) |
 | `ALLOW_MOCK_PROVIDER` | `true` | Public-safe (no secret value) — required, see above |
 
-No other variable in `.env.example` is required for the app to run — database, caching, analytics, and provider-credential variables are all unused by the current codebase (Phase 1B+ concerns). Leave them unset on Vercel; do not fill in placeholder or fake values for them.
+Optional, for flight-status collection (`/api/cron/collect-status`); the job returns `skipped` until the key and database are both set:
+
+| Variable | Value | Scope |
+|---|---|---|
+| `AERODATABOX_API_KEY` | RapidAPI key | **Secret** (set as sensitive in Vercel; never commit) |
+| `DATABASE_URL`, `DATABASE_URL_UNPOOLED` | Set by the Neon integration | Secret |
+| `CRON_SECRET` | Random string | Secret; Vercel Cron sends it as a Bearer token |
+| `STATUS_AIRPORTS` | `LOS,ABV` (default) | Each airport uses about 120 AeroDataBox units a month; the free plan has 400 |
+
+Leave anything else in `.env.example` unset; do not fill in placeholder or fake values.
 
 ### Manual deployment steps
 

@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { NextRequest } from "next/server";
 import { GET } from "@/app/api/cron/collect-status/route";
+import { collectionAirports, previousLagosDay } from "@/lib/ingest/collectionSettings";
 import { MemoryFlightStatusStore, runStatusCollection, withRetry } from "@/lib/ingest/collectStatus";
 import { FixtureFlightStatusSource } from "@/lib/ingest/fixtureSource";
 import { departureDelayMinutes, recordKey, RetryableSourceError, type FlightStatusRecord, type FlightStatusSource } from "@/lib/ingest/types";
@@ -122,5 +123,22 @@ describe("GET /api/cron/collect-status", () => {
     const ok = await call("Bearer s3cret");
     expect(ok.status).toBe(200);
     expect((await ok.json()).status).toBe("skipped");
+  });
+});
+
+describe("collection settings", () => {
+  it("defaults to the hubs and ignores unknown airport codes", () => {
+    expect(collectionAirports(undefined)).toEqual(["LOS", "ABV"]);
+    expect(collectionAirports(" los, PHC ,XXX,phc")).toEqual(["LOS", "PHC"]);
+  });
+
+  it("collects the previous full day in Lagos time", () => {
+    // 00:30 UTC on 3 Oct is 01:30 on 3 Oct in Lagos, so the previous day is 2 Oct local.
+    expect(previousLagosDay(new Date("2026-10-03T00:30:00Z"))).toEqual({
+      fromUtc: new Date("2026-10-01T23:00:00Z"),
+      toUtc: new Date("2026-10-02T23:00:00Z"),
+    });
+    // 23:30 UTC on 2 Oct is already 00:30 on 3 Oct in Lagos.
+    expect(previousLagosDay(new Date("2026-10-02T23:30:00Z")).toUtc).toEqual(new Date("2026-10-02T23:00:00Z"));
   });
 });

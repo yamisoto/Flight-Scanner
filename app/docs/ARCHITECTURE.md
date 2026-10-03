@@ -60,11 +60,14 @@ src/lib/reliability/score.ts      reliability score, label, confidence and plain
 src/lib/ingest/types.ts           FlightStatusRecord, FlightStatusSource, FlightStatusStore
 src/lib/ingest/collectStatus.ts   runStatusCollection(): per-airport fetch with retry/backoff,
                                   de-duplication, structured logs, summary; never stops on one failure
+src/lib/ingest/aeroDataBoxSource.ts  FlightStatusSource for AeroDataBox, tested against recorded live responses
+src/lib/ingest/collectionSettings.ts airports (STATUS_AIRPORTS, default LOS,ABV) and the daily window
+src/lib/ingest/prismaStore.ts     FlightStatusStore on Postgres
 src/lib/ingest/fixtureSource.ts   synthetic source for tests and local runs only
 src/app/api/cron/collect-status   daily trigger for Vercel Cron (Bearer CRON_SECRET, fails closed)
 ```
 
-The cron route returns `skipped` until two things exist: an AeroDataBox source adapter (written against real responses once there's an API key, never against assumed shapes) and the production database (Neon, being created). Then: implement `FlightStatusSource` for AeroDataBox, implement `FlightStatusStore` on the database, add the schedule to `vercel.json`, and set `CRON_SECRET`. Sizing note: collecting all 23 airports in two 12-hour windows a day is about 46 provider calls a day (roughly 1,400 a month). The database store is `src/lib/ingest/prismaStore.ts`.
+The cron route collects the previous Lagos day's departures from `STATUS_AIRPORTS` through AeroDataBox into `flight_status_observations`, and returns `skipped` until both `AERODATABOX_API_KEY` and `DATABASE_URL` are set. AeroDataBox returns scheduled times only for Nigerian domestic flights (see `docs/DATA_SOURCES.md`), so today these rows feed the "every flight" schedule, not reliability scores. Cost: each airport is two 12-hour calls (4 API units) a day; the default two hubs use about 240 of the free plan's 400 units a month. To switch it on once the database exists: set `CRON_SECRET` and add the schedule to `vercel.json`.
 
 ## Error handling
 
