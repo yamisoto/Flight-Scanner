@@ -49,8 +49,9 @@ V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and fi
 ### Content pages (SEO and trust)
 
 ```
-src/app/how-we-score/page.tsx   methodology: formula, worked example and airline table, all computed from
-                                src/lib/reliability (so the page can't drift from the scoring code)
+src/app/how-we-score/page.tsx   public methodology: what the score measures, sources, confidence, independence,
+                                airline ranking (scores from src/lib/reliability). Deliberately no weights,
+                                thresholds, formula or raw inputs beside scores (see DECISIONS.md)
 src/app/flights/page.tsx        index of route pages
 src/app/flights/[route]/page.tsx  one page per curated route (src/lib/data/routes.ts, 20 pages); built at
                                 deploy, refreshed daily (revalidate 86400); unknown slugs 404

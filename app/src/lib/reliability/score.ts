@@ -34,7 +34,7 @@ export interface Reliability {
 }
 
 export const BASELINE_WEIGHTS = { delay: 0.7, cancellation: 0.2, timeOfDay: 0.1 } as const;
-export const CANCELLATION_RATE_FLOOR = 0.02;
+const CANCELLATION_RATE_FLOOR = 0.02;
 
 const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
 
