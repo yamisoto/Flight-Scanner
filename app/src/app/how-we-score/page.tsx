@@ -91,7 +91,11 @@ export default function HowWeScorePage() {
             ))}
           </div>
           <p>
-            Tap any score in the search results to see the reasoning for that flight.
+            Tap any score in the search results to see the reasoning for that flight. Scores can&apos;t be bought:{" "}
+            <a href="#independence" className="font-medium text-primary hover:underline">
+              our independence commitment
+            </a>
+            .
           </p>
         </Section>
 
@@ -199,6 +203,27 @@ export default function HowWeScorePage() {
               </tbody>
             </table>
           </div>
+        </Section>
+
+        <Section id="independence" title="Scores can't be bought">
+          <p>
+            The score exists to tell you how well an airline keeps its timings and its commitments to passengers. So it is built only from
+            how flights actually operate:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <strong>No airline can pay to change, remove or hide its score</strong>, on any route, by advertising, sponsorship, commission or
+              any other arrangement with us.
+            </li>
+            <li>
+              <strong>A score only changes when the data changes</strong>: new monthly figures, or a correction to figures that were wrong. Every
+              airline is scored with the same formula.
+            </li>
+            <li>
+              <strong>Commission doesn&apos;t move the ranking.</strong> Where we earn a commission on a booking, it never affects a score, and
+              the Skyfare Pick and the &quot;Best&quot; sort use only price, reliability and journey time.
+            </li>
+          </ul>
         </Section>
 
         <Section id="confidence" title="How confident we are, and what's missing">
