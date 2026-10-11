@@ -1,20 +1,20 @@
-# Legal page (`/legal`)
+# Legal pages (`/legal`)
 
-**Status: draft for legal review, not in force.** The page is noindexed, left out of the sitemap, and shows a draft banner. Before launch a Nigerian lawyer must review it, the placeholders below must be filled, and the banner and `robots: { index: false }` removed (then add `/legal` to `src/app/sitemap.ts`).
+**Status: draft for legal review, not in force.** Four pages share one frame (`src/components/legal/LegalShell.tsx`): `/legal` (key points in plain English), `/legal/terms` (terms of use, how we make money and rank results, complaints), `/legal/privacy` and `/legal/cookies`. All are noindexed, left out of the sitemap, and show a draft banner. Before launch a Nigerian lawyer must review them, the placeholders below must be filled, and the banner and `LEGAL_ROBOTS` noindex removed (then add the four pages to `src/app/sitemap.ts`). Keep the key points on `/legal` consistent with the full documents.
 
-Structure follows Skyscanner and Google Flights: we're a comparison service, not the seller; prices come from partners and the seller's price applies; how results are ranked and how we're paid.
+Structure follows Skyscanner and Google Flights (separate terms, privacy and cookie pages): we're a comparison service, not the seller; prices come from partners and the seller's price applies; how results are ranked and how we're paid.
 
 ## Laws the page addresses
 
 | Law | Where on the page | Notes |
 |---|---|---|
-| Nigeria Data Protection Act 2023 (NDPA) | Privacy notice (4) | Controller identity, purposes and lawful bases (legitimate interests may not override data subject rights), sharing, transfers outside Nigeria, retention, data subject rights, breach notification to the NDPC within 72 hours, children. Section numbers deliberately left out of the page: secondary sources disagreed on them; lawyer to confirm against the Act |
-| NDPC General Application and Implementation Directive 2025 (GAID) | Privacy (4), Cookies (5) | In force from 19 Sep 2025, replaced the NDPR 2019. Requires clear privacy and cookie notices on the website. Consent records where consent is the basis |
+| Nigeria Data Protection Act 2023 (NDPA) | `/legal/privacy` | Controller identity, purposes and lawful bases (legitimate interests may not override data subject rights), sharing, transfers outside Nigeria, retention, data subject rights, breach notification to the NDPC within 72 hours, children. Section numbers deliberately left out of the page: secondary sources disagreed on them; lawyer to confirm against the Act |
+| NDPC General Application and Implementation Directive 2025 (GAID) | `/legal/privacy`, `/legal/cookies` | In force from 19 Sep 2025, replaced the NDPR 2019. Requires clear privacy and cookie notices on the website. Consent records where consent is the basis |
 | NDPC registration as a data controller of major importance | Not on the page; **action for the owner** | Guidance Notice (Feb 2024): more than 200 data subjects in six months can trigger registration and annual compliance audit returns. Skyfare processes IP addresses of every visitor, so **ask the lawyer whether registration applies at launch** |
-| Federal Competition and Consumer Protection Act 2018 (FCCPA) | Terms 2.1, 2.7, Complaints (6) | Bans false or misleading representations, including about price (s.123 as applied by the FCCPC); consumer rights can't be excluded. Drives "show the full price", "the seller's price applies" and the non-exclusion clause |
-| Nigeria Civil Aviation Regulations 2023, Part 19 (Consumer Protection) | Terms 2.3, Complaints (6) | Passenger rights on delays, cancellations, denied boarding, baggage; enforced by the NCAA. Airlines' duties, not ours; we point users to them |
-| Cybercrimes (Prohibition, Prevention, etc.) Act 2015, amended 2024 | Terms 2.4 | Unlawful use clause. Also supports the anti-scraping rules |
-| ARCON Act 2022 (Advertising Regulatory Council of Nigeria) | Section 3 ("clearly labelled") | Ads aimed at Nigeria need vetting by the Advertising Standards Panel. Relevant once Skyfare runs ads or sponsored listings, and for Skyfare's own marketing |
+| Federal Competition and Consumer Protection Act 2018 (FCCPA) | `/legal/terms` 2.1, 2.7, 4 | Bans false or misleading representations, including about price (s.123 as applied by the FCCPC); consumer rights can't be excluded. Drives "show the full price", "the seller's price applies" and the non-exclusion clause |
+| Nigeria Civil Aviation Regulations 2023, Part 19 (Consumer Protection) | `/legal/terms` 2.3, 4 | Passenger rights on delays, cancellations, denied boarding, baggage; enforced by the NCAA. Airlines' duties, not ours; we point users to them |
+| Cybercrimes (Prohibition, Prevention, etc.) Act 2015, amended 2024 | `/legal/terms` 2.4 | Unlawful use clause. Also supports the anti-scraping rules |
+| ARCON Act 2022 (Advertising Regulatory Council of Nigeria) | `/legal/terms` 3 ("clearly labelled") | Ads aimed at Nigeria need vetting by the Advertising Standards Panel. Relevant once Skyfare runs ads or sponsored listings, and for Skyfare's own marketing |
 
 ## Placeholders to fill (highlighted on the page)
 
@@ -28,7 +28,7 @@ The privacy and cookie sections describe what the app does today. Update them wh
 - **Local storage**: only `skyfare-theme` (`src/components/v2/Header.tsx`).
 - **IP addresses**: used in memory for rate limiting only (`src/lib/rateLimit.ts`), about one minute. Error logs (`src/instrumentation.ts`) leave out headers.
 - **Searches are not stored.** The `FlightSearch` table in the schema is unused; writing to it would need a privacy notice update.
-- **Processors**: Vercel (hosting, Web Analytics, Speed Insights), Neon (database, London). Add any new provider (e.g. Sentry, a booking partner API) to section 4.3.
+- **Processors**: Vercel (hosting, Web Analytics, Speed Insights), Neon (database, London). Add any new provider (e.g. Sentry, a booking partner API) to "Who we share it with" on `/legal/privacy`.
 - **Commitments**: independence (scores can't be bought; commission never affects scores, the Pick or Best) must match `docs/DECISIONS.md` and `/how-we-score`.
 
 ## Sources
