@@ -12,6 +12,7 @@ Skyfare compares every domestic flight in Nigeria on **price**, **journey time**
 |---|---|
 | Search, results, sort (Best / Cheapest / Fastest / Most reliable), filters, Skyfare Pick, dark mode, reliability explained on tap, "every flight" coverage, ±3-day price strip, shareable links | Built, 132 tests passing |
 | "How we score" methodology page, 20 route landing pages (`/flights/lagos-to-abuja`), sitemap | Built |
+| Legal page (`/legal`): terms, privacy (NDPA 2023), cookies | **Draft**, pending lawyer review; see `docs/LEGAL.md` |
 | Flight data | **Test data only** (`MockFlightProvider`). Real sources are recommended and awaiting confirmation; see `docs/DATA_SOURCES.md` |
 | Reliability scores | **Preview placeholders**, labelled as such in the UI, until on-time data is connected |
 | Booking | Not in scope: Skyfare redirects to the seller. The Select button is disabled until a partner is connected |
@@ -45,6 +46,7 @@ Set `FLIGHT_PROVIDER=mock` (the default). Production-mode builds also need `ALLO
 | `docs/ARCHITECTURE.md` | System design as built |
 | `docs/FLIGHT_PROVIDER_INTERFACE.md` | The provider abstraction contract; read before touching `src/lib/flights/` |
 | `docs/DATABASE.md` | Schema, migrations, setup and backups |
+| `docs/LEGAL.md` | Legal page: laws covered, placeholders to fill, what to keep in step with the code |
 | `docs/DATABASE_PROVIDERS.md` | Database provider comparison, decision (Neon) and portability rules |
 | `docs/DEVELOPMENT.md` | Setup, scripts, deployment, conventions |
 

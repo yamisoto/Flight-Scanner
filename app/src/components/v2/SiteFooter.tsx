@@ -12,6 +12,9 @@ export function SiteFooter() {
           <Link href="/how-we-score" className="hover:text-ink hover:underline">
             How we score reliability
           </Link>
+          <Link href="/legal" className="hover:text-ink hover:underline">
+            Terms &amp; privacy
+          </Link>
           <span>Nigeria domestic · Africa coming soon</span>
         </nav>
       </div>
