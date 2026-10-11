@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRightIcon, GridIcon, ShieldIcon, SparkIcon } from "@/components/v2/icons";
 import { findAirport } from "@/lib/data/airports";
 
@@ -18,7 +19,12 @@ export function PopularRoutes({ onPick }: { onPick: (origin: string, destination
       <h2 id="popular-heading" className="text-lg font-semibold tracking-tight text-ink">
         Popular routes
       </h2>
-      <p className="mt-1 text-sm text-ink-muted">One tap to compare every airline flying it next week.</p>
+      <p className="mt-1 text-sm text-ink-muted">
+        One tap to compare every airline flying it next week.{" "}
+        <Link href="/flights" className="font-medium text-primary hover:underline">
+          All routes
+        </Link>
+      </p>
       <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
         {POPULAR_ROUTES.map(([o, d]) => (
           <button

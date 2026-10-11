@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteUrl } from "@/lib/siteUrl";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
   title: "Skyfare: compare every flight across Nigeria",
   description: "Compare price, journey time and on-time reliability for every Nigerian domestic flight.",
 };

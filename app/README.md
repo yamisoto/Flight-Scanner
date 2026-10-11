@@ -10,7 +10,8 @@ Skyfare compares every domestic flight in Nigeria on **price**, **journey time**
 
 | Area | State |
 |---|---|
-| Search, results, sort (Best / Cheapest / Fastest / Most reliable), filters, Skyfare Pick, dark mode, reliability explained on tap, "every flight" coverage, ±3-day price strip, shareable links | Built (V2), 114 tests passing |
+| Search, results, sort (Best / Cheapest / Fastest / Most reliable), filters, Skyfare Pick, dark mode, reliability explained on tap, "every flight" coverage, ±3-day price strip, shareable links | Built, 132 tests passing |
+| "How we score" methodology page, 20 route landing pages (`/flights/lagos-to-abuja`), sitemap | Built |
 | Flight data | **Test data only** (`MockFlightProvider`). Real sources are recommended and awaiting confirmation; see `docs/DATA_SOURCES.md` |
 | Reliability scores | **Preview placeholders**, labelled as such in the UI, until on-time data is connected |
 | Booking | Not in scope: Skyfare redirects to the seller. The Select button is disabled until a partner is connected |

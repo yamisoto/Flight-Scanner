@@ -6,6 +6,7 @@ import { Header } from "@/components/v2/Header";
 import { PopularRoutes, ValueProps } from "@/components/v2/LandingSections";
 import { ResultsView, type V2Status } from "@/components/v2/ResultsView";
 import { SearchPanel } from "@/components/v2/SearchPanel";
+import { SiteFooter } from "@/components/v2/SiteFooter";
 import { ShareButton } from "@/components/v2/ShareButton";
 import { findAirport } from "@/lib/data/airports";
 import { cabinLabel, formatShortDate } from "@/lib/v2/format";
@@ -165,12 +166,7 @@ export default function Home() {
         )}
       </main>
 
-      <footer className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© Skyfare. Demonstration data only: no live fares or bookings yet.</p>
-          <p>Nigeria domestic · Africa coming soon</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

@@ -46,6 +46,22 @@ src/lib/v2/format.ts       time, duration, price and date formatting
 
 V2 fetches the unsorted, unfiltered offers once and does scoring, sorting and filtering in the browser, so switching tabs or filters is instant and makes no extra API calls. `scoring.ts` is pure and unit tested (`tests/unit/v2Scoring.test.ts`) so it can move into a shared package for the Phase 2 mobile app. Reliability comes from the NCAA airline baseline (`src/lib/reliability/score.ts`), with the labelled `previewReliability()` placeholder only for airlines without NCAA figures. See `docs/V2_DESIGN.md`.
 
+### Content pages (SEO and trust)
+
+```
+src/app/how-we-score/page.tsx   methodology: formula, worked example and airline table, all computed from
+                                src/lib/reliability (so the page can't drift from the scoring code)
+src/app/flights/page.tsx        index of route pages
+src/app/flights/[route]/page.tsx  one page per curated route (src/lib/data/routes.ts, 20 pages); built at
+                                deploy, refreshed daily (revalidate 86400); unknown slugs 404
+src/lib/flights/routeStats.ts   who flies a route: last 21 days of collected schedules, per airline flights a
+                                day and first/last departure; null without data (page shows a fallback)
+src/app/sitemap.ts, robots.ts   sitemap of all public pages; /api/ disallowed
+src/lib/siteUrl.ts              NEXT_PUBLIC_SITE_URL, else Vercel's production domain (canonical links, sitemap)
+```
+
+Route pages only show facts we have: scheduled departures from the collection job (Lagos and Abuja origins for now, so routes from other airports show the fallback), NCAA reliability, and airport details. No prices, distances or flight times until a source provides them. Airline codes we can't match are shown as "Unconfirmed airline (W1)".
+
 ### Every flight, nearby dates
 
 `/api/search` returns `{ offers, provider, schedule }`. `schedule` is a `ScheduleCoverage` built by `src/lib/flights/schedule.ts`: the flights known to operate that day, matched against the priced offers (same flight number, or same airline within 15 minutes), with the unmatched ones returned as `unpriced`. The schedule comes from `getScheduleSource()` (`src/lib/flights/scheduleSource.ts`): the price provider's own `getScheduledFlights()` if it has one (the mock does), otherwise the collected flight-status observations in the database projected onto the same weekday (`projectSchedule`, last 21 days), otherwise none. The lookup is best effort: a failure logs `schedule_lookup_failed` and the search still returns its offers.

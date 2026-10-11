@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AlsoFlying, CoverageLine } from "@/components/v2/AlsoFlying";
 import { Filters, EMPTY_FILTERS, activeFilterCount, applyV2Filters, type V2Filters } from "@/components/v2/Filters";
@@ -170,7 +171,10 @@ export function ResultsView({ status, scored, errorMessage, onRetry, schedule = 
           <p className="pt-2 text-xs leading-relaxed text-ink-muted">
             Reliability scores use the NCAA&apos;s published August 2026 delay and cancellation rates for each airline (low confidence: airline-wide, one
             month). Route-level on-time history is coming. Airlines without NCAA data show a labelled preview score. Prices are demonstration data,
-            not live fares.
+            not live fares.{" "}
+            <Link href="/how-we-score" className="font-medium text-primary hover:underline">
+              How we score
+            </Link>
           </p>
         )}
       </section>

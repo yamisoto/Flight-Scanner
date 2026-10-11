@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Reliability } from "@/lib/v2/scoring";
 
 const TONE: Record<Reliability["label"], string> = {
@@ -73,7 +74,10 @@ export function ReliabilityExplainer({ id, reliability }: { id: string; reliabil
         {reliability.reason}
       </p>
       <p className="mt-1.5 text-xs text-ink-muted">
-        {SOURCE_TEXT[reliability.source]} Confidence: {reliability.confidence.toLowerCase()}.
+        {SOURCE_TEXT[reliability.source]} Confidence: {reliability.confidence.toLowerCase()}.{" "}
+        <Link href="/how-we-score" className="font-medium text-primary hover:underline">
+          How we score
+        </Link>
       </p>
     </div>
   );

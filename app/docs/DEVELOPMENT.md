@@ -59,6 +59,7 @@ Optional, for flight-status collection (`/api/cron/collect-status`); the job ret
 | `DATABASE_URL`, `DATABASE_URL_UNPOOLED` | Set by the Neon integration | Secret |
 | `CRON_SECRET` | Random string | Secret; Vercel Cron sends it as a Bearer token |
 | `STATUS_AIRPORTS` | `LOS,ABV` (default) | Each airport uses about 120 AeroDataBox units a month; the free plan has 400 |
+| `NEXT_PUBLIC_SITE_URL` | e.g. `https://skyfare.ng` (optional) | Canonical links and sitemap; defaults to the Vercel production domain |
 
 Leave anything else in `.env.example` unset; do not fill in placeholder or fake values.
 
