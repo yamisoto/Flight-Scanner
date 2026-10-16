@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare mobile results, Signal identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&amp;family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFC72C}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 1500px; box-sizing: border-box; background: #111111; color: #F4F4EF; font-family: 'Public Sans', sans-serif; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 4px solid #FFC72C; padding-bottom: 14px">
+<a href="#" aria-label="Back to search" style="width: 44px; height: 44px; background: #1C1C1C; display: grid; place-items: center; color: #F4F4EF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+<div style="text-align: center"><div style="font: 900 26px Archivo, sans-serif; font-stretch: 72%; text-transform: uppercase">LOS → ABV</div><div style="font-size: 12px; color: #8A8A85; letter-spacing: 0.08em">THU 08 OCT · 1 ADULT</div></div>
+<button type="button" aria-label="Filters" style="width: 44px; height: 44px; border: none; background: #1C1C1C; color: #F4F4EF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button type="button" style="min-height: 48px; border: none; background: #FFC72C; color: #111111; font: 900 17px Archivo, sans-serif; font-stretch: 80%">BEST ₦188,500</button>
+<button type="button" style="min-height: 48px; border: 2px solid #3A3A36; background: transparent; color: #F4F4EF; font: 900 17px Archivo, sans-serif; font-stretch: 80%">CHEAPEST ₦107,500</button>
+</div>
+
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<article style="{{r.cardStyle}}">
+<sc-if value="{{r.pick}}" hint-placeholder-val="{{ false }}">
+<div style="font: 900 14px Archivo, sans-serif; font-stretch: 80%; letter-spacing: 0.08em; color: #FFC72C">SKYFARE PICK ↗</div>
+</sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; gap: 3px">
+<sc-for list="{{r.time}}" as="c" hint-placeholder-count="5">
+<div style="width: 26px; height: 38px; border-radius: 3px; background: linear-gradient(#262626 49%, #000000 49%, #000000 52%, #1E1E1E 52%); font-family: Archivo, sans-serif; font-stretch: 85%; font-weight: 800; font-size: 22px; display: flex; align-items: center; justify-content: center">{{c.ch}}</div>
+</sc-for>
+</div>
+<div style="font: 900 26px Archivo, sans-serif; font-stretch: 78%">{{r.fare}}</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div style="font: 800 17px Archivo, sans-serif; font-stretch: 80%; text-transform: uppercase">{{r.airline}} <span style="font: 500 12px 'Public Sans', sans-serif; color: #8A8A85">1H 16M</span></div>
+<span style="{{r.tagStyle}}">{{r.status}}</span>
+</div>
+</article>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1500}}'>
+class Component extends DCLogic {
+renderVals() {
+const split = (s) => s.split('').map((ch) => ({ ch }));
+const status = (s) => s >= 6.5 ? ['RELIABLE ' + s.toFixed(1), 'background: #0B8F8F; color: #FFFFFF;'] : s >= 5 ? ['MIXED ' + s.toFixed(1), 'background: #FF8A2B; color: #111111;'] : ['OFTEN LATE ' + s.toFixed(1), 'background: #F4F4EF; color: #111111;'];
+const data = [
+['11:30', 'Dana Air', '₦188,500', 8.1, true],
+['19:30', 'Dana Air', '₦187,500', 7.4, false],
+['19:00', 'Dana Air', '₦230,000', 7.4, false],
+['11:30', 'Dana Air', '₦280,500', 8.1, false],
+['06:00', 'Green Africa', '₦107,500', 5.2, false],
+['17:30', 'Ibom Air', '₦232,500', 4.0, false]
+];
+return {
+rows: data.map(([time, airline, fare, s, pick]) => {
+const [label, tone] = status(s);
+return {
+time: split(time), airline, fare, pick, status: label,
+tagStyle: 'padding: 4px 8px; font-family: Archivo, sans-serif; font-stretch: 80%; font-weight: 900; font-size: 14px; ' + tone,
+cardStyle: 'padding: 14px; display: flex; flex-direction: column; gap: 10px; ' + (pick ? 'background: #2A2410; outline: 3px solid #FFC72C;' : 'background: #1A1A1A;')
+};
+})
+};
+}
+}
+</script>
+</body>
+</html>

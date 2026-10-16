@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare results, Harmattan identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F2A6B}a:hover{color:#B84A24}
+</style>
+</helmet>
+<div style="background: #F3EBDD; color: #1A1714; font-family: 'DM Sans', sans-serif; min-height: 1560px">
+
+<div style="background: #1F2A6B; color: #F3EBDD">
+<header style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; gap: 28px">
+<a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3EBDD">
+<svg width="36" height="36" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#F3EBDD"/><path d="M18 42 A14 14 0 0 1 46 42 Z" fill="#E8A33D"/><path d="M10 42 H54" stroke="#1F2A6B" stroke-width="2.5" stroke-linecap="round"/><path d="M9 31 Q30 8 54 16" stroke="#1F2A6B" stroke-width="2.5" stroke-dasharray="1 5" stroke-linecap="round"/><circle cx="54" cy="16" r="3.2" fill="#B84A24"/></svg>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.05em">skyfare</span>
+</a>
+<div style="flex: 1; display: flex; align-items: center; gap: 16px; background: #2B3780; border-radius: 16px; min-height: 54px; padding: 0 8px 0 20px; font-size: 16px">
+<span style="font-weight: 700">Lagos → Abuja</span>
+<span style="color: #C9D0EA">Thu, 8 Oct · One way · 1 adult, Economy</span>
+<button type="button" style="margin-left: auto; min-height: 42px; padding: 0 20px; border-radius: 12px; border: none; background: #F3EBDD; color: #1F2A6B; font: 800 16px 'Bricolage Grotesque', sans-serif">Change search</button>
+</div>
+</header>
+<svg width="100%" height="28" style="display: block" aria-hidden="true"><defs><pattern id="stripRes" width="38" height="28" patternUnits="userSpaceOnUse"><circle cx="19" cy="14" r="9" fill="none" stroke="#C9D0EA" stroke-width="2"/><circle cx="19" cy="14" r="3" fill="#E8A33D"/></pattern></defs><rect width="100%" height="28" fill="url(#stripRes)" opacity="0.55"/></svg>
+</div>
+
+<main style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 80px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 28px; align-items: start">
+
+<aside style="background: #FBF6EE; border: 2px solid #E2D3B8; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 26px">
+<div style="font: 800 22px 'Bricolage Grotesque', sans-serif; color: #1F2A6B; letter-spacing: -0.03em">Narrow it down</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px; font-weight: 700; color: #6E6458">How reliable?</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: none; background: #1F2A6B; color: #F3EBDD; font: 700 14px 'DM Sans', sans-serif">Any</button>
+<button type="button" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 2px solid #E2D3B8; background: transparent; color: #1A1714; font: 500 14px 'DM Sans', sans-serif">Mostly on time</button>
+<button type="button" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 2px solid #E2D3B8; background: transparent; color: #1A1714; font: 500 14px 'DM Sans', sans-serif">Usually on time</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px; font-weight: 700; color: #6E6458">When do you want to leave?</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{times}}" as="t" hint-placeholder-count="4">
+<button type="button" style="min-height: 54px; border-radius: 14px; border: 2px solid #E2D3B8; background: transparent; color: #1A1714; text-align: left; padding: 6px 12px; font: 700 14px 'DM Sans', sans-serif">{{t.label}}<span style="display: block; font-weight: 400; font-size: 12px; color: #6E6458">{{t.range}}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px; font-weight: 700; color: #6E6458">Airlines</div>
+<sc-for list="{{airlines}}" as="a" hint-placeholder-count="3">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #1F2A6B"><span style="flex: 1">{{a.name}}</span><span style="font-size: 13px; color: #6E6458">{{a.from}}</span></label>
+</sc-for>
+</div>
+</aside>
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h1 style="margin: 0; font: 800 40px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; color: #1F2A6B">6 flights to Abuja</h1>
+<span style="font-size: 15px; color: #5E554B">We checked every airline flying this route</span>
+</div>
+
+<div style="display: flex; gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" style="{{t.style}}">{{t.label}} <span style="{{t.priceStyle}}">{{t.price}}</span></button>
+</sc-for>
+</div>
+
+<article style="background: #FBF6EE; border: 3px solid #B84A24; border-radius: 26px; overflow: hidden">
+<div style="display: flex">
+<div style="position: relative; flex: none; width: 120px; overflow: hidden; background: #1F2A6B"><svg width="120" height="400" style="position: absolute; top: 0; left: 0" aria-hidden="true"><defs><pattern id="pickRoute" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="19" cy="19" r="12" fill="none" stroke="#C9D0EA" stroke-width="2"/><circle cx="19" cy="19" r="4" fill="#E8A33D"/></pattern></defs><rect width="120" height="400" fill="url(#pickRoute)"/></svg></div>
+<div style="flex: 1; padding: 22px 26px; display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 20px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: #B84A24; color: #FFFFFF; font-weight: 700; font-size: 14px">Our pick for you</div>
+<div style="font: 800 38px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; color: #1F2A6B">11:30 → 12:46</div>
+<div style="font-size: 16px"><span style="font-weight: 700">Dana Air</span> · direct · 1h 16m · <span style="color: #2F6B4F; font-weight: 700">Usually on time (8.1)</span></div>
+<div style="font-size: 15px; color: #5E554B">It's ₦81,000 more than the cheapest seat, but that flight is often delayed (5.2).</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: stretch; gap: 12px; text-align: right">
+<div style="font: 800 36px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em">₦188,500</div>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 16px; background: #1F2A6B; color: #F3EBDD; text-decoration: none; font: 800 18px 'Bricolage Grotesque', sans-serif">Book this flight</a>
+</div>
+</div>
+</div>
+</article>
+
+<sc-for list="{{flights}}" as="f" hint-placeholder-count="5">
+<article style="background: #FBF6EE; border: 2px solid #E2D3B8; border-radius: 22px; padding: 20px 26px; display: grid; grid-template-columns: 64px minmax(0, 1fr) 210px; gap: 20px; align-items: center">
+<div style="width: 56px; height: 56px; border-radius: 16px; background: #E2D3B8; color: #1F2A6B; display: grid; place-items: center; font: 800 18px 'Bricolage Grotesque', sans-serif">{{f.code}}</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font: 800 28px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em">{{f.dep}} → {{f.arr}}</div>
+<div style="font-size: 15px"><span style="font-weight: 700">{{f.airline}}</span> · direct · {{f.dur}} · <span style="font-weight: 700; color: {{f.color}}">{{f.label}} ({{f.score}})</span></div>
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-end; gap: 16px">
+<div style="font: 800 28px 'Bricolage Grotesque', sans-serif; letter-spacing: -0.03em">{{f.price}}</div>
+<a href="#" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border-radius: 14px; border: 2px solid #1F2A6B; color: #1F2A6B; text-decoration: none; font-weight: 700; font-size: 15px">View</a>
+</div>
+</article>
+</sc-for>
+<p style="margin: 4px 0 0; font-size: 13px; color: #6E6458">Demonstration data. Reliability scores are previews until on-time data is connected.</p>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+renderVals() {
+const tone = (s) => s >= 8 ? ['#2F6B4F', 'Usually on time'] : s >= 6.5 ? ['#2F6B4F', 'Mostly on time'] : s >= 5 ? ['#8A5508', 'Often delayed'] : ['#B84A24', 'Frequently late'];
+const rows = [
+['DA', 'Dana Air', '19:30', '20:46', '1h 16m', '₦187,500', 7.4],
+['DA', 'Dana Air', '19:00', '20:16', '1h 16m', '₦230,000', 7.4],
+['DA', 'Dana Air', '11:30', '12:46', '1h 16m', '₦280,500', 8.1],
+['Q9', 'Green Africa', '06:00', '07:16', '1h 16m', '₦107,500', 5.2],
+['QI', 'Ibom Air', '17:30', '18:46', '1h 16m', '₦232,500', 4.0]
+];
+const tab = (on) => 'min-height: 48px; padding: 0 20px; border-radius: 999px; font: 700 15px DM Sans, sans-serif; ' + (on ? 'border: none; background: #1F2A6B; color: #F3EBDD;' : 'border: 2px solid #E2D3B8; background: #FBF6EE; color: #1A1714;');
+return {
+times: [['Early', 'before 9am'], ['Midday', '9am–5pm'], ['Evening', 'after 5pm'], ['Overnight', 'before 6am']].map(([label, range]) => ({ label, range })),
+airlines: [{ name: 'Green Africa', from: '₦107,500' }, { name: 'Dana Air', from: '₦187,500' }, { name: 'Ibom Air', from: '₦232,500' }],
+tabs: [['Best for you', '₦188,500', true], ['Cheapest', '₦107,500', false], ['Fastest', '₦107,500', false], ['Most reliable', '₦188,500', false]].map(([label, price, on]) => ({
+label, price, style: tab(on), priceStyle: 'margin-left: 6px; font-weight: 500; opacity: 0.8'
+})),
+flights: rows.map(([code, airline, dep, arr, dur, price, s]) => {
+const [color, label] = tone(s);
+return { code, airline, dep, arr, dur, price, score: s.toFixed(1), color, label };
+})
+};
+}
+}
+</script>
+</body>
+</html>

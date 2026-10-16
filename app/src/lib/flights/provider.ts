@@ -1,4 +1,4 @@
-import type { FlightOffer, FlightSearchRequest, ProviderHealth } from "@/types/flight";
+import type { FlightOffer, FlightSearchRequest, ProviderHealth, ScheduledFlight } from "@/types/flight";
 
 /**
  * The contract every flight data source implements — mock, and
@@ -34,4 +34,12 @@ export interface FlightProvider {
    * clear PROVIDER_UNAVAILABLE error rather than a slow timeout.
    */
   healthCheck(): Promise<ProviderHealth>;
+
+  /**
+   * Optional: every flight the provider knows operates on the outbound
+   * route and date, priced or not. Most price providers can't answer
+   * this; the schedule then comes from flight-status history instead
+   * (see src/lib/flights/schedule.ts). Returns null when unknown.
+   */
+  getScheduledFlights?(request: FlightSearchRequest): Promise<ScheduledFlight[] | null>;
 }

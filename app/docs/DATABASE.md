@@ -1,23 +1,31 @@
 # Database
 
 ## Status
-Schema defined in `prisma/schema.prisma`. Not generated or migrated in this build — see the Prisma note in `docs/DEVELOPMENT.md`. Nothing in the running app currently reads or writes a database; `MockFlightProvider` is entirely in-memory.
+
+**Provider: Neon** (decided 3 Oct 2026; comparison and portability rules in `DATABASE_PROVIDERS.md`). **Live since 3 Oct 2026:** Neon database `neondb` connected through the Vercel Marketplace, London region, with `DATABASE_URL` and `DATABASE_URL_UNPOOLED` set for Preview and Production. The first migration was applied by the build that day.
+
+Every Vercel build (`scripts/vercel-build.sh`) applies pending migrations and then re-seeds the airport and airline tables from `src/lib/data` (upserts by IATA code, so re-running is harmless).
+
+**One database for previews and production.** Per-preview database branches were left off to stay within the free plan. That means a preview build migrates the same database production uses, so every migration must keep working with the currently deployed app (add columns and tables; don't rename or drop in the same release). Turn on preview branching if that becomes limiting.
+
+## Setting it up (already done; for a new environment)
+
+1. Vercel → Project → Storage → Create → Neon, region London (`eu-west-2`), no environment-variable prefix.
+2. Redeploy: the build applies migrations and seeds reference data.
+
+Locally: point `DATABASE_URL` and `DATABASE_URL_UNPOOLED` at any Postgres 16+, run `npx prisma migrate dev`, then `npm run db:seed`. `TEST_DATABASE_URL` enables the integration tests in `tests/integration/` (they wipe `flight_status_observations`, so never point it at production).
+
+Backups: `scripts/db-backup.sh` (portable pg_dump) and `scripts/db-restore.sh`.
 
 ## Models (MVP scope only)
 
-**`Airport`** — static reference data mirroring `src/lib/data/airports.ts` (iata, icao, name, city, state, verified). Not written to by the app at runtime; seeded once.
+**`Airport`** — static reference data mirroring `src/lib/data/airports.ts` (iata, icao, name, city, state, verified). Not written to by the app at runtime; re-seeded on every build.
 
 **`Airline`** — static reference data mirroring `src/lib/data/airlines.ts` (name, iata, icao, operationalStatus, verified). Same seeding pattern.
+
+**`FlightStatusObservation`**: one observed departure per flight, origin and service date: scheduled vs actual departure time and status, from the flight-status source. Upserted by the daily collection job (`src/lib/ingest/prismaStore.ts`), so a later fetch updates the same row. The raw material for route-level reliability scores.
 
 **`FlightSearch`** — one row per search submitted through `/api/search`, for basic analytics/debugging (origin, destination, dates, trip type, passenger count, cabin class, which provider served it, result count, timestamp). Never stores full offer/provider payloads — offers are ephemeral (~30 min expiry industry-wide) and shouldn't be treated as persisted truth.
 
 ## Explicitly deferred (do not build yet)
 `Route`, `Flight`, `FlightOffer`, `FlightProvider` (as a DB table — not to be confused with the `FlightProvider` TypeScript interface), `SavedFlight`, `Trip`, `Booking`, `Notification`, `User` — all Phase 2/3 concerns per the roadmap. Adding them now would mean guessing at a shape before the feature that needs them is actually being built.
-
-## Why no live connection yet
-Two independent reasons, not one: (1) MVP's mock-data phase doesn't need persistence to function, and (2) this build environment can't reach Prisma's engine-binary host to run `generate`/`migrate`. Once a real dev environment is available, run:
-```
-npx prisma generate
-npx prisma migrate dev --name init
-```
-against the schema as written, then seed `Airport`/`Airline` from the TypeScript datasets in `src/lib/data/`.

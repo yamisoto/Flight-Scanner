@@ -1,0 +1,154 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Harmattan.dc.html": {
+      "h": 3100,
+      "title": "02 Harmattan",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "HarmattanHome.dc.html": {
+      "expand": "fill",
+      "h": 1180,
+      "title": "Harmattan · Home",
+      "w": 1440,
+      "x": 0,
+      "y": 5380
+    },
+    "HarmattanMobile.dc.html": {
+      "h": 1500,
+      "title": "Harmattan · Mobile results",
+      "w": 390,
+      "x": 3040,
+      "y": 5380
+    },
+    "HarmattanResults.dc.html": {
+      "expand": "fill",
+      "h": 1560,
+      "title": "Harmattan · Results",
+      "w": 1440,
+      "x": 1520,
+      "y": 5380
+    },
+    "InstrumentHome.dc.html": {
+      "expand": "fill",
+      "h": 1180,
+      "title": "Instrument · Home",
+      "w": 1440,
+      "x": 0,
+      "y": 3500
+    },
+    "InstrumentMobile.dc.html": {
+      "h": 1500,
+      "title": "Instrument · Mobile results",
+      "w": 390,
+      "x": 3040,
+      "y": 3500
+    },
+    "InstrumentResults.dc.html": {
+      "expand": "fill",
+      "h": 1560,
+      "title": "Instrument · Results",
+      "w": 1440,
+      "x": 1520,
+      "y": 3500
+    },
+    "Main.dc.html": {
+      "h": 3100,
+      "title": "01 Instrument (current palette)",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Signal.dc.html": {
+      "h": 3100,
+      "title": "03 Signal",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "SignalHome.dc.html": {
+      "x": 0,
+      "y": 7260,
+      "w": 1440,
+      "h": 1180,
+      "title": "Signal · Home",
+      "expand": "fill"
+    },
+    "SignalResults.dc.html": {
+      "x": 1520,
+      "y": 7260,
+      "w": 1440,
+      "h": 1560,
+      "title": "Signal · Results",
+      "expand": "fill"
+    },
+    "SignalMobile.dc.html": {
+      "x": 3040,
+      "y": 7260,
+      "w": 390,
+      "h": 1500,
+      "title": "Signal · Mobile results"
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-01T18:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "heading": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "Skyfare: three brand identity directions",
+      "w": 240,
+      "x": 0,
+      "y": -320
+    },
+    "mockHarmattan": {
+      "kind": "title1",
+      "maxW": 3430,
+      "text": "Website mockup: 02 Harmattan",
+      "w": 240,
+      "x": 0,
+      "y": 5120
+    },
+    "mockInstrument": {
+      "kind": "title1",
+      "maxW": 3430,
+      "text": "Website mockup: 01 Instrument",
+      "w": 240,
+      "x": 0,
+      "y": 3240
+    },
+    "mockSignal": {
+      "x": 0,
+      "y": 7000,
+      "text": "Website mockup: 03 Signal",
+      "kind": "title1",
+      "maxW": 3430,
+      "w": 240
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Harmattan.dc.html",
+    "Signal.dc.html",
+    "InstrumentHome.dc.html",
+    "InstrumentResults.dc.html",
+    "InstrumentMobile.dc.html",
+    "HarmattanHome.dc.html",
+    "HarmattanResults.dc.html",
+    "HarmattanMobile.dc.html",
+    "SignalHome.dc.html",
+    "SignalResults.dc.html",
+    "SignalMobile.dc.html"
+  ],
+  "pages": [],
+  "title": "Skyfare Brand Identities"
+}

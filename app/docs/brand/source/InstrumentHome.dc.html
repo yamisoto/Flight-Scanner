@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Skyfare home, Instrument identity</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4C7DFF}a:hover{color:#7FA2FF}
+</style>
+</helmet>
+<div style="background: #07080B; color: #F1F3F6; font-family: 'IBM Plex Sans', sans-serif; min-height: 1180px">
+
+<header style="max-width: 1280px; margin: 0 auto; padding: 24px 32px; display: flex; align-items: center; justify-content: space-between">
+<a href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #F1F3F6">
+<svg width="40" height="40" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#111318" stroke="#2A2F38"/><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#30353F" stroke-width="5" stroke-linecap="round"/><path d="M16.44 47.56 A22 22 0 1 1 53.73 28.56" stroke="#4C7DFF" stroke-width="5" stroke-linecap="round"/><path d="M32 32 L47 29.6" stroke="#E6E9EE" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="#E6E9EE"/></svg>
+<span style="font-family: Sora, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.03em">Skyfare</span>
+</a>
+<nav style="display: flex; align-items: center; gap: 8px; font-size: 15px">
+<a href="#" style="padding: 10px 16px; border-radius: 999px; background: #111318; color: #F1F3F6; text-decoration: none; font-weight: 500">Flights</a>
+<a href="#" style="padding: 10px 16px; color: #A9B0BC; text-decoration: none">How we score</a>
+<a href="#" style="padding: 10px 16px; color: #A9B0BC; text-decoration: none">Africa (soon)</a>
+<button type="button" aria-label="Switch to light mode" style="margin-left: 8px; width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2F38; background: transparent; color: #F1F3F6; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
+</nav>
+</header>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 96px 32px 72px; display: flex; flex-direction: column; align-items: center; text-align: center">
+<div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border: 1px solid #22262E; border-radius: 999px; font-size: 14px; color: #A9B0BC">
+<svg width="18" height="18" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#30353F" stroke-width="7" stroke-linecap="round"/><path d="M16.44 47.56 A22 22 0 1 1 53.73 28.56" stroke="#3CCF86" stroke-width="7" stroke-linecap="round"/></svg>
+Every flight scored for on-time reliability
+</div>
+<h1 style="margin: 28px 0 0; font-family: Sora, sans-serif; font-size: 112px; font-weight: 700; letter-spacing: -0.05em; line-height: 1">Skyfare</h1>
+<p style="margin: 20px 0 0; max-width: 620px; font-size: 21px; line-height: 1.55; color: #A9B0BC">Compare every flight across Nigeria on price, journey time and how often it actually leaves on time.</p>
+
+<form style="width: 100%; margin-top: 48px; text-align: left">
+<div style="display: flex; gap: 6px; margin-bottom: 12px">
+<button type="button" style="min-height: 40px; padding: 0 18px; border-radius: 999px; border: none; background: #111318; color: #F1F3F6; font: 500 15px 'IBM Plex Sans', sans-serif">One way</button>
+<button type="button" style="min-height: 40px; padding: 0 18px; border-radius: 999px; border: none; background: transparent; color: #A9B0BC; font: 500 15px 'IBM Plex Sans', sans-serif">Return</button>
+</div>
+<div style="display: flex; align-items: stretch; background: #111318; border: 1px solid #22262E; border-radius: 20px; padding: 8px">
+<label style="flex: 1.2; padding: 14px 20px; border-right: 1px solid #22262E"><span style="display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C93A0">From</span><input value="Lagos (LOS)" style="width: 100%; margin-top: 4px; background: transparent; border: none; color: #F1F3F6; font: 600 18px 'IBM Plex Sans', sans-serif; outline: none"></label>
+<label style="flex: 1.2; padding: 14px 20px; border-right: 1px solid #22262E"><span style="display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C93A0">To</span><input value="Abuja (ABV)" style="width: 100%; margin-top: 4px; background: transparent; border: none; color: #F1F3F6; font: 600 18px 'IBM Plex Sans', sans-serif; outline: none"></label>
+<label style="flex: 1; padding: 14px 20px; border-right: 1px solid #22262E"><span style="display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C93A0">Depart</span><input value="Thu, 8 Oct" style="width: 100%; margin-top: 4px; background: transparent; border: none; color: #F1F3F6; font: 600 18px 'IBM Plex Sans', sans-serif; outline: none"></label>
+<label style="flex: 1; padding: 14px 20px; border-right: 1px solid #22262E"><span style="display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8C93A0">Travellers</span><input value="1 adult, Economy" style="width: 100%; margin-top: 4px; background: transparent; border: none; color: #F1F3F6; font: 600 18px 'IBM Plex Sans', sans-serif; outline: none"></label>
+<button type="submit" style="margin-left: 8px; padding: 0 36px; border-radius: 14px; border: none; background: #1747E0; color: #FFFFFF; font: 600 18px Sora, sans-serif">Search</button>
+</div>
+</form>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 32px 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{props}}" as="p" hint-placeholder-count="3">
+<div style="background: #111318; border: 1px solid #22262E; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<svg width="44" height="44" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M16.44 47.56 A22 22 0 1 1 47.56 47.56" stroke="#2A2F38" stroke-width="5" stroke-linecap="round"/><path d="{{p.dial}}" stroke="#4C7DFF" stroke-width="5" stroke-linecap="round"/></svg>
+<div style="font-family: Sora, sans-serif; font-size: 21px; font-weight: 600; letter-spacing: -0.02em">{{p.title}}</div>
+<div style="font-size: 16px; line-height: 1.6; color: #A9B0BC">{{p.body}}</div>
+</div>
+</sc-for>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 32px 96px">
+<h2 style="margin: 0 0 18px; font-family: Sora, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Popular routes</h2>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{routes}}" as="r" hint-placeholder-count="8">
+<a href="#" style="display: flex; justify-content: space-between; align-items: center; min-height: 72px; padding: 0 22px; background: #111318; border: 1px solid #22262E; border-radius: 16px; color: #F1F3F6; text-decoration: none">
+<span><span style="display: block; font-weight: 600; font-size: 16px">{{r.name}}</span><span style="font-size: 13px; color: #8C93A0; letter-spacing: 0.06em">{{r.codes}}</span></span>
+<span style="color: #4C7DFF; font-size: 20px">→</span>
+</a>
+</sc-for>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+renderVals() {
+const dial = (score) => {
+const sweep = 270 * score / 10;
+const a = (135 + sweep) * Math.PI / 180;
+const x = (32 + 22 * Math.cos(a)).toFixed(2);
+const y = (32 + 22 * Math.sin(a)).toFixed(2);
+return 'M16.44 47.56 A22 22 0 ' + (sweep > 180 ? 1 : 0) + ' 1 ' + x + ' ' + y;
+};
+return {
+props: [
+{ title: 'Every flight, one list', body: 'All Nigerian airlines on your route side by side. If we can’t price a flight, we still show it.', dial: dial(10) },
+{ title: 'Reliability, scored 1–10', body: 'Delays and cancellations for each airline on your exact route over the last 60 days.', dial: dial(8) },
+{ title: 'The Skyfare Pick', body: 'One clear recommendation balancing price, journey time and reliability.', dial: dial(6) }
+],
+routes: [
+['Lagos → Abuja', 'LOS · ABV'], ['Abuja → Lagos', 'ABV · LOS'], ['Lagos → Port Harcourt', 'LOS · PHC'], ['Lagos → Kano', 'LOS · KAN'],
+['Abuja → Port Harcourt', 'ABV · PHC'], ['Lagos → Enugu', 'LOS · ENU'], ['Lagos → Uyo', 'LOS · QUO'], ['Abuja → Kano', 'ABV · KAN']
+].map(([name, codes]) => ({ name, codes }))
+};
+}
+}
+</script>
+</body>
+</html>

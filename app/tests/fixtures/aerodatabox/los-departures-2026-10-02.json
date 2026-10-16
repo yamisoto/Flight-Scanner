@@ -1,0 +1,3722 @@
+{
+ "departures": [
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:30Z",
+     "local": "2026-10-02 06:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 06:50Z",
+     "local": "2026-10-02 07:50+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7120",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:30Z",
+     "local": "2026-10-02 06:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 06:40Z",
+     "local": "2026-10-02 07:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7190",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:45Z",
+     "local": "2026-10-02 06:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNEN",
+     "iata": "ENU",
+     "name": "Enegu",
+     "location": {
+      "lat": 6.474269,
+      "lon": 7.56196
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 06:55Z",
+     "local": "2026-10-02 07:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7100",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-300"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:45Z",
+     "local": "2026-10-02 06:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 06:50Z",
+     "local": "2026-10-02 06:50+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7750",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:45Z",
+     "local": "2026-10-02 06:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 200",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:50Z",
+     "local": "2026-10-02 06:50+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "GMMN",
+     "iata": "CMN",
+     "name": "Casablanca",
+     "location": {
+      "lat": 33.3675,
+      "lon": -7.58997
+     },
+     "countryCode": "ma",
+     "timeZone": "Africa/Casablanca"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:25Z",
+     "local": "2026-10-02 10:25+00:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-02 10:25Z",
+     "local": "2026-10-02 10:25+00:00"
+    },
+    "terminal": "1",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "AT 554",
+   "status": "Expected",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Royal Air Maroc",
+    "iata": "AT",
+    "icao": "RAM"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 05:55Z",
+     "local": "2026-10-02 06:55+01:00"
+    },
+    "terminal": "1I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DIAP",
+     "iata": "ABJ",
+     "name": "Abidjan",
+     "location": {
+      "lat": 5.26139,
+      "lon": -3.92629
+     },
+     "countryCode": "ci",
+     "timeZone": "Africa/Abidjan"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:25Z",
+     "local": "2026-10-02 07:25+00:00"
+    },
+    "terminal": "1",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "ME 571",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A330-200"
+   },
+   "airline": {
+    "name": "Middle East",
+    "iata": "ME",
+    "icao": "MEA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 528",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAS",
+     "iata": "ABB",
+     "name": "Asaba",
+     "location": {
+      "lat": 6.203333,
+      "lon": 6.658888
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:10Z",
+     "local": "2026-10-02 08:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7860",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 195"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:20Z",
+     "local": "2026-10-02 08:20+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7124",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNBE",
+     "iata": "BNI",
+     "name": "Benin",
+     "location": {
+      "lat": 6.316979,
+      "lon": 5.5995
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 560",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAS",
+     "iata": "ABB",
+     "name": "Asaba",
+     "location": {
+      "lat": 6.203333,
+      "lon": 6.658888
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 506",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:10Z",
+     "local": "2026-10-02 08:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3558",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIM",
+     "iata": "QOW",
+     "name": "Owerri",
+     "location": {
+      "lat": 5.42706,
+      "lon": 7.206029
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 510",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DIAP",
+     "iata": "ABJ",
+     "name": "Abidjan",
+     "location": {
+      "lat": 5.26139,
+      "lon": -3.92629
+     },
+     "countryCode": "ci",
+     "timeZone": "Africa/Abidjan"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:50Z",
+     "local": "2026-10-02 07:50+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7770",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:15Z",
+     "local": "2026-10-02 08:15+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 504",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:00Z",
+     "local": "2026-10-02 07:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIM",
+     "iata": "QOW",
+     "name": "Owerri",
+     "location": {
+      "lat": 5.42706,
+      "lon": 7.206029
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:10Z",
+     "local": "2026-10-02 08:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7150",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:15Z",
+     "local": "2026-10-02 07:15+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAK",
+     "iata": "AKR",
+     "name": "Akure",
+     "location": {
+      "lat": 7.246739,
+      "lon": 5.30101
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:05Z",
+     "local": "2026-10-02 08:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "Q9 9306",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "ATR 72"
+   },
+   "airline": {
+    "name": "Green Africa",
+    "iata": "Q9"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:15Z",
+     "local": "2026-10-02 07:15+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIL",
+     "iata": "ILR",
+     "name": "Ilorin",
+     "location": {
+      "lat": 8.44021,
+      "lon": 4.493919
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:05Z",
+     "local": "2026-10-02 08:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "OF 1187",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 175"
+   },
+   "airline": {
+    "name": "Overland",
+    "iata": "OF",
+    "icao": "OLA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:30Z",
+     "local": "2026-10-02 07:30+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:45Z",
+     "local": "2026-10-02 08:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "EW 2207",
+   "status": "Unknown",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ200"
+   },
+   "airline": {
+    "name": "Eurowings",
+    "iata": "EW",
+    "icao": "EWG"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:30Z",
+     "local": "2026-10-02 07:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Dzhos"
+    },
+    "quality": []
+   },
+   "number": "VK 252",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:40Z",
+     "local": "2026-10-02 07:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIM",
+     "iata": "QOW",
+     "name": "Owerri",
+     "location": {
+      "lat": 5.42706,
+      "lon": 7.206029
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 07:50Z",
+     "local": "2026-10-02 08:50+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3560",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ1000"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 06:50Z",
+     "local": "2026-10-02 07:50+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Warri"
+    },
+    "quality": []
+   },
+   "number": "P4 7210",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 195"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "FKKD",
+     "iata": "DLA",
+     "name": "Douala",
+     "location": {
+      "lat": 4.00608,
+      "lon": 9.719479
+     },
+     "countryCode": "cm",
+     "timeZone": "Africa/Douala"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:30Z",
+     "local": "2026-10-02 09:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7720",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNBE",
+     "iata": "BNI",
+     "name": "Benin",
+     "location": {
+      "lat": 6.316979,
+      "lon": 5.5995
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:00Z",
+     "local": "2026-10-02 09:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7170",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 195"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Minna"
+    },
+    "quality": []
+   },
+   "number": "OF 1200",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 175"
+   },
+   "airline": {
+    "name": "Overland",
+    "iata": "OF",
+    "icao": "OLA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNCA",
+     "iata": "CBQ",
+     "name": "Calabar",
+     "location": {
+      "lat": 4.976019,
+      "lon": 8.3472
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:15Z",
+     "local": "2026-10-02 09:15+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 600",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:10Z",
+     "local": "2026-10-02 09:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 730",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:00Z",
+     "local": "2026-10-02 08:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:05Z",
+     "local": "2026-10-02 08:05+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7538",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:35Z",
+     "local": "2026-10-02 08:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 08:55Z",
+     "local": "2026-10-02 09:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7442",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-700"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:40Z",
+     "local": "2026-10-02 08:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNKA",
+     "iata": "KAD",
+     "name": "Kaduna",
+     "location": {
+      "lat": 10.696,
+      "lon": 7.320109
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 09:00Z",
+     "local": "2026-10-02 10:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "R4 2032",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Real Tonga",
+    "iata": "R4",
+    "icao": "RLT"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:45Z",
+     "local": "2026-10-02 08:45+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 09:00Z",
+     "local": "2026-10-02 10:00+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "N2 117",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-500"
+   },
+   "airline": {
+    "name": "Aero Contractors Company of Nigeria Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 07:55Z",
+     "local": "2026-10-02 08:55+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "OTHH",
+     "iata": "DOH",
+     "name": "Doha",
+     "location": {
+      "lat": 25.273056,
+      "lon": 51.608055
+     },
+     "countryCode": "qa",
+     "timeZone": "Asia/Qatar"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:00Z",
+     "local": "2026-10-02 18:00+03:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-02 14:41Z",
+     "local": "2026-10-02 17:41+03:00"
+    },
+    "runwayTime": {
+     "utc": "2026-10-02 14:37Z",
+     "local": "2026-10-02 17:37+03:00"
+    },
+    "baggageBelt": "7",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "QR 1408",
+   "status": "Departed",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 787-9"
+   },
+   "airline": {
+    "name": "Qatar",
+    "iata": "QR",
+    "icao": "QTR"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 08:00Z",
+     "local": "2026-10-02 09:00+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "EGLL",
+     "iata": "LHR",
+     "name": "London",
+     "location": {
+      "lat": 51.4706,
+      "lon": -0.461941
+     },
+     "countryCode": "gb",
+     "timeZone": "Europe/London"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:50Z",
+     "local": "2026-10-02 15:50+01:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-02 14:36Z",
+     "local": "2026-10-02 15:36+01:00"
+    },
+    "runwayTime": {
+     "utc": "2026-10-02 14:36Z",
+     "local": "2026-10-02 15:36+01:00"
+    },
+    "terminal": "3",
+    "baggageBelt": "06",
+    "runway": "27R",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "VS 412",
+   "callSign": "VIR412W",
+   "status": "Departed",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "reg": "G-VSRB",
+    "modeS": "408062",
+    "model": "Airbus A330-900"
+   },
+   "airline": {
+    "name": "Virgin Atlantic",
+    "iata": "VS",
+    "icao": "VIR"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 08:10Z",
+     "local": "2026-10-02 09:10+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 09:10Z",
+     "local": "2026-10-02 09:10+00:00"
+    },
+    "terminal": "3",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "AW 211",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Africa World",
+    "iata": "AW",
+    "icao": "AFW"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 08:15Z",
+     "local": "2026-10-02 09:15+01:00"
+    },
+    "terminal": "1I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DXXX",
+     "iata": "LFW",
+     "name": "Lom\u00e9",
+     "location": {
+      "lat": 6.165609,
+      "lon": 1.25451
+     },
+     "countryCode": "tg",
+     "timeZone": "Africa/Lome"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 09:15Z",
+     "local": "2026-10-02 09:15+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "KP 63",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "ASKY",
+    "iata": "KP",
+    "icao": "SKK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 08:15Z",
+     "local": "2026-10-02 09:15+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 09:15Z",
+     "local": "2026-10-02 09:15+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 588",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:00Z",
+     "local": "2026-10-02 10:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIM",
+     "iata": "QOW",
+     "name": "Owerri",
+     "location": {
+      "lat": 5.42706,
+      "lon": 7.206029
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:10Z",
+     "local": "2026-10-02 11:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7160",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 195"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:20Z",
+     "local": "2026-10-02 10:20+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNKN",
+     "iata": "KAN",
+     "name": "Kano",
+     "location": {
+      "lat": 12.047599,
+      "lon": 8.52462
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:50Z",
+     "local": "2026-10-02 11:50+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "R4 2015",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Real Tonga",
+    "iata": "R4",
+    "icao": "RLT"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:35Z",
+     "local": "2026-10-02 10:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:45Z",
+     "local": "2026-10-02 11:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 222",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:35Z",
+     "local": "2026-10-02 10:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:55Z",
+     "local": "2026-10-02 11:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7122",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:40Z",
+     "local": "2026-10-02 10:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Warri"
+    },
+    "quality": []
+   },
+   "number": "UN 546",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:45Z",
+     "local": "2026-10-02 10:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNBE",
+     "iata": "BNI",
+     "name": "Benin",
+     "location": {
+      "lat": 6.316979,
+      "lon": 5.5995
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 10:45Z",
+     "local": "2026-10-02 11:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3570",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 09:55Z",
+     "local": "2026-10-02 10:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 11:05Z",
+     "local": "2026-10-02 12:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3532",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 10:00Z",
+     "local": "2026-10-02 11:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 11:15Z",
+     "local": "2026-10-02 12:15+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 558",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 10:20Z",
+     "local": "2026-10-02 11:20+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 11:35Z",
+     "local": "2026-10-02 12:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 206",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 10:40Z",
+     "local": "2026-10-02 11:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 11:55Z",
+     "local": "2026-10-02 12:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3536",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 10:45Z",
+     "local": "2026-10-02 11:45+01:00"
+    },
+    "terminal": "1I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "KATL",
+     "iata": "ATL",
+     "name": "Atlanta",
+     "location": {
+      "lat": 33.6367,
+      "lon": -84.4281
+     },
+     "countryCode": "us",
+     "timeZone": "America/New_York"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 23:16Z",
+     "local": "2026-10-02 19:16-04:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-02 22:30Z",
+     "local": "2026-10-02 18:30-04:00"
+    },
+    "runwayTime": {
+     "utc": "2026-10-02 22:28Z",
+     "local": "2026-10-02 18:28-04:00"
+    },
+    "terminal": "I",
+    "runway": "08L",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "DL 55",
+   "callSign": "DAL55",
+   "status": "Departed",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "reg": "N853NW",
+    "modeS": "ABB3BE",
+    "model": "Airbus A330-200"
+   },
+   "airline": {
+    "name": "Delta Air Lines",
+    "iata": "DL",
+    "icao": "DAL"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 10:50Z",
+     "local": "2026-10-02 11:50+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DIAP",
+     "iata": "ABJ",
+     "name": "Abidjan",
+     "location": {
+      "lat": 5.26139,
+      "lon": -3.92629
+     },
+     "countryCode": "ci",
+     "timeZone": "Africa/Abidjan"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 12:30Z",
+     "local": "2026-10-02 12:30+00:00"
+    },
+    "terminal": "1",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "HF 831",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Air Cote D'Ivoire",
+    "iata": "HF",
+    "icao": "VRE"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 11:15Z",
+     "local": "2026-10-02 12:15+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "FOOL",
+     "iata": "LBV",
+     "name": "Libreville",
+     "location": {
+      "lat": 0.4586,
+      "lon": 9.41228
+     },
+     "countryCode": "ga",
+     "timeZone": "Africa/Libreville"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 12:45Z",
+     "local": "2026-10-02 13:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "J7 255",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Afrijet",
+    "iata": "J7",
+    "icao": "ABS"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 11:20Z",
+     "local": "2026-10-02 12:20+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Warri"
+    },
+    "quality": []
+   },
+   "number": "R4 2041",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Real Tonga",
+    "iata": "R4",
+    "icao": "RLT"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 11:25Z",
+     "local": "2026-10-02 12:25+01:00"
+    },
+    "terminal": "1I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "OLBA",
+     "iata": "BEY",
+     "name": "Beirut",
+     "location": {
+      "lat": 33.8209,
+      "lon": 35.4884
+     },
+     "countryCode": "lb",
+     "timeZone": "Asia/Beirut"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:15Z",
+     "local": "2026-10-02 20:15+03:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "ME 572",
+   "callSign": "MEA572",
+   "status": "Unknown",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "reg": "OD-MEB",
+    "modeS": "748019",
+    "model": "Airbus A330-200"
+   },
+   "airline": {
+    "name": "Middle East",
+    "iata": "ME",
+    "icao": "MEA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:05Z",
+     "local": "2026-10-02 13:05+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:20Z",
+     "local": "2026-10-02 14:20+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 518",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:05Z",
+     "local": "2026-10-02 13:05+01:00"
+    },
+    "terminal": "1I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "HAAB",
+     "iata": "ADD",
+     "name": "Addis Ababa",
+     "location": {
+      "lat": 8.97789,
+      "lon": 38.7993
+     },
+     "countryCode": "et",
+     "timeZone": "Africa/Addis_Ababa"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:35Z",
+     "local": "2026-10-02 20:35+03:00"
+    },
+    "terminal": "2",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "ET 900",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A350-1000"
+   },
+   "airline": {
+    "name": "Ethiopian",
+    "iata": "ET",
+    "icao": "ETH"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:35Z",
+     "local": "2026-10-02 13:35+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:50Z",
+     "local": "2026-10-02 14:50+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "N2 123",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-300"
+   },
+   "airline": {
+    "name": "Aero Contractors Company of Nigeria Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:40Z",
+     "local": "2026-10-02 13:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNKN",
+     "iata": "KAN",
+     "name": "Kano",
+     "location": {
+      "lat": 12.047599,
+      "lon": 8.52462
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:10Z",
+     "local": "2026-10-02 15:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 578",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:40Z",
+     "local": "2026-10-02 13:40+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:40Z",
+     "local": "2026-10-02 13:40+00:00"
+    },
+    "terminal": "3",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "AW 215",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Africa World",
+    "iata": "AW",
+    "icao": "AFW"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:40Z",
+     "local": "2026-10-02 13:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNBE",
+     "iata": "BNI",
+     "name": "Benin",
+     "location": {
+      "lat": 6.316979,
+      "lon": 5.5995
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:40Z",
+     "local": "2026-10-02 14:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 570",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:40Z",
+     "local": "2026-10-02 13:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAS",
+     "iata": "ABB",
+     "name": "Asaba",
+     "location": {
+      "lat": 6.203333,
+      "lon": 6.658888
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:40Z",
+     "local": "2026-10-02 14:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 522",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:40Z",
+     "local": "2026-10-02 13:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAS",
+     "iata": "ABB",
+     "name": "Asaba",
+     "location": {
+      "lat": 6.203333,
+      "lon": 6.658888
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 13:50Z",
+     "local": "2026-10-02 14:50+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7864",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 12:55Z",
+     "local": "2026-10-02 13:55+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:05Z",
+     "local": "2026-10-02 15:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7194",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:00Z",
+     "local": "2026-10-02 14:00+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "HECA",
+     "iata": "CAI",
+     "name": "Cairo",
+     "location": {
+      "lat": 30.1219,
+      "lon": 31.4056
+     },
+     "countryCode": "eg",
+     "timeZone": "Africa/Cairo"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 18:15Z",
+     "local": "2026-10-02 21:15+03:00"
+    },
+    "terminal": "3",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "MS 876",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 787-9"
+   },
+   "airline": {
+    "name": "EgyptAir",
+    "iata": "MS",
+    "icao": "MSR"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:00Z",
+     "local": "2026-10-02 14:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:15Z",
+     "local": "2026-10-02 15:15+01:00"
+    },
+    "terminal": "B",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 520",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:00Z",
+     "local": "2026-10-02 14:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNBE",
+     "iata": "BNI",
+     "name": "Benin",
+     "location": {
+      "lat": 6.316979,
+      "lon": 5.5995
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:00Z",
+     "local": "2026-10-02 15:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7174",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A320"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:00Z",
+     "local": "2026-10-02 14:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNSO",
+     "iata": "SKO",
+     "name": "Sokoto",
+     "location": {
+      "lat": 12.916299,
+      "lon": 5.20719
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:30Z",
+     "local": "2026-10-02 15:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 574",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:05Z",
+     "local": "2026-10-02 14:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIM",
+     "iata": "QOW",
+     "name": "Owerri",
+     "location": {
+      "lat": 5.42706,
+      "lon": 7.206029
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:15Z",
+     "local": "2026-10-02 15:15+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7154",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-300"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:05Z",
+     "local": "2026-10-02 14:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:20Z",
+     "local": "2026-10-02 15:20+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 214",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:15Z",
+     "local": "2026-10-02 14:15+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "name": "Warri"
+    },
+    "quality": []
+   },
+   "number": "P4 7214",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 195"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:20Z",
+     "local": "2026-10-02 14:20+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNEN",
+     "iata": "ENU",
+     "name": "Enegu",
+     "location": {
+      "lat": 6.474269,
+      "lon": 7.56196
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:30Z",
+     "local": "2026-10-02 15:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7104",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer 190"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:25Z",
+     "local": "2026-10-02 14:25+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNKN",
+     "iata": "KAN",
+     "name": "Kano",
+     "location": {
+      "lat": 12.047599,
+      "lon": 8.52462
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:05Z",
+     "local": "2026-10-02 16:05+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7424",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:30Z",
+     "local": "2026-10-02 14:30+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:45Z",
+     "local": "2026-10-02 15:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "EW 2203",
+   "status": "Unknown",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ200"
+   },
+   "airline": {
+    "name": "Eurowings",
+    "iata": "EW",
+    "icao": "EWG"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:35Z",
+     "local": "2026-10-02 14:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:45Z",
+     "local": "2026-10-02 15:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3546",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:40Z",
+     "local": "2026-10-02 14:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:00Z",
+     "local": "2026-10-02 16:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "P4 7126",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-800"
+   },
+   "airline": {
+    "name": "Air Peace",
+    "iata": "P4",
+    "icao": "APK"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:40Z",
+     "local": "2026-10-02 14:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 14:50Z",
+     "local": "2026-10-02 15:50+01:00"
+    },
+    "terminal": "D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "R4 2001",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Real Tonga",
+    "iata": "R4",
+    "icao": "RLT"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:45Z",
+     "local": "2026-10-02 14:45+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "HRYR",
+     "iata": "KGL",
+     "name": "Kigali",
+     "location": {
+      "lat": -1.968629,
+      "lon": 30.1395
+     },
+     "countryCode": "rw",
+     "timeZone": "Africa/Kigali"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 19:05Z",
+     "local": "2026-10-02 21:05+02:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "WB 203",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Airbus A330-200"
+   },
+   "airline": {
+    "name": "RwandAir",
+    "iata": "WB",
+    "icao": "RWD"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 13:45Z",
+     "local": "2026-10-02 14:45+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "OTHH",
+     "iata": "DOH",
+     "name": "Doha",
+     "location": {
+      "lat": 25.273056,
+      "lon": 51.608055
+     },
+     "countryCode": "qa",
+     "timeZone": "Asia/Qatar"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 20:50Z",
+     "local": "2026-10-02 23:50+03:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-02 20:39Z",
+     "local": "2026-10-02 23:39+03:00"
+    },
+    "runwayTime": {
+     "utc": "2026-10-02 20:30Z",
+     "local": "2026-10-02 23:30+03:00"
+    },
+    "baggageBelt": "9",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "QR 1406",
+   "status": "Departed",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 787-9"
+   },
+   "airline": {
+    "name": "Qatar",
+    "iata": "QR",
+    "icao": "QTR"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 14:00Z",
+     "local": "2026-10-02 15:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:00Z",
+     "local": "2026-10-02 16:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 514",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 14:10Z",
+     "local": "2026-10-02 15:10+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:20Z",
+     "local": "2026-10-02 16:20+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "VK 226",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Anisec",
+    "iata": "VK",
+    "icao": "FOO"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 14:30Z",
+     "local": "2026-10-02 15:30+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNAA",
+     "iata": "ABV",
+     "name": "Abuja",
+     "location": {
+      "lat": 9.00679,
+      "lon": 7.263169
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:45Z",
+     "local": "2026-10-02 16:45+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "W1 3534",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "World Ticket Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 14:40Z",
+     "local": "2026-10-02 15:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIL",
+     "iata": "ILR",
+     "name": "Ilorin",
+     "location": {
+      "lat": 8.44021,
+      "lon": 4.493919
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 15:40Z",
+     "local": "2026-10-02 16:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 550",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Embraer RJ145"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 15:30Z",
+     "local": "2026-10-02 16:30+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNPO",
+     "iata": "PHC",
+     "name": "Port Harcourt",
+     "location": {
+      "lat": 5.01549,
+      "lon": 6.94959
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:00Z",
+     "local": "2026-10-02 18:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "Q9 9322",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "ATR 72"
+   },
+   "airline": {
+    "name": "Green Africa",
+    "iata": "Q9"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 15:40Z",
+     "local": "2026-10-02 16:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DGAA",
+     "iata": "ACC",
+     "name": "Accra",
+     "location": {
+      "lat": 5.605189,
+      "lon": -0.166786
+     },
+     "countryCode": "gh",
+     "timeZone": "Africa/Accra"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:00Z",
+     "local": "2026-10-02 17:00+00:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "TC 235",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-900"
+   },
+   "airline": {
+    "name": "Air Tanzania",
+    "iata": "TC",
+    "icao": "ATC"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 15:40Z",
+     "local": "2026-10-02 16:40+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNIL",
+     "iata": "ILR",
+     "name": "Ilorin",
+     "location": {
+      "lat": 8.44021,
+      "lon": 4.493919
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 16:35Z",
+     "local": "2026-10-02 17:35+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "Q9 9304",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "ATR 72"
+   },
+   "airline": {
+    "name": "Green Africa",
+    "iata": "Q9"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 16:00Z",
+     "local": "2026-10-02 17:00+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNEN",
+     "iata": "ENU",
+     "name": "Enegu",
+     "location": {
+      "lat": 6.474269,
+      "lon": 7.56196
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:00Z",
+     "local": "2026-10-02 18:00+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "UN 500",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Bombardier CRJ900"
+   },
+   "airline": {
+    "name": "Business Aviation Asia",
+    "iata": "UN",
+    "icao": "UNA"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 16:10Z",
+     "local": "2026-10-02 17:10+01:00"
+    },
+    "terminal": "1D",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "DNKN",
+     "iata": "KAN",
+     "name": "Kano",
+     "location": {
+      "lat": 12.047599,
+      "lon": 8.52462
+     },
+     "countryCode": "ng",
+     "timeZone": "Africa/Lagos"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-02 17:40Z",
+     "local": "2026-10-02 18:40+01:00"
+    },
+    "quality": [
+     "Basic"
+    ]
+   },
+   "number": "N2 143",
+   "status": "Unknown",
+   "codeshareStatus": "Unknown",
+   "isCargo": false,
+   "aircraft": {
+    "model": "Boeing 737-300"
+   },
+   "airline": {
+    "name": "Aero Contractors Company of Nigeria Ltd"
+   }
+  },
+  {
+   "departure": {
+    "scheduledTime": {
+     "utc": "2026-10-02 16:45Z",
+     "local": "2026-10-02 17:45+01:00"
+    },
+    "terminal": "2I",
+    "quality": [
+     "Basic"
+    ]
+   },
+   "arrival": {
+    "airport": {
+     "icao": "OMDB",
+     "iata": "DXB",
+     "name": "Dubai",
+     "location": {
+      "lat": 25.252798,
+      "lon": 55.3644
+     },
+     "countryCode": "ae",
+     "timeZone": "Asia/Dubai"
+    },
+    "scheduledTime": {
+     "utc": "2026-10-03 01:00Z",
+     "local": "2026-10-03 05:00+04:00"
+    },
+    "revisedTime": {
+     "utc": "2026-10-03 00:18Z",
+     "local": "2026-10-03 04:18+04:00"
+    },
+    "runwayTime": {
+     "utc": "2026-10-03 00:09Z",
+     "local": "2026-10-03 04:09+04:00"
+    },
+    "terminal": "3",
+    "baggageBelt": "8",
+    "runway": "12L",
+    "quality": [
+     "Basic",
+     "Live"
+    ]
+   },
+   "number": "EK 784",
+   "callSign": "UAE784",
+   "status": "Departed",
+   "codeshareStatus": "IsOperator",
+   "isCargo": false,
+   "aircraft": {
+    "reg": "A6-EBU",
+    "modeS": "8960DC",
+    "model": "Boeing 777-300"
+   },
+   "airline": {
+    "name": "Emirates",
+    "iata": "EK",
+    "icao": "UAE"
+   }
+  }
+ ]
+}

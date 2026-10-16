@@ -1,39 +1,62 @@
 @import "tailwindcss";
 
+/* dark: utilities follow the .dark class the theme toggle sets, not the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
-  Light (default) palette: flat white canvas, near-black ink, one blue
-  accent used only for the primary action and price. Dark mode swaps
-  these via the .dark class on <html> — components never branch on
-  theme themselves, they just use these tokens.
+  Design tokens. Blue = action and the Skyfare Pick, silver = neutral
+  system, black = ink / dark canvas. Dark mode swaps them via the .dark
+  class on <html> (set before hydration in layout.tsx); components never
+  branch on theme, they just use these tokens.
 */
 :root {
-  --bg: #ffffff;
-  --ink: #14151a;
-  --ink-muted: #6b6f76;
-  --accent: #1747e0;
-  --accent-ink: #ffffff;
-  --line: #e7e7e9;
-  --line-strong: #d4d4d8;
-  --logo-color: #1747e0;
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --surface-2: #eceef2;
+  --ink: #0a0c11;
+  --ink-muted: #5a6170;
+  --line: #e1e4ea;
+  --line-strong: #c9ced8;
+  --silver: #aab1bd;
+  --primary: #1747e0;
+  --primary-hover: #1239b8;
+  --primary-ink: #ffffff;
+  --primary-soft: #e8eefd;
+  --good: #0f8a4b;
+  --warn: #b26a00;
+  --bad: #c0352b;
+  --hero-from: #05070c;
+  --hero-to: #0d1a3a;
+  --hero-ink: #f2f4f8;
+  --hero-muted: #9aa3b5;
+  --shadow: 0 1px 2px rgb(10 12 17 / 0.04), 0 8px 24px rgb(10 12 17 / 0.06);
 }
 
 :root.dark {
-  --bg: #2a2a2d;
-  --ink: #ffffff;
-  --ink-muted: #a6a6ac;
-  --accent: #d9d9dc;
-  --accent-ink: #1a1a1c;
-  --line: #3f3f43;
-  --line-strong: #55555a;
-  --logo-color: #1747e0;
+  --bg: #07080b;
+  --surface: #111318;
+  --surface-2: #181b22;
+  --ink: #f1f3f6;
+  --ink-muted: #9aa1ad;
+  --line: #22262e;
+  --line-strong: #323844;
+  --silver: #b8bec8;
+  --primary: #4c7dff;
+  --primary-hover: #6b93ff;
+  --primary-ink: #ffffff;
+  --primary-soft: #14203f;
+  --good: #3ccf86;
+  --warn: #f0a934;
+  --bad: #ff6b5e;
+  --hero-from: #030407;
+  --hero-to: #0a1430;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --font-sans: ui-sans-serif, "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -46,33 +69,58 @@ body {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Wordmark letters: idle at a neutral muted tone, pulse to the brand
-   blue (--logo-color) in a left-to-right wave. */
-@keyframes letterPulse {
-  0%,
-  40%,
-  100% {
-    color: var(--ink-muted);
-  }
-  18% {
-    color: var(--logo-color);
-  }
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-silver: var(--silver);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-muted: var(--hero-muted);
 }
 
-/* Full-screen loading wordmark: always animates, in both themes. */
-.loading-letter {
-  display: inline-block;
-  animation: letterPulse 1.6s ease-in-out infinite;
+.v2-hero {
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgb(76 125 255 / 0.28), transparent 60%),
+    linear-gradient(180deg, var(--hero-from), var(--hero-to));
 }
 
-/* Persistent header logo: animates in light mode; in dark mode it's a
-   plain, static, solid blue — no letter-by-letter color change. */
-.wordmark-letter {
-  display: inline-block;
-  animation: letterPulse 1.6s ease-in-out infinite;
+/* Silver metallic wordmark used on the dark hero. */
+.v2-wordmark {
+  background: linear-gradient(180deg, #ffffff 0%, #d5dae3 45%, #8f97a6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-:root.dark .wordmark-letter {
-  animation: none;
-  color: var(--logo-color);
+.v2-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.v2-num {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes v2-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.v2-skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--line) 50%, var(--surface-2) 100%);
+  background-size: 800px 100%;
+  animation: v2-shimmer 1.4s linear infinite;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-skeleton { animation: none; }
 }

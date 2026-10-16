@@ -21,12 +21,15 @@ export interface Airline {
   operationalStatus: OperationalStatus;
   verified: boolean;
   providerAvailability: string[]; // e.g. ["wakanow"] once confirmed — currently none
+  /** Official booking site, only where confirmed (3 Oct 2026). Used for "Check price on airline site". */
+  website?: string;
   notes?: string;
 }
 
 export const AIRLINES: Airline[] = [
   {
     name: "Air Peace",
+    website: "https://flyairpeace.com",
     iata: "P4",
     icao: "APK",
     operationalStatus: "operating",
@@ -36,6 +39,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "Arik Air",
+    website: "https://www.arikair.com",
     iata: "W3",
     icao: "ARA",
     operationalStatus: "operating",
@@ -45,6 +49,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "Ibom Air",
+    website: "https://www.ibomair.com",
     iata: "QI",
     icao: "IAN",
     operationalStatus: "operating",
@@ -53,12 +58,12 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "Dana Air",
-    iata: null,
-    icao: "DAV",
-    operationalStatus: "operating",
-    verified: false,
+    iata: "9J",
+    icao: "DAN",
+    operationalStatus: "grounded",
+    verified: true,
     providerAvailability: [],
-    notes: "IATA code not confirmed from a primary source during this build — left null rather than guessed.",
+    notes: "Ceased operations on 23 April 2024 and absent from NCAA's August 2026 operations data. Previously listed here with ICAO DAV and no IATA code; corrected 3 Oct 2026.",
   },
   {
     name: "Green Africa Airways",
@@ -78,6 +83,7 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "ValueJet",
+    website: "https://www.flyvaluejet.com",
     iata: "VK",
     icao: "FVJ",
     operationalStatus: "operating",
@@ -87,12 +93,13 @@ export const AIRLINES: Airline[] = [
   },
   {
     name: "United Nigeria Airlines",
-    iata: "U5",
-    icao: "UNA",
+    website: "https://flyunitednigeria.com",
+    iata: "UN",
+    icao: "NUA",
     operationalStatus: "operating",
     verified: true,
     providerAvailability: ["wakanow"],
-    notes: "Confirmed live distribution partnership with Wakanow — same caveat as ValueJet.",
+    notes: "Confirmed live distribution partnership with Wakanow — same caveat as ValueJet. Codes corrected 3 Oct 2026 from U5/UNA to UN/NUA per IATA's member listing (U5 was recalled).",
   },
   {
     name: "NG Eagle",
@@ -116,10 +123,37 @@ export const AIRLINES: Airline[] = [
     name: "Max Air",
     iata: "VM",
     icao: "NGL",
-    operationalStatus: "grounded",
+    operationalStatus: "operating",
     verified: true,
     providerAvailability: [],
-    notes: "Listed as grounded in most recently checked source. Not currently a viable data source.",
+    notes: "Operated 336 domestic flights in August 2026 per NCAA data, so no longer grounded (status corrected 3 Oct 2026).",
+  },
+  {
+    name: "Enugu Air",
+    iata: "EE",
+    icao: null,
+    operationalStatus: "operating",
+    verified: false,
+    providerAvailability: [],
+    notes: "Enugu State Government airline, operating since 7 July 2025 (878 domestic flights in August 2026 per NCAA). IATA code from a single secondary source; ICAO not found. Confirm before relying on it.",
+  },
+  {
+    name: "Rano Air",
+    iata: "R4",
+    icao: "RAN",
+    operationalStatus: "operating",
+    verified: true,
+    providerAvailability: [],
+    notes: "503 domestic flights in August 2026 per NCAA.",
+  },
+  {
+    name: "XEJet",
+    iata: "4U",
+    icao: "XEJ",
+    operationalStatus: "operating",
+    verified: true,
+    providerAvailability: [],
+    notes: "127 domestic flights in August 2026 per NCAA.",
   },
 ];
 
