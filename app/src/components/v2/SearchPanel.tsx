@@ -2,6 +2,7 @@
 
 import { useState, useSyncExternalStore } from "react";
 import { AirportCombobox } from "@/components/v2/AirportCombobox";
+import { PriceDatePicker } from "@/components/v2/PriceDatePicker";
 import { TravellersPicker } from "@/components/v2/TravellersPicker";
 import { SearchIcon, SwapIcon } from "@/components/v2/icons";
 import type { CabinClass, FlightSearchRequest, TripType } from "@/types/flight";
@@ -44,6 +45,7 @@ export function SearchPanel({ initial, isSearching, onSearch }: SearchPanelProps
   function submit(e: React.FormEvent) {
     e.preventDefault();
     if (origin === destination) return setError("Pick two different airports.");
+    if (!departureDate) return setError("Choose a departure date.");
     if (tripType === "return" && returnDate < departureDate) return setError("Return date must be on or after departure.");
     setError(null);
     onSearch({
@@ -96,11 +98,29 @@ export function SearchPanel({ initial, isSearching, onSearch }: SearchPanelProps
 
         <div className="mx-4 h-px bg-line lg:mx-0 lg:my-3 lg:h-auto lg:w-px" />
 
-        <div className="flex lg:flex-[1.6]">
-          <DateField label="Depart" value={departureDate} min={today || undefined} onChange={setDepartureDate} />
+        <div className="relative flex lg:flex-[1.6]">
+          <PriceDatePicker
+            label="Depart"
+            value={departureDate}
+            min={today || undefined}
+            onChange={setDepartureDate}
+            origin={origin}
+            destination={destination}
+            adults={adults}
+            cabinClass={cabinClass}
+          />
           <div className="my-3 w-px bg-line" />
           {tripType === "return" ? (
-            <DateField label="Return" value={returnDate} min={departureDate} onChange={setReturnDate} />
+            <PriceDatePicker
+              label="Return"
+              value={returnDate}
+              min={departureDate || undefined}
+              onChange={setReturnDate}
+              origin={destination}
+              destination={origin}
+              adults={adults}
+              cabinClass={cabinClass}
+            />
           ) : (
             <button type="button" onClick={() => setTripType("return")} className="min-w-0 flex-1 text-left">
               <span className="block px-4 pt-3 text-[11px] font-medium uppercase tracking-wider text-ink-muted">Return</span>
@@ -138,21 +158,5 @@ export function SearchPanel({ initial, isSearching, onSearch }: SearchPanelProps
         </p>
       )}
     </form>
-  );
-}
-
-function DateField({ label, value, min, onChange }: { label: string; value: string; min?: string; onChange: (v: string) => void }) {
-  return (
-    <label className="min-w-0 flex-1">
-      <span className="block px-4 pt-3 text-[11px] font-medium uppercase tracking-wider text-ink-muted">{label}</span>
-      <input
-        type="date"
-        required
-        value={value}
-        min={min}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-transparent px-4 pb-3 pt-0.5 text-[15px] font-medium text-ink outline-none [color-scheme:light] dark:[color-scheme:dark]"
-      />
-    </label>
   );
 }
