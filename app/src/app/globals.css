@@ -30,6 +30,13 @@
   --hero-ink: #f2f4f8;
   --hero-muted: #9aa3b5;
   --shadow: 0 1px 2px rgb(10 12 17 / 0.04), 0 8px 24px rgb(10 12 17 / 0.06);
+  /* Date picker price bands: light blue = cheaper, grey = average, navy = more expensive. */
+  --tier-low: #cfe2ff;
+  --tier-low-ink: #0b2a5b;
+  --tier-mid: #e2e5ea;
+  --tier-mid-ink: #2a2f3a;
+  --tier-high: #0f2557;
+  --tier-high-ink: #ffffff;
 }
 
 :root.dark {
@@ -51,6 +58,12 @@
   --hero-from: #030407;
   --hero-to: #0a1430;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  --tier-low: #8bb8ff;
+  --tier-low-ink: #071634;
+  --tier-mid: #3b414c;
+  --tier-mid-ink: #eef0f4;
+  --tier-high: #233f8f;
+  --tier-high-ink: #ffffff;
 }
 
 @theme inline {
@@ -82,6 +95,12 @@ body {
   --color-bad: var(--bad);
   --color-hero-ink: var(--hero-ink);
   --color-hero-muted: var(--hero-muted);
+  --color-tier-low: var(--tier-low);
+  --color-tier-low-ink: var(--tier-low-ink);
+  --color-tier-mid: var(--tier-mid);
+  --color-tier-mid-ink: var(--tier-mid-ink);
+  --color-tier-high: var(--tier-high);
+  --color-tier-high-ink: var(--tier-high-ink);
 }
 
 .v2-hero {
