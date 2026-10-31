@@ -165,7 +165,7 @@ export function pickReason(pick: ScoredOffer, all: ScoredOffer[]): string {
   if (!cheapest || cheapest.offer.id === pick.offer.id) {
     return pick.reliability.score >= PICK_PREFERRED_RELIABILITY
       ? "Cheapest flight on this route, with good reliability."
-      : "Cheapest flight on this route. No higher-reliability option is available.";
+      : "Cheapest flight on this route. No flight on this route has a Good reliability score.";
   }
   const extra = pick.offer.price.amount - cheapest.offer.price.amount;
   const gain = Math.round((pick.reliability.score - cheapest.reliability.score) * 10) / 10;
